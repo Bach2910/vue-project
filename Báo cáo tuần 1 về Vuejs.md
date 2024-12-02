@@ -5,12 +5,11 @@
 
 Kết quả: 
 
-![](Aspose.Words.545ef93a-01ce-471f-9f49-2f69767c90a6.001.png)
+![](/images/Aspose.Words.545ef93a-01ce-471f-9f49-2f69767c90a6.001.png)
 
 Trong phpstoms ta sẽ được 1 thư mục có cấu trúc như sau:
 
-![](Aspose.Words.545ef93a-01ce-471f-9f49-2f69767c90a6.002.png)
-
+![](/images/Aspose.Words.545ef93a-01ce-471f-9f49-2f69767c90a6.002.png)
 Tệp chính sẽ là main.js
 
 App.vue sẽ là thư mục gốc
@@ -46,11 +45,11 @@ Nó còn tác dụng với các textarea, select
 
 Các modifier của v-model: 
 
-\+ lazy: với cái này thì sẽ lưu giá trị khi người dùng tap ra khỏi input
++ lazy: với cái này thì sẽ lưu giá trị khi người dùng tap ra khỏi input
 
-\+ number: tự động chuyển đổi thành số
++ number: tự động chuyển đổi thành số
 
-\+ trim: giúp loại bỏ khoảng trắng ở đầu và cuối
++ trim: giúp loại bỏ khoảng trắng ở đầu và cuối
 
 Ta có làm với v-model với components nhưng ta cần phải xác định và phát hiện ra sự kiện input
 
@@ -185,9 +184,6 @@ export default {
 `  `},
 
 `  `watch: {
-
-`    `// Khi `message` thay đổi, hàm callback sẽ được gọi
-
 `    `message(newValue, oldValue) {
 
 `      `console.log('Message changed from', oldValue, 'to', newValue);
@@ -246,7 +242,7 @@ data() {
 
 Trường hợp là khi ta nhập giá trị mới vào cả message và count đều có watcher riêng biệt, và mỗi khi một trong hai giá trị thay đổi.
 
-\+ Watcher với dữ liệu phức tạp:
++ Watcher với dữ liệu phức tạp:
 
 Trong trường hợp khi bạn muốn theo dõi như 1 mảng và đối tượng, ta có thể dùng deep để theo dõi sâu vào từng chi tiết của từng phần tử trong mảng và đối tượng. 
 
@@ -328,11 +324,7 @@ Trong trường hợp này thì nó sẽ tự theo dõi các giá trị của co
 
 import { watchEffect } from 'vue'
 
-// this one will be automatically stopped
-
 watchEffect(() => {})
-
-// ...this one will not!
 
 setTimeout(() => {
 
@@ -340,7 +332,7 @@ setTimeout(() => {
 
 }, 100)
 
-</script
+</script>
 
 Và ta có 1 hàm trả về như sau: 
 
@@ -356,29 +348,30 @@ unwatch()
 
 **v-for**: Lặp qua danh sách
 
-`	`**<a v-on:click="doSomething"></a> <!-- cú pháp ngắn gọn -->@click="doSomething"></a>**
+<a v-on:click="doSomething"></a> <!-- cú pháp ngắn gọn -->@click="doSomething">
 
-**v-bind**: Liên kết thuộc tính.
+v-bind: Liên kết thuộc tính
 
-**<a v-bind:href="url"></a> <!-- cú pháp viết tắt --> <a :href="url"></a>**
+<a v-bind:href="url"></a> <!-- cú pháp viết tắt --> <a :href="url">
 
-**v-on**: Lắng nghe sự kiện cũng được viết gọn là @click
+v-on: Lắng nghe sự kiện cũng được viết gọn là @click
 
-![](Aspose.Words.545ef93a-01ce-471f-9f49-2f69767c90a6.003.png)
+![](/images/Aspose.Words.545ef93a-01ce-471f-9f49-2f69767c90a6.003.png)
 
 V-show: chỉ thị v-show hoạt động tương tự như v-if, nhưng thay vì loại bỏ phần tử khỏi DOM, nó chỉ thay đổi thuộc tính CSS display.
 
 V-else-if: xác định điều kiện khác nếu v-if trước đó là false 	
 
-(v-if:điều kiện thay đổi hiếm còn v-for là cho thường xuyên)
-### **Event Handling**
+(v-if:điều kiện thay đổi hiếm còn v-for là cho thường xuyên) 
+
+**Event Handling**
 Dễ dàng xử lý sự kiện với cú pháp như @click="methodName".
-### **Animation**
+**Animation**
 Hỗ trợ tích hợp các hiệu ứng chuyển động, dễ dàng sử dụng giống như là làm với css bình thường.
 
 Ví dụ:
 
-` `<p :class="{ 'animate-fade':
+<p :class="{ 'animate-fade':
 
 @keyframes fadeIn {
 
@@ -398,32 +391,29 @@ Ví dụ:
 
 .animate-fade {
 
-`  `animation: fadeIn 0.5s ease-in-out;
+    animation: fadeIn 0.5s ease-in-out;
 
 }
-
------
-
-**Computed**
+Computed
 
 các giá trị được tính toán dựa trên các thuộc tính phản ứng. Chúng được "cache" (lưu trữ) và chỉ được tính lại khi các phụ thuộc thay đổi. Điều này giúp tối ưu hóa hiệu suất, đặc biệt với các phép toán phức tạp.
 
-![](Aspose.Words.545ef93a-01ce-471f-9f49-2f69767c90a6.004.png)
+![](/images/Aspose.Words.545ef93a-01ce-471f-9f49-2f69767c90a6.004.png)
 
-![](Aspose.Words.545ef93a-01ce-471f-9f49-2f69767c90a6.005.png)
+![](/images/Aspose.Words.545ef93a-01ce-471f-9f49-2f69767c90a6.005.png)
 
-![](Aspose.Words.545ef93a-01ce-471f-9f49-2f69767c90a6.006.png)
+![](/images/Aspose.Words.545ef93a-01ce-471f-9f49-2f69767c90a6.006.png)
 
-![](Aspose.Words.545ef93a-01ce-471f-9f49-2f69767c90a6.007.png)
+![](/images/Aspose.Words.545ef93a-01ce-471f-9f49-2f69767c90a6.007.png)
 
 
 **Method**
 
 các hàm có thể được gọi trong template hoặc script. Mỗi khi được gọi, chúng thực thi lại. Chúng không lưu trữ giá trị mà chỉ thực hiện hành động.
 
-![](Aspose.Words.545ef93a-01ce-471f-9f49-2f69767c90a6.008.png)
+![](/images/Aspose.Words.545ef93a-01ce-471f-9f49-2f69767c90a6.008.png)
 
-![](Aspose.Words.545ef93a-01ce-471f-9f49-2f69767c90a6.009.png)
+![](/images/Aspose.Words.545ef93a-01ce-471f-9f49-2f69767c90a6.009.png)
 
 
 **Reactive State**
@@ -434,7 +424,7 @@ một cách để quản lý trạng thái (state) của ứng dụng
 
 Được khai báo bằng thuộc tính data 
 
-\* ![](Aspose.Words.545ef93a-01ce-471f-9f49-2f69767c90a6.010.png)
+![](/images/Aspose.Words.545ef93a-01ce-471f-9f49-2f69767c90a6.010.png)
 
 Khi thay đổi nhưng giá trị này thì dữ liệu cũng sẽ bị thay đổi
 
