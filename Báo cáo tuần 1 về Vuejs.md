@@ -766,11 +766,11 @@ Ví dụ:
 
 Khác với ví dụ trên là nếu qua object thì kết quả sẽ ra là
 
-0: name = John
+    0: name = John
 
-1: age = 30
+    1: age = 30
 
-2: country = USA
+    2: country = USA
 
 Nhờ có nó ta có thể làm thêm chức năng như them và xóa và với các components. Ta còn có thể kết hợp các điều kiện với
 nhau
