@@ -44,8 +44,7 @@ Nó còn tác dụng với các textarea, select
     		<option>Option 3</option>
 
   	</select>
-
-  <p>Selected: {{ selectedOption }}</p>
+    <p>Selected: {{ selectedOption }}</p>
 
 Các modifier của v-model:
 
@@ -57,21 +56,21 @@ Các modifier của v-model:
 
 Ta có làm với v-model với components nhưng ta cần phải xác định và phát hiện ra sự kiện input
 
-<template>
+    <template>
 
-  <input :value="value" @input="$emit('input', $event.target.value)" />
+      <input :value="value" @input="$emit('input', $event.target.value)" />
 
-</template>
+    </template>
 
-<script>
+    <script>
 
-export default {
+      export default {
 
-  props: ['value']
+        props: ['value']
 
-};
+    };
 
-</script>
+    </script>
 
 Trong trường hợp này là sẽ giúp ta lưu ra giá trị vừa nhập vào value
 
@@ -82,75 +81,75 @@ Cũng như cái tên gần như là 1 vòng đời với nó ta có thể thực
 + beforeCreate(): là thời điểm bắt đầu tiến trình và khi dùng ta không thể nào truy cập vào được data, computed,
 watchers
 
-beforeCreate() {
+      beforeCreate() {
 
-  console.log('beforeCreate');
+         console.log('beforeCreate');
 
-}
+      }
 
 + created(): như cái tên là được tạo ra và nó được gọi ngay khi instance được khởi tạo và giờ ta có thể truy cập vào
 data, computed, watchers
 
-created() {
+      created() {
 
-  console.log('created');
+         console.log('created');
 
-  console.log(this.message); // Bạn có thể truy cập data
+      console.log(this.message);
 
-}
+      }
 
 +beforeMount(): nó sẽ được sử dụng ngay trước khi Vue instance được mount vào DOM , sau khi render hàm được gọi lần đầu
 tiên được dùng trong khi DOM chưa được tạo và bạn không thể truy cập vào DOM elements
 
-beforeMount() {
+    beforeMount() {
 
-  console.log('beforeMount');
+      console.log('beforeMount');
 
-}
+    }
 
 + mount(): trái ngược với beforeMount nó được sử dụng sau khi đã được mount vào DOM dùng khi lúc bạn có thể truy cập
 vào DOM và thực hiện các tác vụ liên quan đến DOM như cập nhật hoặc gọi API.
 
-mounted() {
+      mounted() {
 
-  console.log('mounted');
+        console.log('mounted');
 
-}
+      }
 
 + beforeUpdate(): dùng trước khi có sự thay đổi với data hoặc props
 
-beforeUpdate() {
+      beforeUpdate() {
 
-  console.log('beforeUpdate');
+        console.log('beforeUpdate');
 
-}
+      }
 
 + update(): dùng ngay sau khi Vue component được re-render và DOM được cập nhật.
 
-updated() {
+      updated() {
 
-  console.log('updated');
+        console.log('updated');
 
-}
+      }
 
 + beforeUnmount(): ngay trước khi Vue instance bị hủy bỏ (unmounted). Đây là thời điểm trước khi Vue bắt đầu làm sạch
 các resources.
 
-beforeUnmount() {
+      beforeUnmount() {
 
-  console.log('beforeUnmount');
+        console.log('beforeUnmount');
 
-}
+      }
 
 + Unmount(): được gọi ngay sau khi Vue instance đã bị hủy bỏ và tất cả các listener sự kiện hoặc resources liên quan đã
 được dọn dẹp. Dùng khi bạn có thể thực hiện các tác vụ sau khi Vue instance bị hủy, như giải phóng bộ nhớ hoặc dọn dẹp
 tài nguyên
 
-unmounted() {
+      unmounted() {
 
-  console.log('unmounted');
+        console.log('unmounted');
 
-}
+      }
 
 ### **WATCHER(!!!!)**
 
@@ -169,86 +168,78 @@ các tác vụ bất đồng bộ như gọi API hoặc tính toán lại các g
 
 * How to use:
 
-+ Basic: tạo 1 watcher để theo dõi 1 thuộc tính cụ thể của data và thực hiện hành động khi value change
+  + Basic: tạo 1 watcher để theo dõi 1 thuộc tính cụ thể của data và thực hiện hành động khi value change
 
-     <template>
+        <template>
 
-      <div>
+            <div>
 
-      <input v-model="message" />
+            <input v-model="message" />
 
-      <p>{{ message }}</p>
+            <p>{{ message }}</p>
 
-      </div>
+            </div>
 
-     </template>
+        </template>
+        <script>
 
-<script>
+        export default {
 
-export default {
+           data() {
 
-     data() {
+               return {
+               message: ''
 
-            return {
-            message: ''
-
-     };
-    },
-        watch: {
-message(newValue, oldValue) {
-console.log('Message changed from', oldValue, 'to', newValue);
-
-}
-
-}
-
-};
-
-</script>
+         };
+        },
+           watch: {
+             message(newValue, oldValue) {
+             console.log('Message changed from', oldValue, 'to', newValue);
+             }
+           }
+          };
+        </script>
 
 Với trường hợp này giá trị message sẽ thay đổi ( do người dùng nhập vào ô input), thì lúc này vue sẽ gọi hàm watch ra
 chứa 2 tham số mới của oldValue, newValue.
 
 + Watcher cho nhiều thuộc tính:
 
-<div>
+       <div>
+          <input v-model="message" />
 
-    <input v-model="message" />
+          <input v-model="count" />
 
-    <input v-model="count" />
+          <p>Message: {{ message }}</p>
 
-    <p>Message: {{ message }}</p>
+          <p>Count: {{ count }}</p>
+      </div>
 
-    <p>Count: {{ count }}</p>
+      data() {
+        return {
 
-</div>
+        message: '',
 
-data() {
+        count: 0
 
-    return {
+      };
 
-    message: '',
+      },
 
-    count: 0
+      watch: {
 
-    };
+      message(newValue) {
 
-    },
+      console.log('Message changed to:', newValue);
 
-    watch: {
+      },
+      count(newValue) {
 
-    message(newValue) {
+          console.log('Count changed to:', newValue);
 
-    console.log('Message changed to:', newValue);
+       }
 
-    },
-count(newValue) {
-
-      console.log('Count changed to:', newValue);
-
-    }
-
-  }
+      }
 
 Trường hợp là khi ta nhập giá trị mới vào cả message và count đều có watcher riêng biệt, và mỗi khi một trong hai giá
 trị thay đổi.
@@ -258,55 +249,55 @@ trị thay đổi.
 Trong trường hợp khi bạn muốn theo dõi như 1 mảng và đối tượng, ta có thể dùng deep để theo dõi sâu vào từng chi tiết
 của từng phần tử trong mảng và đối tượng.
 
-<template>
+     <template>
 
-  <div>
+       <div>
 
-    <input v-model="user.name" />
+       <input v-model="user.name" />
 
-    <p>User Name: {{ user.name }}</p>
+       <p>User Name: {{ user.name }}</p>
 
-  </div>
+      </div>
 
-</template>
+    </template>
 
-<script>
+    <script>
 
-export default {
+       export default {
 
-  data() {
+           data() {
 
-    return {
+           return {
 
-      user: {
+           user: {
 
-        name: ''
+           name: ''
+
+           }
+
+         };
+
+       },
+
+      watch: {
+
+          user: {
+
+          handler(newValue) {
+
+          console.log('User object changed:', newValue);
+
+            },
+
+          deep: true  // Bật chế độ theo dõi sâu
+
+         }
 
       }
 
     };
 
-  },
-
-  watch: {
-
-     user: {
-
-      handler(newValue) {
-
-        console.log('User object changed:', newValue);
-
-      },
-
-      deep: true  // Bật chế độ theo dõi sâu
-
-    }
-
-  }
-
-};
-
-</script>
+     </script>
 
 Khi ta thay đổi bất cứ thuộc tính nào của user thì nó sẽ tự gọi watcher về. Với deep: true, Vue sẽ theo dõi mọi thay đổi
 trong user, không chỉ thay đổi trực tiếp của chính thuộc tính đó
@@ -317,19 +308,19 @@ thực thi đồng bộ của nó.
 
 Ví dụ:
 
-import { reactive, watchEffect } from 'vue';
+    import { reactive, watchEffect } from 'vue';
 
-const state = reactive({ count: 0, name: 'Vue' });
+    const state = reactive({ count: 0, name: 'Vue' });
 
-watchEffect(() => {
+    watchEffect(() => {
 
-  console.log(state.count, state.name);
+       console.log(state.count, state.name);
 
-});
+    });
 
-state.count++;
+    state.count++;
 
-state.name = 'React';
+    state.name = 'React';
 
 Trong trường hợp này thì nó sẽ tự theo dõi các giá trị của count và name sẽ tự động chạy lại và in ra các giá trị mới
 của chúng.
@@ -337,25 +328,25 @@ của chúng.
 +Stop Watcher: Do watcher được khai báo đồng bộ bên trong lên nếu trong trường hợp không đồng bộ thì ta phải dừng thu
 công để không bị rò rỉ bộ nhớ
 
-<script setup>
+    <script setup>
 
-import { watchEffect } from 'vue';
+      import { watchEffect } from 'vue';
 
-watchEffect(() => {});
+      watchEffect(() => {});
 
-setTimeout(() => {
+      setTimeout(() => {
 
-  watchEffect(() => {})
+      watchEffect(() => {})
 
-}, 100)
+    }, 100)
 
-</script>
+    </script>
 
 Và ta có 1 hàm trả về như sau:
 
-const unwatch = watchEffect(() => {})
+    const unwatch = watchEffect(() => {})
 
-unwatch()
+    unwatch()
 
 **Directives (Chỉ thị)**
 
@@ -365,20 +356,20 @@ unwatch()
 
 **v-for**: Lặp qua danh sách
 
-<a v-on:click="doSomething"></a> <!-- cú pháp ngắn gọn -->@click="doSomething">
+    <a v-on:click="doSomething"></a> <!-- cú pháp ngắn gọn -->@click="doSomething">
 
-v-bind: Liên kết thuộc tính
+**v-bind**: Liên kết thuộc tính
 
-<a v-bind:href="url"></a> <!-- cú pháp viết tắt --> <a :href="url">
+    <a v-bind:href="url"></a> <!-- cú pháp viết tắt --> <a :href="url">
 
-v-on: Lắng nghe sự kiện cũng được viết gọn là @click
+**v-on**: Lắng nghe sự kiện cũng được viết gọn là @click
 
 ![](/images/Aspose.Words.545ef93a-01ce-471f-9f49-2f69767c90a6.003.png)
 
-V-show: chỉ thị v-show hoạt động tương tự như v-if, nhưng thay vì loại bỏ phần tử khỏi DOM, nó chỉ thay đổi thuộc tính
+**v-show**: chỉ thị v-show hoạt động tương tự như v-if, nhưng thay vì loại bỏ phần tử khỏi DOM, nó chỉ thay đổi thuộc tính
 CSS display.
 
-V-else-if: xác định điều kiện khác nếu v-if trước đó là false
+**v-else-if**: xác định điều kiện khác nếu v-if trước đó là false
 
 (v-if:điều kiện thay đổi hiếm còn v-for là cho thường xuyên)
 
@@ -389,29 +380,29 @@ Hỗ trợ tích hợp các hiệu ứng chuyển động, dễ dàng sử dụn
 
 Ví dụ:
 
-<p :class="{'animate-fade':
+    <p :class="{'animate-fade':
 
-@keyframes fadeIn {
+      @keyframes fadeIn {
 
-  0% {
+         0% {
 
-    opacity: 0;
+            opacity: 0;
 
-  }
+         }
 
-  100% {
+        100% {
 
-    opacity: 1;
+           opacity: 1;
 
-  }
+        }
 
-}
+     }
 
-.animate-fade {
+    .animate-fade {
 
-    animation: fadeIn 0.5s ease-in-out;
+        animation: fadeIn 0.5s ease-in-out;
 
-},
+    },
 
 Computed
 các giá trị được tính toán dựa trên các thuộc tính phản ứng. Chúng được "cache" (lưu trữ) và chỉ được tính lại khi các
@@ -462,7 +453,7 @@ Truy cấp trực tiếp:state.property {message:’hello’)
 
 		Biến2:’’
 
-});
+    });
 
 	Return {“ ”}
 
@@ -489,101 +480,96 @@ Thay vì lặp lại các phép tính trong nhiều phần của template, bạn
 Thay vì phải làm như này  <p>{{ title }} -- {{ name }} -- {{ age }}</p> .Ta có thể rut gọn bằng cách cho nó vào 1 actor
 như này
 
-actor() {
+    actor() {
 
       return ${this.title} ${this.name} ${this.age};
 
-  }
+    }
 
 Xong gọi ra {{actor}}
 
 Trường hợp khác có thể gọi ra như sau :
 
- const firstName = ref('John');
+    const firstName = ref('John');
 
-    const lastName = ref('Doe');
+       const lastName = ref('Doe');
 
-    const fullName = computed(() => ${firstName.value} ${lastName.value});
+       const fullName = computed(() => ${firstName.value} ${lastName.value});
 
-    return { firstName, lastName, fullName };
+       return { firstName, lastName, fullName };
 
-  }
+    }
 
 Gọi ra fullname
 
 Ta cũng thể dùng cả get set
 
-data() {
+    data() {
 
-    return {
+       return {
 
-      firstName: 'John',
+         firstName: 'John',
 
-      lastName: 'Doe'
+         lastName: 'Doe'
 
-    };
+     };
 
-  },
+    },
 
-  computed: {
+    computed: {
 
-    fullName: {
+       fullName: {
 
-      // Getter
+         get() {
 
-      get() {
+            return ${this.firstName} ${this.lastName};
 
-        return ${this.firstName} ${this.lastName};
-
-      },
-
-      // Setter
-
+       },
       set(newValue) {
 
-        const parts = newValue.split(' ');
+           const parts = newValue.split(' ');
 
-        this.firstName = parts[0] || '';
+           this.firstName = parts[0] || '';
 
-        this.lastName = parts[1] || '';
+           this.lastName = parts[1] || '';
+
+       }
 
       }
 
     }
 
-  }
-
 Dùng trong trường hợp khi cần nhập dữ liệu từ input
 
 Hoặc trong trường hợp tính số tiền hóa đơn này
 
-data() {
+    data() {
 
-    return {
+        return {
 
-      cartItems: [
+           cartItems: [
 
-        { name: 'Apple', price: 10, quantity: 2 },
+             { name: 'Apple', price: 10, quantity: 2 },
 
-        { name: 'Banana', price: 5, quantity: 3 }
+             { name: 'Banana', price: 5, quantity: 3 }
 
-      ]
+        ]
 
-    };
+       };
 
-  },
+    },
 
-  computed: {
+    computed: {
 
-    totalPrice() {
+       totalPrice() {
 
-      return this.cartItems.reduce((total, item) => {
+           return this.cartItems.reduce((total, item) => {
 
-        return total + item.price * item.quantity;
+           return total + item.price * item.quantity;
 
-      }, 0);
+        }, 0);
 
-}
+    }
 
 Rồi ta lại gọi hàm totaliprice ra
 
@@ -597,37 +583,38 @@ Liên kết với 1 đối tượng
 
 Trong trường hợp như này:
 
- return {
+    return {
 
-    Food: true,
+       Food: true,
 
-    Water: false
+       Water: false
 
-  };
+    };
 
-<div :class="{ eat: Food, 'drink': Water }">Hello World</div>
+    <div :class="{ eat: Food, 'drink': Water }">Hello World</div>
 
 Nếu thỏa mãn điều kiện trên thì sẽ được kết quả là
 
-<div class=”active”>Hello World</div>
+    <div class=”active”>Hello World</div>
 
-Liên kết với 1 mảng return {
+Liên kết với 1 mảng 
 
-   Eat: 'food',
+     return {
+          Eat: 'food',
 
-    Drink: 'water'
+          Drink: 'water'
 
-  };
+     };
 
 :class=”[Eat,drink]” == class=”food,water”
 
  Ta cũng có thể kết hợp cả chuỗi + mảng + đối tượng cùng với nhau
 
-**Style Bindings
+**Style Bindings**
 
 Basic
 
-:style="styleObject"
+    :style="styleObject"
 
 Tương tự như với class ta cũng sẽ liên kết được với, mảng , đối tượng
 
@@ -635,7 +622,7 @@ Ví dụ
 
 Đối tượng:
 
-Apple: {
+    Apple: {
 
       color: 'red',
 
@@ -643,11 +630,11 @@ Apple: {
 
     }
 
-:style=”Apple”
+    :style=”Apple”
 
 Mảng
 
- Color: {
+    Color: {
 
       color: 'blue'
 
@@ -659,17 +646,17 @@ Mảng
 
     }
 
-:style=”[color,size]”
+    :style=”[color,size]”
 
 Ví dụ
 
 Làm biến động
 
-Color:’red’,
+    Color:’red’,
 
-Size:14,
+    Size:14,
 
-<div :style="{ color: color, fontSize: Size + 'px' }">Dynamic Style</div>
+    <div :style="{ color: color, fontSize: Size + 'px' }">Dynamic Style</div>
 
 Hiển nhiên là ta cũng có thể kết hợp cả class và style
 
@@ -681,97 +668,97 @@ Cảm giác dùng sẽ hơi giống với foreach của laravel
 
 Cũng sẽ lặp từng phần tử
 
-<div v-for="item in items" :key="item.id">
+     <div v-for="item in items" :key="item.id">
 
-  {{ item }}
+       {{ item }}
 
-</div>
+    </div>
 
 Khác với foreach là phải :key đây là thuộc tính bắt buộc giúp Vue tối ưu hóa DOM
 
 Ví dụ;
 
-<template>
+    <template>
 
-  <ul>
+      <ul>
 
-    <li v-for="(item,index) in fruits" :key="index">
+        <li v-for="(item,index) in fruits" :key="index">
 
-      {{ index + 1 }}. {{ item }}
+        {{ index + 1 }}. {{ item }}
 
-    </li>
+        </li>
 
-  </ul>
+     </ul>
 
-</template>
+    </template>
 
-<script>
+    <script>
 
-export default {
+      export default {
 
-  data() {
+       data() {
 
-    return {
+         return {
 
-      fruits: ["Apple", "Banana", "Cherry"]
+            fruits: ["Apple", "Banana", "Cherry"]
 
-    };
+         };
 
-  }
+      }
 
-};
+     };
 
-</script>
+    </script>
 
 Lặp qua đối tượng:
 
 Ví dụ:
 
-<div v-for="(value, key, index) in object" :key="key">
+    <div v-for="(value, key, index) in object" :key="key">
 
-  {{ index }}: {{ key }} - {{ value }}
+       {{ index }}: {{ key }} - {{ value }}
 
-</div>
+    </div>
 
-<template>
+    <template>
 
-  <div>
+       <div>
 
-    <p v-for="(value, key, index) in user" :key="key">
+         <p v-for="(value, key, index) in user" :key="key">
 
-      {{ index }}: {{ key }} = {{ value }}
+         {{ index }}: {{ key }} = {{ value }}
 
-    </p>
+         </p>
 
-  </div>
+      </div>
 
-</template>
+    </template>
 
-<script>
+    <script>
 
-export default {
+     export default {
 
-  data() {
+       data() {
 
-    return {
+          return {
 
-      user: {
+            user: {
 
-        name: "John",
+            name: "John",
 
-        age: 30,
+            age: 30,
 
-        country: "USA"
+            country: "USA"
 
-      }
+            }
 
-    };
+         };
 
-  }
+       }
 
-};
+     };
 
-</script>
+    </script>
 
 Khác với ví dụ trên là nếu qua object thì kết quả sẽ ra là
 
@@ -795,93 +782,93 @@ Trường hợp của click:
 + Phương thức xử lý sự kiện ta có thể định nghĩa cho nó như trong trường hợp này ta có thê định nghĩa nó để hiện thông
 báo khi ta nhấn vào:
 
-<template>
+      <template>
 
-  <div>
+       <div>
 
-    <button @click="showAlert">Click me</button>
+          <button @click="showAlert">Click me</button>
 
-  </div>
+       </div>
 
-</template>
+      </template>
 
-<script>
+      <script>
 
-export default {
+      export default {
 
-  methods: {
+          methods: {
 
-    showAlert() {
+          showAlert() {
 
-      alert("Button clicked!");
+          alert("Button clicked!");
 
-    }
+         }
 
-  }
+        }
 
-};
+      };
 
-</script>
+      </script>
 
 + Truy tham số cho nó : Trường hợp này là nó sẽ hiện thông báo
 
-<template>
+      <template>
 
-  <div>
+         <div>
 
-    <button @click="greet('Hello')">Click me</button>
+            <button @click="greet('Hello')">Click me</button>
 
-  </div>
+        </div>
 
-</template>
+      </template>
 
-<script>
+      <script>
 
-export default {
+        export default {
 
-  methods: {
+         methods: {
 
-    greet(message) {
+           greet(message) {
 
-      alert(message);
+           alert(message);
 
-    }
+           }
 
-  }
+         }
 
-};
+       };
 
-</script>
+      </script>
 
 + Ngừng sự kiện với event.stopPropagation
 
- <div @click="parentClick">
+      <div @click="parentClick">
 
-    <button @click.stop="buttonClick">Click me</button>
+          <button @click.stop="buttonClick">Click me</button>
 
-  </div>
+      </div>
 
 Nó sẽ chỉ hiện thông báo của butotnclick thôi còn parent thì không
 
 + ngừng hành vi với event.preventDefaut()
 
- <form @submit.prevent="submitForm">
+      <form @submit.prevent="submitForm">
 
-    <button type="submit">Submit</button>
+          <button type="submit">Submit</button>
 
-  </form>
+      </form>
 
 Trong trường hợp này nó sẽ chặn làm cho form không gửi được
 
 Sử dụng .once để lắng nghe sự kiện chỉ một lần
 
-<button @click.once="buttonClick">Click me</button>
+     <button @click.once="buttonClick">Click me</button>
 
 Làm chỉ thấy được việc chỉ có 1 lần thôi
 
 + Sử dụng .key để xử lý các phím cụ thể
 
-<input @keyup.enter="submitForm" placeholder="Press Enter" />
+      <input @keyup.enter="submitForm" placeholder="Press Enter" />
 
 Mặc định gắn thêm nút cho sự kiện này như trong trường hợp này enter
 
@@ -889,4 +876,4 @@ Mặc định gắn thêm nút cho sự kiện này như trong trường hợp n
 
 Vue.js cung cấp cách lắng nghe sự kiện gốc (native event) trên các component bằng cách sử dụng .native.
 
- <my-component @click.native="handleClick"></my-component>
+     <my-component @click.native="handleClick"></my-component>
