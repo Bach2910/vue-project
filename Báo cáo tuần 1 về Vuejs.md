@@ -477,8 +477,11 @@ Lý do cần dùng :
 
 Thay vì lặp lại các phép tính trong nhiều phần của template, bạn có thể định nghĩa chúng một lần trong computed.
 
-Thay vì phải làm như này  <p>{{ title }} -- {{ name }} -- {{ age }}</p> .Ta có thể rut gọn bằng cách cho nó vào 1 actor
-như này
+Thay vì phải làm như này:
+
+    <p>{{ title }} -- {{ name }} -- {{ age }}</p> 
+
+Ta có thể rut gọn bằng cách cho nó vào 1 actor như này
 
     actor() {
 
