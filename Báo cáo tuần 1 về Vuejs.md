@@ -53,12 +53,12 @@ Các modifier của v-model:
 Ta có làm với v-model với components nhưng ta cần phải xác định và phát hiện ra sự kiện input
 
     <template>
-      <input :value="value" @input="$emit('input', $event.target.value)" />
+         <input :value="value" @input="$emit('input', $event.target.value)" />
     </template>
     <script>
       export default {
-        props: ['value']
-    };
+         props: ['value']
+      };
     </script>
 
 Trong trường hợp này là sẽ giúp ta lưu ra giá trị vừa nhập vào value
