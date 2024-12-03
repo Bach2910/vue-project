@@ -30,20 +30,15 @@ V-model: giúp bạn kết nối một input field với một dữ liệu trong
 
 	 <(input hoặc textarea) v-model="message" placeholder="Type something">
 
-            <p>Message: {{ message }}</p>
+     <p>Message: {{ message }}</p>
 
 Nó còn tác dụng với các textarea, select
 
 	 <select v-model="selectedOption">
-
     		<option disabled value="">Please select one</option>
-
     		<option>Option 1</option>
-
     		<option>Option 2</option>
-
     		<option>Option 3</option>
-
   	</select>
     <p>Selected: {{ selectedOption }}</p>
 
@@ -58,17 +53,11 @@ Các modifier của v-model:
 Ta có làm với v-model với components nhưng ta cần phải xác định và phát hiện ra sự kiện input
 
     <template>
-
       <input :value="value" @input="$emit('input', $event.target.value)" />
-
     </template>
-
     <script>
-
       export default {
-
         props: ['value']
-
     };
     </script>
 
@@ -82,63 +71,48 @@ Cũng như cái tên gần như là 1 vòng đời với nó ta có thể thực
 watchers
 
       beforeCreate() {
-
          console.log('beforeCreate');
-
       }
 
 + created(): như cái tên là được tạo ra và nó được gọi ngay khi instance được khởi tạo và giờ ta có thể truy cập vào
 data, computed, watchers
 
       created() {
-
          console.log('created');
-
-      console.log(this.message);
-
+         console.log(this.message);
       }
 
 +beforeMount(): nó sẽ được sử dụng ngay trước khi Vue instance được mount vào DOM , sau khi render hàm được gọi lần đầu
 tiên được dùng trong khi DOM chưa được tạo và bạn không thể truy cập vào DOM elements
 
       beforeMount() {
-
         console.log('beforeMount');
-
       }
 
 + mount(): trái ngược với beforeMount nó được sử dụng sau khi đã được mount vào DOM dùng khi lúc bạn có thể truy cập
 vào DOM và thực hiện các tác vụ liên quan đến DOM như cập nhật hoặc gọi API.
 
       mounted() {
-
         console.log('mounted');
-
       }
 
 + beforeUpdate(): dùng trước khi có sự thay đổi với data hoặc props
 
       beforeUpdate() {
-
         console.log('beforeUpdate');
-
       }
 
 + update(): dùng ngay sau khi Vue component được re-render và DOM được cập nhật.
 
       updated() {
-
         console.log('updated');
-
       }
 
 + beforeUnmount(): ngay trước khi Vue instance bị hủy bỏ (unmounted). Đây là thời điểm trước khi Vue bắt đầu làm sạch
 các resources.
 
       beforeUnmount() {
-
         console.log('beforeUnmount');
-
       }
 
 + Unmount(): được gọi ngay sau khi Vue instance đã bị hủy bỏ và tất cả các listener sự kiện hoặc resources liên quan đã
@@ -146,9 +120,7 @@ các resources.
 tài nguyên
 
       unmounted() {
-
         console.log('unmounted');
-
       }
 
 ### **WATCHER(!!!!)**
@@ -171,26 +143,17 @@ các tác vụ bất đồng bộ như gọi API hoặc tính toán lại các g
   + Basic: tạo 1 watcher để theo dõi 1 thuộc tính cụ thể của data và thực hiện hành động khi value change
 
         <template>
-
             <div>
-
-            <input v-model="message" />
-
-            <p>{{ message }}</p>
-
+                  <input v-model="message" />
+                  <p>{{ message }}</p>
             </div>
-
         </template>
         <script>
-
         export default {
-
            data() {
-
                return {
                message: ''
-
-         };
+           };
         },
            watch: {
              message(newValue, oldValue) {
@@ -207,37 +170,24 @@ chứa 2 tham số mới của oldValue, newValue.
 
         <div>
             <input v-model="message" />
-
             <input v-model="count" />
-
             <p>Message: {{ message }}</p>
-
             <p>Count: {{ count }}</p>
         </div>
-
         data() {
             return {
-
                 message: '',
-
                 count: 0
-
             };
-
         },
 
         watch: {
-
             message(newValue) {
             console.log('Message changed to:', newValue);
-
             },
             count(newValue) {
-
                 console.log('Count changed to:', newValue);
-
             }
-
        }
 
 Trường hợp là khi ta nhập giá trị mới vào cả message và count đều có watcher riêng biệt, và mỗi khi một trong hai giá
