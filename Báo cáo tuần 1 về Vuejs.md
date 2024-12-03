@@ -70,7 +70,6 @@ Ta có làm với v-model với components nhưng ta cần phải xác định v
         props: ['value']
 
     };
-
     </script>
 
 Trong trường hợp này là sẽ giúp ta lưu ra giá trị vừa nhập vào value
@@ -290,7 +289,7 @@ của từng phần tử trong mảng và đối tượng.
 
             },
 
-          deep: true  // Bật chế độ theo dõi sâu
+          deep: true  
 
          }
 
@@ -355,15 +354,28 @@ Và ta có 1 hàm trả về như sau:
 
 	Ví dụ: kiểm tra xem mật khẩu trùng nhau hay không hoặc là làm chức năng hidden
 
-**v-for**: Lặp qua danh sách
+**v-for**: Lặp qua danh sách cũng gần giống với foreach
+Ví dụ
 
-    <a v-on:click="doSomething"></a> <!-- cú pháp ngắn gọn -->@click="doSomething">
-
+    :v-for="(item, index) in foods" :key="index"
+    
+    {{ index + 1 }}. {{item.name}} - Price:{{item.price}} VND // goi ra
+    
+    data() {
+      return {
+        food: [
+          { name: "fish", price: 100000 },
+          { name: "meat", price: 200000 },
+          { name: "sushi", price: 300000 },
+      ],
+    };
 **v-bind**: Liên kết thuộc tính
 
     <a v-bind:href="url"></a> <!-- cú pháp viết tắt --> <a :href="url">
 
 **v-on**: Lắng nghe sự kiện cũng được viết gọn là @click
+
+    <a v-on:click="doSomething"></a> <!-- cú pháp ngắn gọn -->@click="doSomething">
 
 ![](/images/Aspose.Words.545ef93a-01ce-471f-9f49-2f69767c90a6.003.png)
 
@@ -378,7 +390,6 @@ CSS display.
 Dễ dàng xử lý sự kiện với cú pháp như @click="methodName".
 **Animation**
 Hỗ trợ tích hợp các hiệu ứng chuyển động, dễ dàng sử dụng giống như là làm với css bình thường.
-
 Ví dụ:
 
     <p :class="{'animate-fade':
@@ -683,7 +694,6 @@ Khác với foreach là phải :key đây là thuộc tính bắt buộc giúp V
 Ví dụ;
 
     <template>
-
       <ul>
 
         <li v-for="(item,index) in fruits" :key="index">
@@ -691,7 +701,6 @@ Ví dụ;
         {{ index + 1 }}. {{ item }}
 
         </li>
-
      </ul>
 
     </template>
