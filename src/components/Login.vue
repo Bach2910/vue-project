@@ -6,6 +6,7 @@ export default {
   },
   data() {
     return {
+      note:'',
       name: '',
       message: '',
       username: '',

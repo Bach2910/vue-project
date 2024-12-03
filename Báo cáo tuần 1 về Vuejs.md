@@ -101,11 +101,11 @@ data, computed, watchers
 +beforeMount(): nó sẽ được sử dụng ngay trước khi Vue instance được mount vào DOM , sau khi render hàm được gọi lần đầu
 tiên được dùng trong khi DOM chưa được tạo và bạn không thể truy cập vào DOM elements
 
-    beforeMount() {
+      beforeMount() {
 
-      console.log('beforeMount');
+        console.log('beforeMount');
 
-    }
+      }
 
 + mount(): trái ngược với beforeMount nó được sử dụng sau khi đã được mount vào DOM dùng khi lúc bạn có thể truy cập
 vào DOM và thực hiện các tác vụ liên quan đến DOM như cập nhật hoặc gọi API.
@@ -205,41 +205,40 @@ chứa 2 tham số mới của oldValue, newValue.
 
 + Watcher cho nhiều thuộc tính:
 
-       <div>
-          <input v-model="message" />
+        <div>
+            <input v-model="message" />
 
-          <input v-model="count" />
+            <input v-model="count" />
 
-          <p>Message: {{ message }}</p>
+            <p>Message: {{ message }}</p>
 
-          <p>Count: {{ count }}</p>
-      </div>
+            <p>Count: {{ count }}</p>
+        </div>
 
-      data() {
-        return {
+        data() {
+            return {
 
-        message: '',
+                message: '',
 
-        count: 0
+                count: 0
 
-      };
+            };
 
-      },
+        },
 
-      watch: {
+        watch: {
 
-      message(newValue) {
+            message(newValue) {
+            console.log('Message changed to:', newValue);
 
-      console.log('Message changed to:', newValue);
+            },
+            count(newValue) {
 
-      },
-      count(newValue) {
+                console.log('Count changed to:', newValue);
 
-          console.log('Count changed to:', newValue);
+            }
 
        }
-
-      }
 
 Trường hợp là khi ta nhập giá trị mới vào cả message và count đều có watcher riêng biệt, và mỗi khi một trong hai giá
 trị thay đổi.
@@ -249,55 +248,31 @@ trị thay đổi.
 Trong trường hợp khi bạn muốn theo dõi như 1 mảng và đối tượng, ta có thể dùng deep để theo dõi sâu vào từng chi tiết
 của từng phần tử trong mảng và đối tượng.
 
-     <template>
-
-       <div>
-
-       <input v-model="user.name" />
-
-       <p>User Name: {{ user.name }}</p>
-
-      </div>
-
+      <template>
+          <div>
+              <input v-model="user.name" />
+              <p>User Name: {{ user.name }}</p>
+          </div>
     </template>
-
     <script>
-
-       export default {
-
-           data() {
-
-           return {
-
-           user: {
-
-           name: ''
-
-           }
-
-         };
-
-       },
-
-      watch: {
-
-          user: {
-
-          handler(newValue) {
-
-          console.log('User object changed:', newValue);
-
-            },
-
-          deep: true  
-
-         }
-
-      }
-
-    };
-
-     </script>
+          export default {
+               data() {
+                    return {
+                      user: {
+                      name: ''
+                      }
+                    };
+               },
+               watch: {
+                    user: {
+                       handler(newValue) {
+                       console.log('User object changed:', newValue);
+                       },
+                    deep: true
+                    }
+               }
+          };
+    </script>
 
 Khi ta thay đổi bất cứ thuộc tính nào của user thì nó sẽ tự gọi watcher về. Với deep: true, Vue sẽ theo dõi mọi thay đổi
 trong user, không chỉ thay đổi trực tiếp của chính thuộc tính đó
@@ -309,17 +284,11 @@ thực thi đồng bộ của nó.
 Ví dụ:
 
     import { reactive, watchEffect } from 'vue';
-
     const state = reactive({ count: 0, name: 'Vue' });
-
     watchEffect(() => {
-
        console.log(state.count, state.name);
-
     });
-
     state.count++;
-
     state.name = 'React';
 
 Trong trường hợp này thì nó sẽ tự theo dõi các giá trị của count và name sẽ tự động chạy lại và in ra các giá trị mới
@@ -329,23 +298,16 @@ của chúng.
 công để không bị rò rỉ bộ nhớ
 
     <script setup>
-
       import { watchEffect } from 'vue';
-
       watchEffect(() => {});
-
       setTimeout(() => {
-
       watchEffect(() => {})
-
     }, 100)
-
     </script>
 
 Và ta có 1 hàm trả về như sau:
 
     const unwatch = watchEffect(() => {})
-
     unwatch()
 
 **Directives (Chỉ thị)**
@@ -358,9 +320,7 @@ Và ta có 1 hàm trả về như sau:
 Ví dụ
 
     :v-for="(item, index) in foods" :key="index"
-    
     {{ index + 1 }}. {{item.name}} - Price:{{item.price}} VND // goi ra
-    
     data() {
       return {
         food: [
@@ -393,27 +353,17 @@ Hỗ trợ tích hợp các hiệu ứng chuyển động, dễ dàng sử dụn
 Ví dụ:
 
     <p :class="{'animate-fade':
-
       @keyframes fadeIn {
-
          0% {
-
             opacity: 0;
-
          }
-
         100% {
-
            opacity: 1;
-
         }
-
      }
 
     .animate-fade {
-
         animation: fadeIn 0.5s ease-in-out;
-
     },
 
 Computed
@@ -460,13 +410,9 @@ Truy cấp trực tiếp:state.property {message:’hello’)
  Ví dụ:
 
 	Const “ ” = reactive({
-
 		biến1: ‘’,
-
 		Biến2:’’
-
     });
-
 	Return {“ ”}
 
 * ref
@@ -478,7 +424,6 @@ Truy cấp qua value {Ref(‘hello’)}
 Ví dụ:
 
 	Const “ ” = ref(0);
-
 	Return {“ ”};
 
 Computed Properties
@@ -496,9 +441,7 @@ Thay vì phải làm như này:
 Ta có thể rut gọn bằng cách cho nó vào 1 actor như này
 
     actor() {
-
       return ${this.title} ${this.name} ${this.age};
-
     }
 
 Xong gọi ra {{actor}}
@@ -506,11 +449,8 @@ Xong gọi ra {{actor}}
 Trường hợp khác có thể gọi ra như sau :
 
     const firstName = ref('John');
-
        const lastName = ref('Doe');
-
        const fullName = computed(() => ${firstName.value} ${lastName.value});
-
        return { firstName, lastName, fullName };
 
     }
@@ -520,32 +460,22 @@ Gọi ra fullname
 Ta cũng thể dùng cả get set
 
     data() {
-
        return {
-
          firstName: 'John',
-
          lastName: 'Doe'
-
      };
 
     },
 
     computed: {
-
        fullName: {
-
          get() {
-
             return ${this.firstName} ${this.lastName};
-
        },
       set(newValue) {
 
            const parts = newValue.split(' ');
-
            this.firstName = parts[0] || '';
-
            this.lastName = parts[1] || '';
 
        }
@@ -561,13 +491,9 @@ Hoặc trong trường hợp tính số tiền hóa đơn này
     data() {
 
         return {
-
            cartItems: [
-
              { name: 'Apple', price: 10, quantity: 2 },
-
              { name: 'Banana', price: 5, quantity: 3 }
-
         ]
 
        };
@@ -577,11 +503,8 @@ Hoặc trong trường hợp tính số tiền hóa đơn này
     computed: {
 
        totalPrice() {
-
            return this.cartItems.reduce((total, item) => {
-
            return total + item.price * item.quantity;
-
         }, 0);
 
     }
@@ -599,11 +522,8 @@ Liên kết với 1 đối tượng
 Trong trường hợp như này:
 
     return {
-
        Food: true,
-
        Water: false
-
     };
 
     <div :class="{ eat: Food, 'drink': Water }">Hello World</div>
@@ -616,7 +536,6 @@ Liên kết với 1 mảng
 
      return {
           Eat: 'food',
-
           Drink: 'water'
 
      };
@@ -638,11 +557,8 @@ Ví dụ
 Đối tượng:
 
     Apple: {
-
       color: 'red',
-
       fontSize: '14px'
-
     }
 
     :style=”Apple”
@@ -650,17 +566,12 @@ Ví dụ
 Mảng
 
     Color: {
-
       color: 'blue'
-
     },
 
     Size: {
-
       fontSize: '16px'
-
     }
-
     :style=”[color,size]”
 
 Ví dụ
@@ -668,9 +579,7 @@ Ví dụ
 Làm biến động
 
     Color:’red’,
-
     Size:14,
-
     <div :style="{ color: color, fontSize: Size + 'px' }">Dynamic Style</div>
 
 Hiển nhiên là ta cũng có thể kết hợp cả class và style
@@ -684,9 +593,7 @@ Cảm giác dùng sẽ hơi giống với foreach của laravel
 Cũng sẽ lặp từng phần tử
 
      <div v-for="item in items" :key="item.id">
-
        {{ item }}
-
     </div>
 
 Khác với foreach là phải :key đây là thuộc tính bắt buộc giúp Vue tối ưu hóa DOM
@@ -695,32 +602,19 @@ Ví dụ;
 
     <template>
       <ul>
-
         <li v-for="(item,index) in fruits" :key="index">
-
         {{ index + 1 }}. {{ item }}
-
         </li>
      </ul>
-
     </template>
-
-    <script>
-
+    <script
       export default {
-
-       data() {
-
-         return {
-
-            fruits: ["Apple", "Banana", "Cherry"]
-
-         };
-
-      }
-
-     };
-
+         data() {
+            return {
+                fruits: ["Apple", "Banana", "Cherry"]
+            };
+         }
+      };
     </script>
 
 Lặp qua đối tượng:
@@ -728,49 +622,27 @@ Lặp qua đối tượng:
 Ví dụ:
 
     <div v-for="(value, key, index) in object" :key="key">
-
        {{ index }}: {{ key }} - {{ value }}
-
     </div>
-
     <template>
-
        <div>
-
          <p v-for="(value, key, index) in user" :key="key">
-
          {{ index }}: {{ key }} = {{ value }}
-
          </p>
-
       </div>
-
     </template>
-
     <script>
-
      export default {
-
        data() {
-
           return {
-
             user: {
-
             name: "John",
-
             age: 30,
-
             country: "USA"
-
             }
-
          };
-
        }
-
      };
-
     </script>
 
 Khác với ví dụ trên là nếu qua object thì kết quả sẽ ra là
@@ -796,69 +668,41 @@ Trường hợp của click:
 báo khi ta nhấn vào:
 
       <template>
-
        <div>
-
           <button @click="showAlert">Click me</button>
-
        </div>
-
       </template>
-
       <script>
-
       export default {
-
           methods: {
-
-          showAlert() {
-
-          alert("Button clicked!");
-
-         }
-
-        }
-
+               showAlert() {
+               alert("Button clicked!");
+               }
+          }
       };
-
       </script>
 
 + Truy tham số cho nó : Trường hợp này là nó sẽ hiện thông báo
 
       <template>
-
          <div>
-
             <button @click="greet('Hello')">Click me</button>
-
         </div>
-
       </template>
-
       <script>
-
         export default {
-
-         methods: {
-
-           greet(message) {
-
-           alert(message);
-
-           }
-
-         }
-
-       };
-
+          methods: {
+            greet(message) {
+            alert(message);
+            }
+          }
+        };
       </script>
 
 + Ngừng sự kiện với event.stopPropagation
 
       <div @click="parentClick">
-
           <button @click.stop="buttonClick">Click me</button>
-
       </div>
 
 Nó sẽ chỉ hiện thông báo của butotnclick thôi còn parent thì không
@@ -866,9 +710,7 @@ Nó sẽ chỉ hiện thông báo của butotnclick thôi còn parent thì khôn
 + ngừng hành vi với event.preventDefaut()
 
       <form @submit.prevent="submitForm">
-
           <button type="submit">Submit</button>
-
       </form>
 
 Trong trường hợp này nó sẽ chặn làm cho form không gửi được
