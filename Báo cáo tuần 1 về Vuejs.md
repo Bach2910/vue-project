@@ -610,9 +610,9 @@ Liên kết với 1 mảng
 
      };
 
-:class=”[Eat,drink]” == class=”food,water”
+    :class=”[Eat,drink]” == class=”food,water”
 
- Ta cũng có thể kết hợp cả chuỗi + mảng + đối tượng cùng với nhau
+Ta cũng có thể kết hợp cả chuỗi + mảng + đối tượng cùng với nhau
 
 **Style Bindings**
 
