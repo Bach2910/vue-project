@@ -6,20 +6,21 @@
 
 + sau đó “ cd my-project” để truy cập vào project rồi chạy lệnh “npm run serve”
 
-Kết quả:
+* Kết quả: 
 
 ![](/images/Aspose.Words.545ef93a-01ce-471f-9f49-2f69767c90a6.001.png)
 
 Trong phpstoms ta sẽ được 1 thư mục có cấu trúc như sau:
 
 ![](/images/Aspose.Words.545ef93a-01ce-471f-9f49-2f69767c90a6.002.png)
-Tệp chính sẽ là main.js
 
-App.vue sẽ là thư mục gốc
++ Tệp chính sẽ là main.js
 
-Trong thư mục components/: chứa các thành phần giao diện được tái sử dụng
++ App.vue sẽ là thư mục gốc
 
-*Kiến thức cần biết*
++ Trong thư mục components/: chứa các thành phần giao diện được tái sử dụng
+
+***Kiến thức cần biết***
 
 ### **Reactive Data Binding**
 
