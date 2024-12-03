@@ -437,7 +437,7 @@ một cách để quản lý trạng thái (state) của ứng dụng
 
 Khi thay đổi nhưng giá trị này thì dữ liệu cũng sẽ bị thay đổi
 
-*reactive
+* reactive
 
 Dùng để tạo 1 đối tượng reactive( thường dùng khi quản lý nhiều dữ liệu
 
