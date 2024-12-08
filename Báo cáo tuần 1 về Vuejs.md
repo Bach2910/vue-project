@@ -1207,10 +1207,13 @@ ví dụ vs binding:
        value: /* value of `baz` */,
        oldValue: /* value of `baz` from previous update */
      }
-trong đó: + arg: Đây là đối số của chỉ thị, ví dụ như v-bind:foo thì arg sẽ là 'foo'.
-          + modifiers: Các sửa đổi, ví dụ v-on:click.prevent sẽ có { prevent: true }.
-          + value: Giá trị được gắn với chỉ thị, ví dụ giá trị của v-model="baz" là giá trị của biến baz.
-          + oldValue: Giá trị trước khi cập nhật, giúp so sánh sự thay đổi giữa lần gọi trước và sau.
+trong đó: 
++ arg: Đây là đối số của chỉ thị, ví dụ như v-bind:foo thì arg sẽ là 'foo'.
+          
++ modifiers: Các sửa đổi, ví dụ v-on:click.prevent sẽ có { prevent: true }.
++ value: Giá trị được gắn với chỉ thị, ví dụ giá trị của v-model="baz" là giá trị của biến baz.
++ oldValue: Giá trị trước khi cập nhật, giúp so sánh sự thay đổi giữa lần gọi trước và sau.
+
 các đối số chỉ thị tùy chỉnh có thể là động như sau:
  
     <div v-example:[arg]="value"></div>
