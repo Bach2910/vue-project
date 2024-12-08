@@ -1,4 +1,3 @@
-
 <script>
 export default {
   name: 'TitleLogin',
@@ -7,6 +6,7 @@ export default {
   },
   data() {
     return {
+      list:['apple','fish','banana','orange'],
       note:'',
       name: '',
       message: '',
@@ -66,6 +66,9 @@ export default {
     },
   },
   methods: {
+    focusInput() {
+      this.$refs.inputRef.focus(); // Truy cập phần tử DOM qua $refs
+    },
     greeting(message) {
       alert(message);
     },
@@ -157,6 +160,10 @@ export default {
           <h1>EXAMPLE WATCHER</h1>
           <input v-model="name" placeholder="enter your name in here"/>
           <p>{{ message }}</p>
+      </div>
+      <div>
+        <input ref="inputRef" placeholder="Enter something" />
+        <button @click="focusInput">Focus Input</button>
       </div>
     </div>
   </div>
