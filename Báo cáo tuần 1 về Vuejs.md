@@ -1673,3 +1673,13 @@ nhưng ví dụ này sẽ bị lỗi làm cho vue mặc định sẽ không tự
         </component>
       </Suspense>
 suspensible chỉ ra rằng Vue có thể treo (suspend) một component bất đồng bộ bên trong <Suspense> khi chưa tải xong, cho phép Vue hiển thị trạng thái chờ (loading) và chỉ hiển thị component con khi đã tải xong, giúp Vue quản lý tốt hơn các trạng thái chờ khi có nhiều component bất đồng bộ bên trong nhau
+
+**Single-File Components**
+là một tính năng mạnh mẽ cho phép bạn định nghĩa một component trong một tệp .vue duy nhất. Các tệp này có thể chứa ba phần:
++ Template: Định nghĩa cấu trúc HTML của component.
++ Script: Chứa logic (JavaScript) cho component, như dữ liệu, phương thức, hook vòng đời, v.v.
++ Style: Định nghĩa các kiểu CSS chỉ áp dụng cho component đó.
+- Tính năng chính :
++ Scoped Styles: Khi thêm thuộc tính scoped vào thẻ <style>, bạn đảm bảo rằng các kiểu này chỉ áp dụng cho component hiện tại. Vue sử dụng các selector đặc biệt để áp dụng các kiểu CSS này chỉ cho DOM của component.
++ Sự kiện tùy chỉnh: Bạn có thể sử dụng các sự kiện tùy chỉnh để giao tiếp giữa các component cha và con.
++ Các chỉ thị của Vue: Bạn có thể sử dụng các chỉ thị đặc biệt của Vue như v-bind, v-model, v-if, v-for, v.v., trực tiếp trong phần template.
