@@ -1216,3 +1216,460 @@ trong đó:
 các đối số chỉ thị tùy chỉnh có thể là động như sau:
  
     <div v-example:[arg]="value"></div>
+
+**Plugin**
+là mã độc lập thường thêm chức năng cấp ứng dụng vào Vue
+
+Basics way to plugin:
+
+      import { createApp } from 'vue'
+      const app = createApp({})
+      app.use(myPlugin, {
+      
+      })
+Một plugin được định nghĩa là một đối tượng phơi bày một install()phương thức hoặc chỉ là một hàm hoạt động như chính hàm cài đặt
+
+      const myPlugin = {
+          install(app,option){
+          }
+      }
++ cách để viết 1 plugin như sau:
+
+      export default {
+        install: (app, options) => {
+        }
+      }
+Đây là 1 ví dụ để tạo chức năng dịch. Giả sử ta có 
+
+    <h1>{{ $translate('greetings.hello') }}</h1>
+Giờ ta sẽ thực hiện đính kèm vào app.config.globalProperties plugin
+
+      export default {
+         install: (app, options) => {
+          app.config.globalProperties.$translate = (key) => {
+            return key.split('.').reduce((o, i) => {
+             if (o) return o[i]
+            }, options)
+          }  
+         }
+      }
+Hàm $translate sẽ lấy một chuỗi như greetings.hello, xem bên trong cấu hình do người dùng cung cấp và trả về giá trị đã dịch. Giờ nó phải được chuyển đến plugin trong quá trình cài đặt thông qua các tham số bổ sung tới app.use()
+
+      import i18nPlugin from './plugins/i18n'
+          app.use(i18nPlugin, {
+              greetings: {
+                 hello: 'Bonjour!'
+              }
+          })
+
++ Provide / Inject with Plugins: Plugin cho phép ta sử dụng inject để có thể cải thiện các hàm và thuộc tính của Plugin. Ví dụ, ta có thể cho phép ứng dụng có quyền truy cập vào options tham số để có thể sử dụng đối tượng dịch.
+
+    
+      export default {
+            install: (app, options) => {
+                app.provide('i18n', options)
+            }
+      }
+Người dùng plugin giờ đây có thể đưa các tùy chọn plugin vào thành phần của họ bằng cách sử dụng i18n khóa
+
+
+      <script setup>
+            import { inject } from 'vue'
+            const i18n = inject('i18n')
+            console.log(i18n.greetings.hello)
+      </script>
+
+**Teleport**
+Teleport trong Vue 3 là một tính năng cho phép bạn di chuyển nội dung của một thành phần sang một vị trí khác trong DOM, nằm ngoài cấu trúc DOM cha mẹ của nó. Sử dụng khi bạn cần hiển thị nội dung ở vị trí khác trong DOM mà không bị giới hạn bởi cấu trúc cha con của thành phần. Khi muốn đến 1 vị trí xác định thì ta sẽ thêm to vào
+
+      <teleport to = "">
+
+      </teleport>
+Ví dụ:
+
+      <div>
+        <button @click="showModal = true">Open Modal</button>
+        <teleport to="body">
+          <div v-if="showModal" class="modal">
+            <div class="modal-content">
+              <p>This is a modal!</p>
+              <button @click="showModal = false">Close</button>
+            </div>
+          </div>
+        </teleport>
+      </div>
+
+trong ví dụ này thì khi click vào button thì sẽ chuyển nội dung sau khi được có modal xuất hiện trên body
+Ta cũng thể vô hiệu hóa teleport bằng :disable hoặc tạm hoãn nó bằng cách dùng defer
+
+    <Teleport defer to="#late-div">
+            
+    </Teleport>
+    <!-- somewhere later in the template -->
+    <div id="late-div"></div>
+
+**transition**
+transition được sử dụng để tạo hiệu ứng chuyển tiếp cho một phần tử đơn lẻ khi trạng thái của nó thay đổi. Thường được dùng khi có một phần tử đơn cần thêm hiệu ứng chuyển tiếp, chẳng hạn như một phần tử động.
+có thể được kích hoạt bởi một trong những điều sau:
++ Kết xuất có điều kiện thông quav-if
++ Hiển thị có điều kiện thông quav-show
++ Các thành phần động chuyển đổi qua <component>phần tử đặc biệt
++ keyThay đổi thuộc tính đặc biệt
+
+Ví dụ:
+      
+      <button @click="show = !show">Toggle</button>
+      <Transition>
+        <p v-if="show">hello</p>
+      </Transition> 
+      
+      .v-enter-active,
+      .v-leave-active {
+        transition: opacity 0.5s ease;
+      }
+      
+      .v-enter-from,
+      .v-leave-to {
+        opacity: 0;
+      }
+
+khi ta chạy nó thay đổi làm cho button biến mất 
+
+ta hoàn toàn có thể đặt tên cho nó để khi sử dụng thể đỡ bị nhầm lẫn như sau:
+    
+      <Transition name="">
+
+      </Transition>
+
+Có sáu lớp được áp dụng cho quá trình chuyển tiếp vào/ra.
+
++ v-enter-from: Trạng thái bắt đầu để nhập. Được thêm vào trước khi phần tử được chèn vào, xóa một khung sau khi phần tử được chèn vào.
+
++ v-enter-active: Trạng thái hoạt động để nhập. Áp dụng trong toàn bộ giai đoạn nhập. Thêm vào trước khi phần tử được chèn, xóa khi quá trình chuyển đổi/hoạt ảnh kết thúc. Lớp này có thể được sử dụng để xác định thời lượng, độ trễ và đường cong gia tốc cho quá trình chuyển đổi nhập.
+
++ v-enter-to: Trạng thái kết thúc cho enter. Thêm một khung sau khi phần tử được chèn vào (đồng thời v-enter-fromđược xóa), xóa khi quá trình chuyển đổi/hoạt ảnh kết thúc.
+
++ v-leave-from: Trạng thái bắt đầu để rời đi. Được thêm ngay lập tức khi quá trình chuyển đổi rời đi được kích hoạt, bị xóa sau một khung hình.
+
++ v-leave-active: Trạng thái hoạt động để rời đi. Áp dụng trong toàn bộ giai đoạn rời đi. Thêm ngay khi quá trình chuyển đổi rời đi được kích hoạt, xóa khi quá trình chuyển đổi/hoạt ảnh kết thúc. Lớp này có thể được sử dụng để xác định thời lượng, độ trễ và đường cong nới lỏng cho quá trình chuyển đổi rời đi.
+
++ v-leave-to: Trạng thái kết thúc khi rời đi. Thêm một khung hình sau khi quá trình chuyển đổi rời đi được kích hoạt (đồng thời v-leave-frombị xóa), bị xóa khi quá trình chuyển đổi/hoạt ảnh kết thúc.
+
++ v-enter-active và v-leave-active cung cấp cho chúng ta khả năng chỉ định các đường cong nới lỏng khác nhau cho các chuyển đổi vào/ra, chúng ta sẽ xem ví dụ ở các phần sau.
+
+Custom Transition Classes
+Bạn cũng có thể chỉ định các lớp chuyển tiếp tùy chỉnh bằng cách truyền các thuộc tính sau vào <Transition>:
++ enter-from-class
++ enter-active-class
++ enter-to-class
++ leave-from-class
++ leave-active-class
++ leave-to-class
+Những điều này sẽ ghi đè lên các tên lớp thông thường. Điều này đặc biệt hữu ích khi bạn muốn kết hợp hệ thống chuyển tiếp của Vue với thư viện hoạt ảnh CSS hiện có, chẳng hạn như Animate.css :
+
+        
+        <Transition
+        name="custom-classes"
+        enter-active-class="animate__animated animate__tada"
+        leave-active-class="animate__animated animate__bounceOutRight"
+        >
+            <p v-if="show">hello</p>
+        </Transition>
+
+trong ví dụ đã cho ghi đè thêm thêm 1 animation khác vào khi chạy sẽ cho ta thấy 2 animation khác nhau
+
+ta cũng có thể thêm độ trễ cho các animation bằng cách thêm "transition-delay: 0.25s;"
+
+Ta có thể kết nối vào quá trình chuyển đổi bằng JavaScript bằng cách lắng nghe các sự kiện trên <Transition>thành phần
+
+          <Transition
+            @before-enter="onBeforeEnter"
+            @enter="onEnter"
+            @after-enter="onAfterEnter"
+            @enter-cancelled="onEnterCancelled"
+            @before-leave="onBeforeLeave"
+            @leave="onLeave"
+            @after-leave="onAfterLeave"
+            @leave-cancelled="onLeaveCancelled"
+            >
+              <!-- ... -->
+          </Transition>
+          // called before the element is inserted into the DOM.
+          // use this to set the "enter-from" state of the element
+          function onBeforeEnter(el) {}
+          
+          // called one frame after the element is inserted.
+          // use this to start the entering animation.
+          function onEnter(el, done) {
+          // call the done callback to indicate transition end
+          // optional if used in combination with CSS
+          done()
+          }
+          
+          // called when the enter transition has finished.
+          function onAfterEnter(el) {}
+          
+          // called when the enter transition is cancelled before completion.
+          function onEnterCancelled(el) {}
+          
+          // called before the leave hook.
+          // Most of the time, you should just use the leave hook
+          function onBeforeLeave(el) {}
+          
+          // called when the leave transition starts.
+          // use this to start the leaving animation.
+          function onLeave(el, done) {
+          // call the done callback to indicate transition end
+          // optional if used in combination with CSS
+          done()
+          }
+          
+          // called when the leave transition has finished and the
+          // element has been removed from the DOM.
+          function onAfterLeave(el) {}
+          
+          // only available with v-show transitions
+          function onLeaveCancelled(el) {}
+Những hook này có thể được sử dụng kết hợp với hiệu ứng chuyển tiếp/hoạt ảnh CSS hoặc sử dụng riêng lẻ.
+Khi sử dụng các transition chỉ có JavaScript, thường thì nên thêm ':css="false"'
+
+Làm Transition Between Elements:
+
+          <Transition>
+              <button v-if="docState === 'saved'">Edit</button>
+              <button v-else-if="docState === 'edited'">Save</button>
+              <button v-else-if="docState === 'editing'">Cancel</button>
+          </Transition>
+          
+mục đích là khi click vào button này thì các giá trị sẽ liên tục thay đổi 
+
+Làm Transition Between Component: ta sử dụng 'mode="out-in"'
+
+Transitions with the Key Attribute: tạo ra 1 key mà ta không thể sửa được hay thao tác được 
+
+      <script setup>
+          import { ref } from 'vue';
+          const count = ref(0);
+          setInterval(() => count.value++, 1000);
+      </script>
+      
+      <template>
+        <Transition>
+          <span :key="count">{{ count }}</span>
+        </Transition>
+      </template>
+tạo ra 1 biến count sẽ luôn tăng mà không ta ko thể cản được
+
+**transition-group**
+transition-group được sử dụng để tạo hiệu ứng chuyển tiếp cho danh sách các phần tử hoặc nhóm phần tử khi chúng thay đổi( tương tự như transition) khác ở chỗ ta sẽ kết hợp với v-for để có thể duyệt các danh sách
+Có thể làm các chức năng khá hay như thêm xóa và sắp xếp các phần tử trong mảng
+
+      
+      import { shuffle as _shuffle } from 'lodash-es'
+      import { ref } from 'vue'
+      
+      const getInitialItems = () => [1, 2, 3, 4, 5]
+      const items = ref(getInitialItems())
+      let id = items.value.length + 1
+      
+      function insert() {
+        const i = Math.round(Math.random() * items.value.length)
+        items.value.splice(i, 0, id++)
+      }
+      
+      function reset() {
+        items.value = getInitialItems()
+        id = items.value.length + 1
+      }
+      
+      function shuffle() {
+        items.value = _shuffle(items.value)
+      }
+      
+      function remove(item) {
+        const i = items.value.indexOf(item)
+        if (i > -1) {
+          items.value.splice(i, 1)
+        }
+      }
+      
+      
+      <template>
+        <button @click="insert">Insert at random index</button>
+        <button @click="reset">Reset</button>
+        <button @click="shuffle">Shuffle</button>
+      
+        <TransitionGroup tag="ul" name="fade" class="container">
+          <li v-for="item in items" class="item" :key="item">
+            {{ item }}
+            <button @click="remove(item)">x</button>
+          </li>
+        </TransitionGroup>
+      </template>
+      
+      <style>
+      
+
+      .fade-move,
+      .fade-enter-active,
+      .fade-leave-active {
+        transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+      }
+      
+      .fade-enter-from,
+      .fade-leave-to {
+        opacity: 0;
+        transform: scaleY(0.01) translate(30px, 0);
+      }
+      
+
+      .fade-leave-active {
+        position: absolute;
+      }
+      </style>
+
+Staggering List Transitions: Bằng cách giao tiếp với các chuyển đổi JavaScript thông qua các thuộc tính dữ liệu, cũng có thể sắp xếp các chuyển đổi trong danh sách
+
+      <TransitionGroup
+      tag="ul"
+      :css="false"
+      @before-enter="onBeforeEnter"
+      @enter="onEnter"
+      @leave="onLeave"
+      >
+        <li
+          v-for="(item, index) in computedList"
+          :key="item.msg"
+          :data-index="index"
+        >
+          {{ item.msg }}
+        </li>
+      </TransitionGroup>
+
+trong ví dụ này sẽ tạo ra 1 chức năng tìm kiếm theo key với các từ khóa gần giống với nội dung cầm tìm sẽ hiện lên
+
+**Keep Alive**
+một thành phần tích hợp cho phép chúng ta lưu trữ tạm thời các phiên bản thành phần khi chuyển đổi động giữa nhiều thành phần.Dùng trong khi ta đã chuyển tap khác mà ta vẫn muốn giữ lại nội dung mà ta đã được nhập trước đó
+Basics way:   <component :is="activeComponent" />
+
+      import { shallowRef } from 'vue'
+      import CompA from './CompA.vue'
+      import CompB from './CompB.vue'
+      
+      const current = shallowRef(CompA)
+      
+      <template>
+        <div class="demo">
+          <label><input type="radio" v-model="current" :value="CompA" /> A</label>
+          <label><input type="radio" v-model="current" :value="CompB" /> B</label>
+          <KeepAlive>
+            <component :is="current"></component>
+          </KeepAlive>
+        </div>
+      </template>
+
+Include / Exclude: mục đích là chỉ định ra danh sách mà mình muốn hiện (include) và danh sách mà mình không muốn hiện thị (exclude)
+Dùng như sau <KeepAlive :iclude or exclude></KeepAlive>
+Max Cached Instances: giới hạn các giá trị được hiển thị
+      
+      //giới hạn 10 giá trị
+      <KeepAlive :max="10">
+        <component :is="activeComponent" />
+      </KeepAlive>
+
+**Suspense**
+
+Suspense trong Vue 3
+Suspense là một tính năng mạnh mẽ trong Vue 3, được sử dụng để xử lý các tác vụ bất đồng bộ trong ứng dụng. Nó giúp ta quản lý trạng thái chờ cho các component hoặc phần của giao diện người dùng trong khi dữ liệu hoặc các tài nguyên khác đang được tải, đồng thời cung cấp các fallback (phương án thay thế) trong khi chờ đợi
++ How to use
+
+      <template>
+        <Suspense>
+          <template #default>
+            <MyComponent />
+          </template>
+          <template #fallback>
+            <p>Đang tải...</p>
+          </template>
+        </Suspense>
+      </template>
+#default: Đây là nơi bạn đặt component hoặc nội dung cần hiển thị khi nó đã được tải xong.
+#fallback: Đây là nơi bạn đặt nội dung thay thế, thường là thông báo "Đang tải..." hoặc một spinner khi dữ liệu hoặc component chưa được tải xong.
+
+- Suspense với async setup:ta có thể kết hợp Suspense với async setup để xử lý dữ liệu bất đồng bộ ngay trong quá trình khởi tạo component  
+
+      <template>
+        <Suspense>
+          <template #default>
+            <MyComponent :data="data" />
+          </template>
+          <template #fallback>
+            <p>Đang tải dữ liệu...</p>
+          </template>
+        </Suspense>
+      </template>
+      
+      <script setup>
+      import { ref, onMounted } from 'vue';
+      
+      const data = ref(null);
+      
+      onMounted(async () => {
+        const response = await fetch('/api/data');
+        data.value = await response.json();
+      });
+      </script>
+trong ví dụ này Dữ liệu được tải bất đồng bộ trong onMounted. Khi dữ liệu đang được tải, nội dung trong #fallback (ví dụ: "Đang tải dữ liệu...") sẽ được hiển thị. Sau khi dữ liệu được tải và gán vào data, component sẽ được hiển thị với dữ liệu mới.
+- Cách Suspense xử lý lỗi:Suspense cũng hỗ trợ xử lý lỗi trong trường hợp các tác vụ bất đồng bộ gặp sự cố.
+
+      <template>
+        <Suspense>
+          <template #default>
+            <MyComponent />
+          </template>
+          <template #fallback>
+            <p>Đang tải...</p>
+          </template>
+          <template #error>
+            <p>Có lỗi xảy ra khi tải dữ liệu!</p>
+          </template>
+        </Suspense>
+      </template>
+#error: Nếu có lỗi xảy ra trong quá trình tải (ví dụ: lỗi mạng hoặc lỗi trong component động), nội dung trong #error sẽ được hiển thị.
+
+- có thể kết hợp với các phần transition và keepAlive
+
+      <RouterView v-slot="{ Component }">
+        <template v-if="Component">
+          <Transition mode="out-in">
+            <KeepAlive>
+              <Suspense>
+                <!-- main content -->
+                <component :is="Component"></component>
+      
+                <!-- loading state -->
+                <template #fallback>
+                  Loading...
+                </template>
+              </Suspense>
+            </KeepAlive>
+          </Transition>
+        </template>
+      </RouterView>
+- cũng có thể dùng với các component lồng nhau:
+
+      <Suspense>  
+        <component :is="DynamicAsyncOuter">
+          <component :is="DynamicAsyncInner" />
+        </component>
+      </Suspense>
+nhưng ví dụ này sẽ bị lỗi làm cho vue mặc định sẽ không tự động xử lý trạng thái chờ cho các component con trong một <Suspense>. Ta nên xử lý như sau
+
+      <Suspense>
+        <component :is="DynamicAsyncOuter">
+          <Suspense suspensible> <!-- this -->
+            <component :is="DynamicAsyncInner" />
+          </Suspense>
+        </component>
+      </Suspense>
+suspensible chỉ ra rằng Vue có thể treo (suspend) một component bất đồng bộ bên trong <Suspense> khi chưa tải xong, cho phép Vue hiển thị trạng thái chờ (loading) và chỉ hiển thị component con khi đã tải xong, giúp Vue quản lý tốt hơn các trạng thái chờ khi có nhiều component bất đồng bộ bên trong nhau
