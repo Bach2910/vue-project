@@ -27,7 +27,7 @@ const scrollToPrice = () => {
   router.push('/product').then(() => {
       const element = document.getElementById('price');
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        element.scrollIntoView({ behavior: 'auto' });
       }
   });
 };
@@ -35,7 +35,7 @@ const scrollToTop = () => {
   router.push('/product').then(() => {
       const element = document.getElementById('top');
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        element.scrollIntoView({ behavior: 'auto' });
       }
   });
 };
@@ -82,7 +82,7 @@ onUnmounted(() => {
                 <RouterLink class="nav-link header-item" :to="{ path: '/'}">Trang chủ</RouterLink>
               </li>
               <li class="nav-item">
-                <RouterLink class="nav-link header-item" :to="{ path: '/product'}" @click="scrollToTop">Chức năng</RouterLink>
+                <RouterLink class="nav-link header-item" :to="{ path: '/product'}" @click="scrollToTop">Tính năng</RouterLink>
               </li>
               <li class="nav-item">
                 <RouterLink

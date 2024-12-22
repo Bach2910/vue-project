@@ -390,13 +390,6 @@ const prevSlide = () => {
                   <template #title>Chia sẻ phần mềm tạo bài test nhân viên QC chuyên nghiệp nhất</template>
                   <template #description>Bộ phận QC nói chung và nhân viên QC đóng vai trò khá quan trọng, giúp thúc đẩy sự phát triển của doanh nghiệp, thông qua việc đảm bảo về chất lượng sản phẩm. Vậy, nhân viên QC là gì? Và đâu là phần mềm giúp thực hiện các bài test nhân viên QC hiệu quả. Mời bạn cùng Testcenter khám phá trong bài viết dưới đây nhé.</template>
                 </OwlItems>
-                <OwlItems>
-                  <template #img>
-                    <ImageOwl :imageAlt='""' :imageSrc='"src/assets/resources/paying-1438142_1920.jpeg"'></ImageOwl>
-                  </template>
-                  <template #title>Chia sẻ phần mềm tạo bài test nhân viên QC chuyên nghiệp nhất</template>
-                  <template #description>Bộ phận QC nói chung và nhân viên QC đóng vai trò khá quan trọng, giúp thúc đẩy sự phát triển của doanh nghiệp, thông qua việc đảm bảo về chất lượng sản phẩm. Vậy, nhân viên QC là gì? Và đâu là phần mềm giúp thực hiện các bài test nhân viên QC hiệu quả. Mời bạn cùng Testcenter khám phá trong bài viết dưới đây nhé.</template>
-                </OwlItems>
               </div>
             </div>
           </div>
