@@ -2,13 +2,13 @@
   <div class="owl-item mt-3">
     <div class="card card-item">
       <a target="_blank"
-         href="/">
+         href="/public">
        <slot name="img"></slot>
       </a>
       <div class="card-body">
         <div class="title-post">
           <h3 class="card-title">
-            <a target="_blank" href="/"><slot name="title"></slot></a>
+            <a target="_blank" href="/public"><slot name="title"></slot></a>
           </h3>
         </div>
         <div class="short-post">
@@ -17,7 +17,7 @@
         <div class="more text-center mt-3">
           <div class="button-more">
             <a target="_blank" style="color: #fff"
-               href="/"
+               href="/public"
                class="btn btn-primary border-0 font-weight-normal">
               Đọc thêm
             </a>

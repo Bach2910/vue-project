@@ -1,45 +1,4 @@
-<script setup>
-import { onMounted, ref } from 'vue';
-import $ from 'jquery';
-import GroupFeature from "@/components/index_components/GroupFeature.vue";
-import GroupFeatures from "@/components/index_components/GroupFeatures.vue";
-import ToolIT from "@/components/index_components/ToolIT.vue";
-import OwlItems from "@/components/index_components/OwlItems.vue";
-import OwlItemHidden from "@/assets/OwlItemHidden.vue";
-import ImageItem from "@/components/img/ImageItem.vue";
-import ImgPriceBox from "@/components/img/imgPriceBox.vue";
-import ImageOwl from "@/components/img/imageOwl.vue";
-const owlCarousel = ref(null);
-owlCarousel.value = undefined;
-onMounted(() => {
-  $(owlCarousel.value).owlCarousel({
-    loop: true,
-    nav: false,
-    autoplay: true,
-    autoplayTimeout: 5000,
-    autoplayHoverPause: true,
-    responsive: {
-      0: {
-        items: 1
-      },
-      600: {
-        items: 3
-      },
-      1000: {
-        items: 5
-      }
-    }
-  });
-});
 
-const nextSlide = () => {
-  $(owlCarousel.value).trigger('next.owl.carousel');
-};
-
-const prevSlide = () => {
-  $(owlCarousel.value).trigger('prev.owl.carousel');
-};
-</script>
 <template>
   <div class="mt-5">
     <div>
@@ -57,7 +16,7 @@ const prevSlide = () => {
             </div>
             <div class="form-inline justify-content-center button-group mt-3">
               <div>
-                <a target="_blank">
+                <a href="/register" target="_blank">
                   <button type="button" class="btn btn-primary font-weight-normal btn-register">
                     Đăng ký miễn phí
                   </button>
@@ -262,7 +221,7 @@ const prevSlide = () => {
           </div>
         </div>
         <div class="row mt-3 justify-content-center">
-          <a href="{{route('register')}}" target="_blank">
+          <a href="/register" target="_blank">
             <button type="button" class="btn btn-primary font-weight-normal btn-register">
               Đăng ký miễn phí
             </button>
@@ -333,7 +292,7 @@ const prevSlide = () => {
           <img class="w-100" src="@/assets/image20.png" alt=""/>
         </div>
         <div class="row justify-content-center mt-2">
-          <a href="/sasa" target="_blank">
+          <a href="/register" target="_blank">
             <button type="button" class="btn btn-primary font-weight-normal btn-register">
               Đăng ký miễn phí
             </button>
@@ -345,7 +304,7 @@ const prevSlide = () => {
             Đã có tài khoản?
           </div>
           <div class="ml-2" style="color: #2B4AA0">
-            <a href="/" style="color: #2B4AA0" target="_blank">Đăng nhập</a>
+            <a href="/login" style="color: #2B4AA0" target="_blank">Đăng nhập</a>
           </div>
         </div>
       </section>
@@ -439,4 +398,44 @@ const prevSlide = () => {
     </div>
   </div>
 </template>
+<script setup>
+import { onMounted, ref } from 'vue';
+import $ from 'jquery';
+import GroupFeature from "@/components/index_components/GroupFeature.vue";
+import GroupFeatures from "@/components/index_components/GroupFeatures.vue";
+import ToolIT from "@/components/index_components/ToolIT.vue";
+import OwlItems from "@/components/index_components/OwlItems.vue";
+import OwlItemHidden from "@/components/index_components/OwlItemHidden.vue";
+import ImageItem from "@/components/img/ImageItem.vue";
+import ImgPriceBox from "@/components/img/imgPriceBox.vue";
+import ImageOwl from "@/components/img/imageOwl.vue";
+const owlCarousel = ref(null);
+owlCarousel.value = undefined;
+onMounted(() => {
+  $(owlCarousel.value).owlCarousel({
+    loop: true,
+    nav: false,
+    autoplay: true,
+    autoplayTimeout: 5000,
+    autoplayHoverPause: true,
+    responsive: {
+      0: {
+        items: 1
+      },
+      600: {
+        items: 3
+      },
+      1000: {
+        items: 5
+      }
+    }
+  });
+});
+const nextSlide = () => {
+  $(owlCarousel.value).trigger('next.owl.carousel');
+};
 
+const prevSlide = () => {
+  $(owlCarousel.value).trigger('prev.owl.carousel');
+};
+</script>
