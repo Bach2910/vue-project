@@ -76,7 +76,7 @@ const selectOption = (language, route) => {
       <div class="login-container">
         <button class="topCv-login-button">Xác nhận</button>
         <div class="register-link">
-          Bạn đã nhớ lại mật khẩu <a href="/login/vn">Đăng nhập</a>
+          Bạn đã nhớ lại mật khẩu <router-link :to="{name:'loginVN'}">Đăng nhập</router-link>
         </div>
       </div>
     </div>

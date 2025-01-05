@@ -28,8 +28,8 @@
             </DetailProduct>
           </div>
           <div class="mt-5">
-            <a class="btn btn-primary btn-register ">Đăng ký miễn phí</a>
-            <a class="btn btn-link font-weight-500 primary-color">Tìm hiểu thêm</a>
+            <router-link :to="{path:'/register'}" class="btn btn-primary btn-register ">Đăng ký miễn phí</router-link>
+            <router-link :to="{path:'/blog'}" class="btn btn-link font-weight-500 primary-color">Tìm hiểu thêm</router-link>
           </div>
         </div>
         <div class="col-md-7 product-section-intro-right">
@@ -67,8 +67,8 @@
           </DetailProduct>
         </div>
         <div class="mt-4 text-center">
-          <a class="btn btn-primary btn-register ">Đăng ký miễn phí</a>
-          <a class="btn btn-link font-weight-500 primary-color">Tìm hiểu thêm</a>
+          <router-link :to="{path:'/register'}" class="btn btn-primary btn-register ">Đăng ký miễn phí</router-link>
+          <router-link :to="{path:'/blog'}" class="btn btn-link font-weight-500 primary-color">Tìm hiểu thêm</router-link>
         </div>
       </div>
     </div>
@@ -675,5 +675,6 @@ import ProductPriceBox from "@/components/product_components/productSectionPrice
 import ImgPriceBox from '@/components/img/imgPriceBox.vue'
 import PofPriceBox from '@/components/smallOne/PofPriceBox.vue'
 import ProductBenefit from "@/components/product_components/productBenefit.vue";
+import {RouterLink} from "vue-router";
 const fontColor = 'white'
 </script>

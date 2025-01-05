@@ -612,11 +612,11 @@ a:link {
 }
 @font-face {
   font-family: "SF-Pro-Text-Bold.otf";
-  src: url("src/assets/landing/5eccf0a3fe0845247513b20a/sf-pro-text-bold-20210910035521.otf");
+  src: url("@/assets/landing/5eccf0a3fe0845247513b20a/sf-pro-text-bold-20210910035521.otf");
 }
 @font-face {
   font-family: "SF-Pro-Text-Regular.otf";
-  src: url("src/assets/landing/5eccf0a3fe0845247513b20a/sf-pro-text-regular-20210910035521.otf");
+  src: url("@/assets/landing/5eccf0a3fe0845247513b20a/sf-pro-text-regular-20210910035521.otf");
 }
 body {
   font-family: "Open Sans", sans-serif;

@@ -119,13 +119,12 @@ const selectOption = (language, route) => {
       <div class="login-container">
         <button class="topCv-login-button">Đăng Ký</button>
         <div class="register-link">
-          Đã có tài khoản rồi <a href="/login/vn">Đăng nhập</a>
+          Đã có tài khoản rồi ?<router-link :to="{name:'loginVN'}">Đăng nhập</router-link>
         </div>
       </div>
     </div>
   </form>
 </template>
-
 <style>
 * {
   box-sizing: border-box;

@@ -1,4 +1,3 @@
-
 <template>
   <div class="mt-5">
     <div>
@@ -16,18 +15,18 @@
             </div>
             <div class="form-inline justify-content-center button-group mt-3">
               <div>
-                <a href="/register" target="_blank">
+                <router-link :to="{name: 'register'}" target="_blank">
                   <button type="button" class="btn btn-primary font-weight-normal btn-register">
                     Đăng ký miễn phí
                   </button>
-                </a>
+                </router-link>
               </div>
               <div>
-                <a href="/" target="_blank">
+                <router-link :to="{path:'/blog'}" target="_blank">
                   <button type="button" class="btn btn-outline-primary btn-more-infor">
                     Tìm hiểu thêm
                   </button>
-                </a>
+                </router-link>
               </div>
             </div>
             <div class="mt-4">
@@ -170,14 +169,14 @@
           <h4 class="title-section">Công cụ <span style="color: #2B4AA0">đánh giá năng lực nhân sự IT</span>
             dành cho doanh nghiệp</h4>
           <div style="color: #2B4AA0">
-            <a href="" style="color: #2B4AA0" target="_blank">
+            <router-link :to="{name: 'register'}" style="color: #2B4AA0" target="_blank">
               <div class="d-flex justify-content-center align-items-center">
                 <div><a style="color:#2B4AA0"></a></div>
                 <div class="ml-1">Tìm hiểu thêm <img
                   src="@/assets/arrow-right.png"
                   alt="testcenter"></div>
               </div>
-            </a>
+            </router-link>
           </div>
         </div>
         <div class="mt-4">
@@ -221,11 +220,11 @@
           </div>
         </div>
         <div class="row mt-3 justify-content-center">
-          <a href="/register" target="_blank">
+          <router-link :to="{name: 'register'}" target="_blank">
             <button type="button" class="btn btn-primary font-weight-normal btn-register">
               Đăng ký miễn phí
             </button>
-          </a>
+          </router-link>
         </div>
       </section>
     </div>
@@ -292,11 +291,11 @@
           <img class="w-100" src="@/assets/image20.png" alt=""/>
         </div>
         <div class="row justify-content-center mt-2">
-          <a href="/register" target="_blank">
+          <router-link :to="{name: 'register'}" target="_blank">
             <button type="button" class="btn btn-primary font-weight-normal btn-register">
               Đăng ký miễn phí
             </button>
-          </a>
+          </router-link>>
         </div>
         <div class="row justify-content-center mt-3 font-weight-normal"
              style="font-size: 15px; line-height: 20px; font-weight: 500">
@@ -304,7 +303,7 @@
             Đã có tài khoản?
           </div>
           <div class="ml-2" style="color: #2B4AA0">
-            <a href="/login" style="color: #2B4AA0" target="_blank">Đăng nhập</a>
+            <router-link :to="{path: 'login'}" style="color: #2B4AA0" target="_blank">Đăng nhập</router-link>
           </div>
         </div>
       </section>
@@ -315,14 +314,20 @@
           Bài viết <span style="color: #2B4AA0">mới nhất</span>
         </h4>
         <div class="slider-panel-latest-new position-relative mt-3">
-          <div id="prev-slider" class="cursor-pointer position-absolute arrow-slide arrow-slide-left" @click="prevSlide">
-            <svg style="color: #2C4A9F" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+          <div id="prev-slider" class="cursor-pointer position-absolute arrow-slide arrow-slide-left"
+               @click="prevSlide">
+            <svg style="color: #2C4A9F" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                 class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                    d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
             </svg>
           </div>
-          <div id="next-slider" class="cursor-pointer position-absolute arrow-slide arrow-slide-right" @click="nextSlide">
-            <svg style="color: #2C4A9F" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+          <div id="next-slider" class="cursor-pointer position-absolute arrow-slide arrow-slide-right"
+               @click="nextSlide">
+            <svg style="color: #2C4A9F" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                 class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                    d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
             </svg>
           </div>
           <div class="owl-carousel owl-theme owl-loaded owl-carousel-latest-news hidden-md" ref="owlCarousel">
@@ -333,21 +338,33 @@
                     <ImageOwl :imageAlt='""' :imageSrc='"src/assets/resources/paying-1438142_1920.jpeg"'></ImageOwl>
                   </template>
                   <template #title>Chia sẻ phần mềm tạo bài test nhân viên QC chuyên nghiệp nhất</template>
-                  <template #description>Bộ phận QC nói chung và nhân viên QC đóng vai trò khá quan trọng, giúp thúc đẩy sự phát triển của doanh nghiệp, thông qua việc đảm bảo về chất lượng sản phẩm. Vậy, nhân viên QC là gì? Và đâu là phần mềm giúp thực hiện các bài test nhân viên QC hiệu quả. Mời bạn cùng Testcenter khám phá trong bài viết dưới đây nhé.</template>
+                  <template #description>Bộ phận QC nói chung và nhân viên QC đóng vai trò khá quan trọng, giúp thúc đẩy
+                    sự phát triển của doanh nghiệp, thông qua việc đảm bảo về chất lượng sản phẩm. Vậy, nhân viên QC là
+                    gì? Và đâu là phần mềm giúp thực hiện các bài test nhân viên QC hiệu quả. Mời bạn cùng Testcenter
+                    khám phá trong bài viết dưới đây nhé.
+                  </template>
                 </OwlItems>
                 <OwlItems>
                   <template #img>
                     <ImageOwl :imageAlt='""' :imageSrc='"src/assets/resources/paying-1438142_1920.jpeg"'></ImageOwl>
                   </template>
                   <template #title>Chia sẻ phần mềm tạo bài test nhân viên QC chuyên nghiệp nhất</template>
-                  <template #description>Bộ phận QC nói chung và nhân viên QC đóng vai trò khá quan trọng, giúp thúc đẩy sự phát triển của doanh nghiệp, thông qua việc đảm bảo về chất lượng sản phẩm. Vậy, nhân viên QC là gì? Và đâu là phần mềm giúp thực hiện các bài test nhân viên QC hiệu quả. Mời bạn cùng Testcenter khám phá trong bài viết dưới đây nhé.</template>
+                  <template #description>Bộ phận QC nói chung và nhân viên QC đóng vai trò khá quan trọng, giúp thúc đẩy
+                    sự phát triển của doanh nghiệp, thông qua việc đảm bảo về chất lượng sản phẩm. Vậy, nhân viên QC là
+                    gì? Và đâu là phần mềm giúp thực hiện các bài test nhân viên QC hiệu quả. Mời bạn cùng Testcenter
+                    khám phá trong bài viết dưới đây nhé.
+                  </template>
                 </OwlItems>
                 <OwlItems>
                   <template #img>
                     <ImageOwl :imageAlt='""' :imageSrc='"src/assets/resources/paying-1438142_1920.jpeg"'></ImageOwl>
                   </template>
                   <template #title>Chia sẻ phần mềm tạo bài test nhân viên QC chuyên nghiệp nhất</template>
-                  <template #description>Bộ phận QC nói chung và nhân viên QC đóng vai trò khá quan trọng, giúp thúc đẩy sự phát triển của doanh nghiệp, thông qua việc đảm bảo về chất lượng sản phẩm. Vậy, nhân viên QC là gì? Và đâu là phần mềm giúp thực hiện các bài test nhân viên QC hiệu quả. Mời bạn cùng Testcenter khám phá trong bài viết dưới đây nhé.</template>
+                  <template #description>Bộ phận QC nói chung và nhân viên QC đóng vai trò khá quan trọng, giúp thúc đẩy
+                    sự phát triển của doanh nghiệp, thông qua việc đảm bảo về chất lượng sản phẩm. Vậy, nhân viên QC là
+                    gì? Và đâu là phần mềm giúp thực hiện các bài test nhân viên QC hiệu quả. Mời bạn cùng Testcenter
+                    khám phá trong bài viết dưới đây nhé.
+                  </template>
                 </OwlItems>
               </div>
             </div>
@@ -366,32 +383,46 @@
               <ImageOwl :imageAlt='""' :imageSrc='"src/assets/resources/paying-1438142_1920.jpeg"'></ImageOwl>
             </template>
             <template #title>Chia sẻ phần mềm tạo bài test nhân viên QC chuyên nghiệp nhất</template>
-            <template #description>Bộ phận QC nói chung và nhân viên QC đóng vai trò khá quan trọng, giúp thúc đẩy sự phát triển của doanh nghiệp, thông qua việc đảm bảo về chất lượng sản phẩm. Vậy, nhân viên QC là gì? Và đâu là phần mềm giúp thực hiện các bài test nhân viên QC hiệu quả. Mời bạn cùng Testcenter khám phá trong bài viết dưới đây nhé.</template>
+            <template #description>Bộ phận QC nói chung và nhân viên QC đóng vai trò khá quan trọng, giúp thúc đẩy sự
+              phát triển của doanh nghiệp, thông qua việc đảm bảo về chất lượng sản phẩm. Vậy, nhân viên QC là gì? Và
+              đâu là phần mềm giúp thực hiện các bài test nhân viên QC hiệu quả. Mời bạn cùng Testcenter khám phá trong
+              bài viết dưới đây nhé.
+            </template>
           </OwlItemHidden>
           <OwlItemHidden>
             <template #img>
-              <ImageOwl :imageAlt='""' :imageSrc='"src/assets/card/iq-va-eq-cai-nao-quan-trong-hon-testcenter.jpg"'></ImageOwl>
+              <ImageOwl :imageAlt='""'
+                        :imageSrc='"src/assets/card/iq-va-eq-cai-nao-quan-trong-hon-testcenter.jpg"'></ImageOwl>
             </template>
             <template #title>IQ và EQ cái
-              nào quan trọng hơn? Chọn yếu tố gì trong tuyển dụng</template>
+              nào quan trọng hơn? Chọn yếu tố gì trong tuyển dụng
+            </template>
             <template #description>IQ và EQ đã trở thành hai khái niệm quan trọng trong lĩnh vực tuyển
               dụng nhân sự. Tuy vậy, rất nhiều nhà tuyển dụng vẫn phân vân không
               biết IQ và EQ cái nào quan trọng hơn trong quá trình đánh giá ứng
-              viên. Nếu bạn cũng đang tìm hiểu vấn đề IQ và [&hellip;]</template>
+              viên. Nếu bạn cũng đang tìm hiểu vấn đề IQ và [&hellip;]
+            </template>
           </OwlItemHidden>
           <OwlItemHidden>
             <template #img>
-              <ImageOwl :imageAlt='""' :imageSrc='"src/assets/resources/batchbusinesswoman-571153_1920.jpeg"'></ImageOwl>
+              <ImageOwl :imageAlt='""'
+                        :imageSrc='"src/assets/resources/batchbusinesswoman-571153_1920.jpeg"'></ImageOwl>
             </template>
             <template #title>Chia sẻ phần mềm tạo bài test nhân viên QC chuyên nghiệp nhất</template>
-            <template #description>Khi tuyển dụng, không ít nhà quản lý cho ứng viên làm các bài test chuyên môn và test tính cách để đánh giá năng lực của nhân viên, nhằm chọn ra nhân viên phù hợp với vị trí đang tuyển dụng. Vị trí nhân viên thu mua cũng không phải là ngoại lệ. </template>
+            <template #description>Khi tuyển dụng, không ít nhà quản lý cho ứng viên làm các bài test chuyên môn và test
+              tính cách để đánh giá năng lực của nhân viên, nhằm chọn ra nhân viên phù hợp với vị trí đang tuyển dụng.
+              Vị trí nhân viên thu mua cũng không phải là ngoại lệ.
+            </template>
           </OwlItemHidden>
           <OwlItemHidden>
             <template #img>
               <ImageOwl :imageAlt='""' :imageSrc='"src/assets/resources/batchsale-3701777_1920.jpeg"'></ImageOwl>
             </template>
             <template #title>Giới thiệu phần mềm thông minh tạo bài test nhân viên thủ kho￼</template>
-            <template #description>Bạn đang chuẩn bị phỏng vấn ứng viên và cảm thấy bối bối, không biết bài test nhân viên thủ kho như thế nào. Nhưng đừng quá lo lắng, trong bài viết dưới đây, Testcenter sẽ chia sẻ với bạn những thông tin hữu ích để có thể thực hiện phỏng vấn vị trí nhân viên kho một cách tốt nhất.</template>
+            <template #description>Bạn đang chuẩn bị phỏng vấn ứng viên và cảm thấy bối bối, không biết bài test nhân
+              viên thủ kho như thế nào. Nhưng đừng quá lo lắng, trong bài viết dưới đây, Testcenter sẽ chia sẻ với bạn
+              những thông tin hữu ích để có thể thực hiện phỏng vấn vị trí nhân viên kho một cách tốt nhất.
+            </template>
           </OwlItemHidden>
         </div>
       </section>
@@ -399,7 +430,7 @@
   </div>
 </template>
 <script setup>
-import { onMounted, ref } from 'vue';
+import {onMounted, ref} from 'vue';
 import $ from 'jquery';
 import GroupFeature from "@/components/index_components/GroupFeature.vue";
 import GroupFeatures from "@/components/index_components/GroupFeatures.vue";
@@ -409,6 +440,8 @@ import OwlItemHidden from "@/components/index_components/OwlItemHidden.vue";
 import ImageItem from "@/components/img/ImageItem.vue";
 import ImgPriceBox from "@/components/img/imgPriceBox.vue";
 import ImageOwl from "@/components/img/imageOwl.vue";
+import {RouterLink} from "vue-router";
+
 const owlCarousel = ref(null);
 owlCarousel.value = undefined;
 onMounted(() => {

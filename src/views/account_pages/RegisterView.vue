@@ -118,7 +118,7 @@ const selectOption = (language, route) => {
       <div class="login-container">
         <button class="topCv-login-button">Sign Up</button>
         <div class="register-link">
-          Already have an account? <a href="/login">Login</a>
+          Already have an account? <router-link :to="{name:'login'}">Login</router-link>
         </div>
       </div>
     </div>

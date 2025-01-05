@@ -3613,7 +3613,7 @@
     height: 171.698px;
     top: -62.8209px;
     left: 0px;
-    background-image: url("/src/assets/landing/s500x500/5eccf0a3fe0845247513b20a/download-2-20210920085106.png");
+    background-image: url("@/assets/landing/s500x500/5eccf0a3fe0845247513b20a/download-2-20210920085106.png");
   }
   #IMAGE250 {
     width: 158.531px;
@@ -3626,7 +3626,7 @@
     height: 106.744px;
     top: 0px;
     left: 0px;
-    background-image: url("/src/assets/landing/s500x450/5eccf0a3fe0845247513b20a/honda-logo-20210920084936.jpg");
+    background-image: url("@/assets/landing/s500x450/5eccf0a3fe0845247513b20a/honda-logo-20210920084936.jpg");
   }
   #IMAGE251 {
     width: 165.646px;
@@ -3639,7 +3639,7 @@
     height: 165.643px;
     top: -64.1161px;
     left: 0px;
-    background-image: url("/src/assets/landing/s500x500/5eccf0a3fe0845247513b20a/558b23447b2fa5ee53cc508da516c608-20210920085222.png");
+    background-image: url("@/assets/landing/s500x500/5eccf0a3fe0845247513b20a/558b23447b2fa5ee53cc508da516c608-20210920085222.png");
   }
   #IMAGE252 {
     width: 171.178px;

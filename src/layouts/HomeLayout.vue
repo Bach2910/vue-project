@@ -73,15 +73,14 @@ const toggleNavbar = () => {
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-
         <div :class="['collapse navbar-collapse', { show: isNavbarOpen }]" id="navbarNav">
           <div class="form-inline">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <RouterLink class="nav-link header-item" :to="{ path: '/'}">Trang chủ</RouterLink>
+                <RouterLink @click="console.log('Click me')" class="nav-link header-item" :to="{ path: '/'}">Trang chủ</RouterLink>
               </li>
               <li class="nav-item">
-                <RouterLink class="nav-link header-item" :to="{ path: '/product'}" @click="scrollToTop">Tính năng</RouterLink>
+                <RouterLink class="nav-link header-item" :to="{ name: 'Product'}" @click="scrollToTop">Tính năng</RouterLink>
               </li>
               <li class="nav-item">
                 <RouterLink
@@ -93,22 +92,21 @@ const toggleNavbar = () => {
                 </RouterLink>
               </li>
               <li class="nav-item">
-                <a class="nav-link header-item" href="/blog" target="_blank">Tài nguyên</a>
+                <router-link :to="{path:'/blog'}" class="nav-link header-item" target="_blank">Tài nguyên</router-link>
               </li>
             </ul>
           </div>
           <div class="form-inline">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <a class="nav-link header-item" style="color: #2B4AA0" href="/register" target="_blank">Đăng ký</a>
+                <router-link :to="{name: 'register'}" class="nav-link header-item" style="color: #2B4AA0"  target="_blank">Đăng ký</router-link>
               </li>
               <li class="nav-item">
-                <a
+                <router-link :to="{path: '/login'}"
                   class="nav-link header-item"
                   style="color: #2C4A9F; font-weight: 500"
-                  href="/login"
                   target="_blank"
-                >Đăng nhập</a>
+                >Đăng nhập</router-link>
               </li>
             </ul>
           </div>
@@ -138,8 +136,8 @@ const toggleNavbar = () => {
           <div class="col-lg-3 col-md-4 col-sm-12">
             <h2 class="text-white font-weight-bold font-size-16">VỀ TESTCENTER</h2>
             <p><a href="#" class="text-sm text-light link-item">Giới thiệu</a></p>
-            <p><a href="/dieu-khoan-su-dung" class="text-sm text-light link-item">Điều khoản sử dụng</a></p>
-            <p><a href="/chinh-sach-bao-mat" class="text-sm text-light link-item">Chính sách bảo mật</a></p>
+            <p><router-link :to="{name:'terms_use'}"  class="text-sm text-light link-item">Điều khoản sử dụng</router-link></p>
+            <p><router-link :to="{name:'policy_warning'}"  class="text-sm text-light link-item">Chính sách bảo mật</router-link></p>
             <div class="list-social-network">
               <a href="#"><img alt="facebook" class="social-network-icon" src="@/assets/facebook.png"/></a>
               <a href="#"><img alt="twitter" class="social-network-icon" src="@/assets/twitter.png"/></a>

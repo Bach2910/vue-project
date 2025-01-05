@@ -75,7 +75,7 @@ const selectOption = (language, route) => {
       <div class="login-container">
         <button class="topCv-login-button">Confirm</button>
         <div class="register-link">
-          Did you remember the password? <a href="/login">Login</a>
+          Did you remember the password? <router-link :to="{name:'login'}">Login</router-link>
         </div>
       </div>
     </div>

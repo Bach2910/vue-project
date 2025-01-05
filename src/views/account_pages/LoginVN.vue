@@ -95,7 +95,7 @@ const togglePassword = () => {
           </div>
           <iframe style="display: none;"></iframe>
         </div>
-        <div class="forgot"><a href="/forget-password/vn">Quên mật khẩu</a></div>
+        <div class="forgot"><router-link :to="{name:'forgetPasswordVN'}">Quên mật khẩu</router-link></div>
       </div>
       <div class="login-container">
         <button class="topCv-login-button">Đăng Nhập</button>
@@ -108,7 +108,7 @@ const togglePassword = () => {
           <span>Login with TopCV</span>
         </div>
         <div class="register-link">
-          Bạn đã có tài khoản chưa? <a href="/register/vn">Đăng Ký</a>
+          Bạn đã có tài khoản chưa? <router-link :to="{name:'registerVN'}">Đăng Ký</router-link>
         </div>
       </div>
     </div>

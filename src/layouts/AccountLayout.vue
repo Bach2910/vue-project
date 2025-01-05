@@ -1,17 +1,12 @@
 <script setup>
-import { useRoute } from 'vue-router';
-import { computed } from 'vue';
 import CarouselInner from "../components/acccount_components/carouselInner.vue";
 import ImageLink from "@/components/img/imageLink.vue";
 import { onMounted } from 'vue';
-import CountryFa from "@/components/smallOne/CountryFa.vue";
 onMounted(() => {
   import('bootstrap/dist/css/bootstrap.min.css');
   import('bootstrap/dist/css/bootstrap-grid.min.css');
   import('bootstrap/dist/css/bootstrap-utilities.min.css');
 });
-const route = useRoute();
-const TextTitle = computed(() => route.meta.TextTitle || 'Tiêu đề Mặc Định');
 </script>
 <template>
   <div class="container-fluid">

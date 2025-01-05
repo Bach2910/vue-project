@@ -92,7 +92,7 @@ const togglePassword = () => {
           </div>
           <iframe style="display: none;"></iframe>
         </div>
-        <div class="forgot"><a href="/forget-password">Forget password</a></div>
+        <div class="forgot"><router-link :to="{name:'forgetPassword'}">Forget password</router-link></div>
       </div>
       <div class="login-container">
         <button class="topCv-login-button">Login</button>
@@ -105,7 +105,7 @@ const togglePassword = () => {
           <span>Login with TopCV</span>
         </div>
         <div class="register-link">
-          Do you have a account ? <a href="/register">Register</a>
+          Do you have a account ? <router-link :to="{name:'register'}">Register</router-link>
         </div>
       </div>
     </div>
