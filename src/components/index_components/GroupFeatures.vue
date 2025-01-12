@@ -3,7 +3,6 @@
     <div class="col-lg-6 col-md-12 col-sm-12 container-content">
       <div class="features-box">
         <div class="d-flex flex-column align-items-center">
-          <div class="features-box">
             <div class="title">
               <slot name="title"></slot>
             </div>
@@ -13,7 +12,6 @@
             <slot name="img"></slot>
           </div>
         </div>
-      </div>
     </div>
     <div class="col-lg-6 col-md-12 col-sm-12 container-content">
       <div class="features-box">
