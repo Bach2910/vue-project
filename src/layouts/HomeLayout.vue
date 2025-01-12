@@ -129,7 +129,7 @@ const toggleNavbar = () => {
             <p><a href="#" class="text-sm text-light link-item">Tạo tài khoản miễn phí</a></p>
             <p><a href="#" class="text-sm text-light link-item">Công cụ tạo bài test online</a></p>
             <p><a href="/examTest" class="text-sm text-light link-item">Ngân hàng đề thi mẫu đa dạng</a></p>
-            <p><a href="/evaluate" class="text-sm text-light link-item">Đánh giá năng lực nhân sự</a></p>
+            <p><router-link to="/landing/nen-tang-danh-gia-nhan-su-toan-dien" class="text-sm text-light link-item">Đánh giá năng lực nhân sự</router-link></p>
             <p><a href="/trainEmployee" class="text-sm text-light link-item">Đào tạo nhân sự hiệu quả</a></p>
             <p><a href="#" class="text-sm text-light link-item">Giảm tỉ lệ tuyển dụng sai người</a></p>
           </div>

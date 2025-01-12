@@ -1,7 +1,7 @@
 <script setup>
 import {ref} from 'vue'
 import {useRouter} from 'vue-router';
-
+import '@/assets/base.css';
 const selectedLanguage = ref('ENG');
 const selectedFlag = ref('/src/assets/country/uk_flag.png');
 const optionsVisible = ref(false);

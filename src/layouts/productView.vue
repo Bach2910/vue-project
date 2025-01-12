@@ -3,7 +3,6 @@ import {ref, onMounted, onUnmounted} from 'vue';
 
 const isSearchBoxVisible = ref(false);
 const isScrollToTopVisible = ref(false);
-const isOverlayVisible = ref(false);
 const isSearchOverlayVisible = ref(false);
 const isZoomed = ref(false);
 const searchQuery = ref('');
@@ -18,7 +17,7 @@ const handleScroll = () => {
 const scrollToTop = () => {
   window.scrollTo({top: 0, behavior: 'smooth'});
 };
-
+const isOverlayVisible = ref(false);
 const openOverlay = () => {
   isOverlayVisible.value = true;
   document.body.classList.add('no-scroll');
@@ -37,16 +36,16 @@ const closeOverlaySearch = () => {
   isSearchOverlayVisible.value = false;
   document.body.classList.remove('no-scroll');
 };
-
+const toggleSearch = () => {
+  isSearchBoxVisible.value = !isSearchBoxVisible.value;
+};
 // Tìm kiếm
 const performSearch = (event) => {
   event.preventDefault();
   if (searchQuery.value) {
     window.location.href = `/search?keyword=${encodeURIComponent(searchQuery.value)}`;
   }
-};
-
-// Điều chỉnh chế độ zoom
+}
 const zoomIn = () => {
   isZoomed.value = true;
   document.body.classList.add('zoomed');
@@ -90,11 +89,11 @@ onUnmounted(() => {
                   </span>
                 </div>
                 <form class="menu-form">
-                  <a href="{{route('index')}}">Trang chủ</a>
-                  <a href="{{route('peoples')}}">Nhân sự</a>
-                  <a href="{{route('exam')}}">Mẫu đề thi online</a>
-                  <a href="{{route('document')}}">Tài liệu</a>
-                  <a href="{{route('news')}}">Tin tức</a>
+                  <router-link :to="{name:'index'}">Trang chủ</router-link>
+                  <router-link :to="{path:'/blog/nhan-su'}">Nhân sự</router-link>
+                  <router-link :to="{path:'/blog/mau-de-test-online'}">Mẫu đề test Online</router-link>
+                  <router-link :to="{path:'/blog/tai-lieu'}">Tài liệu</router-link>
+                  <router-link :to="{path:'/blog/tin-tuc'}">Tin tức</router-link>
                 </form>
               </div>
             </div>
@@ -124,22 +123,22 @@ onUnmounted(() => {
             <div class="form-logo">
               <ul class="navbar-nav mr-auto">
                 <li>
-                  <a href="{{route('blog')}}">
+                  <router-link to="/blog">
                     <img src="../assets/resources/logo-e1617684193993.png" alt="Trang chủ"
                          style="height:34px;width:120px;">
-                  </a>
+                  </router-link>
                 </li>
               </ul>
             </div>
             <div class="form-menu">
               <ul class="navbar-nav sf-menu">
                 <li>
-                  <router-link to="/train">Trang Chủ</router-link>
+                  <router-link :to="{name:'index'}">Trang chủ</router-link>
                 </li>
-                <li><a href="{{route('peoples')}}">Nhân sự</a></li>
-                <li><a href="{{route('exam')}}">Mẫu đề Test Online</a></li>
-                <li><a href="{{route('document')}}">Tài liệu</a></li>
-                <li><a href="{{route('news')}}">Tin tức</a></li>
+                <li> <router-link :to="{path:'/blog/nhan-su'}">Nhân sự</router-link></li>
+                <li><router-link :to="{path:'/blog/mau-de-test-online'}">Mẫu đề test Online</router-link></li>
+                <li> <router-link :to="{path:'/blog/tai-lieu'}">Tài liệu</router-link></li>
+                <li> <router-link :to="{path:'/blog/tin-tuc'}">Tin tức</router-link></li>
                 <li>
                   <form @submit="performSearch" class="search-container">
                           <span class="search-icon" @click="toggleSearch"><i
@@ -198,6 +197,9 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
+body .no-scroll{
+  overflow: hidden;
+}
 .social-button {
   border: 1px solid #ccc;
   width:40px;
@@ -244,15 +246,6 @@ onUnmounted(() => {
 .no-scroll {
   overflow: hidden;
 }
-
-.overlay {
-  display: block;
-}
-
-.overlay-search {
-  display: block;
-}
-
 .td-header .tdc-row {
   padding: 0 !important;
 }
@@ -1070,7 +1063,7 @@ h6 {
 }
 
 form {
-  display: block;
+  display: grid;
   margin-top: 0em;
   unicode-bidi: isolate;
 }
@@ -1117,8 +1110,8 @@ form {
   width: 300px;
   transform: translateY(20px);
   position: absolute;
-  top: 47px;
-  right: 0;
+  top: 27px;
+  right:20px;
 }
 
 .search-box .search-button {
@@ -1300,7 +1293,7 @@ form {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  display: none; /* Ẩn nút khi trang mới tải */
+  display: block; /* Ẩn nút khi trang mới tải */
 }
 
 #scrollToTopBtn:hover {
@@ -1410,12 +1403,10 @@ a:hover, a:focus {
   height: auto;
   padding: 0 100px 0 100px;
 }
-
 .header-mobi {
-  width: 100%;
-  z-index: 999;
+  height: calc(100% + 1px);
+  overflow-y: auto;
 }
-
 .header-mobi .mobi-telephone {
   text-align: center;
   align-items: center;
@@ -1429,15 +1420,15 @@ a:hover, a:focus {
 }
 
 .header-mobi .mobi-telephone .telephone-hidden .overlay {
-  display: none; /* Ẩn overlay lúc đầu */
+  display: block; /* Ẩn overlay lúc đầu */
   position: fixed;
   top: 0;
   right: 0;
   width: 100%;
-  height: 100%;
+  height: calc(100% + 1px);
   background: linear-gradient(to bottom, rgba(0, 40, 85, 0.5), rgba(255, 158, 77, 0.7) 50%, rgba(255, 158, 77, 0.5));
   color: #fff;
-  z-index: 1000;
+  z-index: 2;
   font-size: 24px;
   overflow-y: auto;
 }
@@ -1479,7 +1470,6 @@ a:hover, a:focus {
   font-size: 22px;
   color: white;
 }
-
 .header-mobi .mobi-telephone .search-hidden .search-button i {
   cursor: pointer;
   height: 54px;
@@ -1491,7 +1481,7 @@ a:hover, a:focus {
 }
 
 .header-mobi .mobi-telephone .search-hidden .overlay-search {
-  display: none; /* Ẩn overlay lúc đầu */
+  display: block; /* Ẩn overlay lúc đầu */
   position: fixed;
   top: 0;
   right: 0;
@@ -1530,7 +1520,7 @@ a:hover, a:focus {
 }
 
 .header-mobi .mobi-telephone .search-hidden .tdc-title .input-search {
-  width: 90%; /* Giảm chiều rộng để tránh tràn lề */
+  width: 90%;
   color: #fff;
   font-weight: 700;
   font-size: 26px;
@@ -1539,11 +1529,11 @@ a:hover, a:focus {
   border: 0;
   background: transparent;
   outline: 0;
-  padding: 0 10px; /* Thêm padding để tạo khoảng cách */
+  padding: 0 10px;
   text-align: center;
   border: none;
   border-bottom: 2px solid white;
-  margin: 20px 0;
+  margin: 0 0 20px 1.3rem;
 }
 
 @media (max-width: 1024px) {
@@ -1577,7 +1567,6 @@ a:hover, a:focus {
   .navbar-nav {
     flex-direction: row;
   }
-
   .form-menu {
     padding-left: 20px;
     font-size: 12px;

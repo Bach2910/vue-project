@@ -23,11 +23,11 @@ const { newsHiddenCards = [], visibleCount1 = 4 } = defineProps({
         </div>
         <div class="item-small-detail">
           <div class="title-small">
-            <a href="/">{{ card.title }}</a>
+            <router-link to="/blog/equity-theory-la-gi">{{ card.title }}</router-link>
           </div>
           <div class="more">
             <div class="button-link">
-              <a href="/" class=" text-white">Nhân sự</a>
+              <router-link to="/blog/nhan-su" class=" text-white">Nhân sự</router-link>
             </div>
             <div class="datetime">
               {{ card.month }}-{{ card.day }}-{{ card.year }}
@@ -842,12 +842,6 @@ h6 {
   margin-left: auto;
 }
 
-form {
-  display: block;
-  margin-top: 0em;
-  unicode-bidi: isolate;
-}
-
 #prevBtn {
   display: inline-block;
   margin-right: 7px;
@@ -1202,25 +1196,6 @@ a:hover, a:focus {
   /* Overlay style */
 }
 
-.header-mobi .mobi-telephone .telephone-hidden .overlay {
-  display: none; /* Ẩn overlay lúc đầu */
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 40, 85, 0.5), rgba(255, 158, 77, 0.7) 50%, rgba(255, 158, 77, 0.5));
-  color: #fff;
-  z-index: 1000;
-  font-size: 24px;
-  overflow-y: auto;
-}
-
-.header-mobi .mobi-telephone .telephone-hidden .header-overlay {
-  display: flex;
-  justify-content: space-between;
-  margin: 30px 30px 20px 40px;
-}
 
 .header-mobi .mobi-telephone .telephone-hidden .header-overlay .link-inform i {
   font-size: 23px;
@@ -1263,32 +1238,6 @@ a:hover, a:focus {
   color: white;
   margin-right: 20px;
 }
-
-.header-mobi .mobi-telephone .search-hidden .overlay-search {
-  display: none; /* Ẩn overlay lúc đầu */
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 40, 85, 0.5), rgba(255, 158, 77, 0.7) 50%, rgba(255, 158, 77, 0.5));
-  color: #fff;
-  z-index: 1000;
-  font-size: 24px;
-}
-
-.header-mobi .mobi-telephone .search-hidden .overlay-search.open {
-  display: flex;
-}
-
-.header-mobi .mobi-telephone .search-hidden .search-close-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 30px;
-  cursor: pointer;
-}
-
 .header-mobi .mobi-telephone .search-hidden .no-scroll {
   overflow: hidden !important;
 }

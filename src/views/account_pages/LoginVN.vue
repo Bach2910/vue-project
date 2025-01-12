@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import '@/assets/base.css';
 import { useRouter } from 'vue-router';
 const selectedLanguage = ref('ENG');
 const selectedFlag = ref('/src/assets/country/uk_flag.png');
@@ -73,7 +74,7 @@ const togglePassword = () => {
           v-model="password"
         />
         <i
-          :class="showPassword ? 'fas fa-eye-slash eye-icon' : 'fas fa-eye eye-icon'"
+          :class="showPassword ? 'fas fa-eye eye-icon' : 'fas fa-eye-slash eye-icon'"
           @click="togglePassword"
           id="togglePassword"
         ></i>
@@ -115,6 +116,9 @@ const togglePassword = () => {
   </form>
 </template>
 <style>
+.line{
+ top:-20px;
+}
 .login-container {
   display: flex;
   flex-direction: column;
@@ -129,7 +133,7 @@ const togglePassword = () => {
   background-color: #f0f8ff; /* Tùy chỉnh màu nền */
   padding: 10px;
   border-radius: 5px;
-  margin-bottom: 10px;
+  margin-top: 20px;
   width: 100%; /* Điều chỉnh chiều rộng của logo */
   color: #1a4c9d;
   font-weight: bold;
@@ -178,7 +182,7 @@ const togglePassword = () => {
 .login-container .register-link {
   font-size: 14px;
   color: #333;
-  margin: 50px 0 30px 0;
+  margin: 20px 0 30px 0;
 }
 
 .login-container .register-link a {

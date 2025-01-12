@@ -71,10 +71,10 @@ const loadMore = () => {
             class="d-block w-100 mx-auto"></div>
           <div class="title">
             <div class="link-button">
-              <a href="{{route('news')}}" class="button-link" type="submit">Tin tức</a>
+              <router-link to="/blog/tin-tuc" class="button-link" type="submit">Tin tức</router-link>
             </div>
-            <a href="{{route('blog_true')}}">Dấu hiệu nhận biết ứng viên không trung thực nhà quản trị
-              cần biết</a>
+            <router-link to="/blog/tuyen-mass">Dấu hiệu nhận biết ứng viên không trung thực nhà quản trị
+              cần biết</router-link>
           </div>
         </div>
         <carouselItem>
@@ -1114,13 +1114,11 @@ h6 {
   margin-right: auto;
   margin-left: auto;
 }
-
 form {
-  display: block;
+  display: grid;
   margin-top: 0em;
   unicode-bidi: isolate;
 }
-
 #prevBtn {
   display: inline-block;
   margin-right: 7px;
@@ -1315,7 +1313,6 @@ form {
 .pagination-wrapper {
   margin-top: 100px;
 }
-
 #scrollToTopBtn {
   position: fixed;
   bottom: 20px;
@@ -1326,9 +1323,8 @@ form {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  display: none; /* Ẩn nút khi trang mới tải */
+  display: block;
 }
-
 #scrollToTopBtn:hover {
   background-color: #0056b3; /* Màu khi hover */
 }
@@ -1449,7 +1445,7 @@ a:hover, a:focus {
   /* Overlay style */
 }
 .header-mobi .mobi-telephone .telephone-hidden .overlay {
-  display: none; /* Ẩn overlay lúc đầu */
+  display: block; /* Ẩn overlay lúc đầu */
   position: fixed;
   top: 0;
   right: 0;
@@ -1502,7 +1498,7 @@ a:hover, a:focus {
   margin-right: 20px;
 }
 .header-mobi .mobi-telephone .search-hidden .overlay-search {
-  display: none; /* Ẩn overlay lúc đầu */
+  display: block; /* Ẩn overlay lúc đầu */
   position: fixed;
   top: 0;
   right: 0;

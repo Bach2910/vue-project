@@ -5,9 +5,9 @@
     <slot name="img"></slot>
     <div class="title">
       <div class="link-button">
-        <router-link to="" class="button-link" type="submit"><slot name="title"></slot></router-link>
+        <router-link to="/blog/tin-tuc" class="button-link" type="submit"><slot name="title"></slot></router-link>
       </div>
-      <router-link to=""><slot name="description"></slot></router-link>
+      <router-link to="/blog/tuyen-mass"><slot name="description"></slot></router-link>
     </div>
   </div>
 </template>

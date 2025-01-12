@@ -431,7 +431,6 @@
 </template>
 <script setup>
 import {onMounted, ref} from 'vue';
-import $ from 'jquery';
 import GroupFeature from "@/components/index_components/GroupFeature.vue";
 import GroupFeatures from "@/components/index_components/GroupFeatures.vue";
 import ToolIT from "@/components/index_components/ToolIT.vue";
@@ -441,7 +440,9 @@ import ImageItem from "@/components/img/ImageItem.vue";
 import ImgPriceBox from "@/components/img/imgPriceBox.vue";
 import ImageOwl from "@/components/img/imageOwl.vue";
 import {RouterLink} from "vue-router";
-
+import $ from "jquery";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel";
 const owlCarousel = ref(null);
 owlCarousel.value = undefined;
 onMounted(() => {
@@ -467,7 +468,6 @@ onMounted(() => {
 const nextSlide = () => {
   $(owlCarousel.value).trigger('next.owl.carousel');
 };
-
 const prevSlide = () => {
   $(owlCarousel.value).trigger('prev.owl.carousel');
 };

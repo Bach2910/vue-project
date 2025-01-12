@@ -12,16 +12,16 @@ defineProps({
          class="hidden-news-div show">
       <div class="row g-0 overflow-hidden flex-md-row mb-4 h-md-250 position-relative h-100">
         <div class="img-wrapper">
-          <a href="/">
+          <router-link to="/blog/mau-de-test-online">
             <img :src="card.img" alt="News Image" class="animation">
-          </a>
+          </router-link>
         </div>
         <div class="item-small-detail">
           <div class="title-small">
-            <a href="/blog">{{ card.title }}</a>
+            <router-link to="/blog">{{ card.title }}</router-link>
           </div>
           <div class="button-link">
-            <a href="/document" class="text-white">Tài liệu</a>
+            <router-link to="/blog/tai-lieu" class="text-white">Tài liệu</router-link>
           </div>
         </div>
       </div>
@@ -763,13 +763,6 @@ h6 {
   margin-right: auto;
   margin-left: auto;
 }
-
-form {
-  display: block;
-  margin-top: 0em;
-  unicode-bidi: isolate;
-}
-
 #prevBtn {
   display: inline-block;
   margin-right: 7px;
@@ -1095,19 +1088,7 @@ a:hover, a:focus {
   justify-content: space-between;
   /* Overlay style */
 }
-.header-mobi .mobi-telephone .telephone-hidden .overlay {
-  display: none; /* Ẩn overlay lúc đầu */
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 40, 85, 0.5), rgba(255, 158, 77, 0.7) 50%, rgba(255, 158, 77, 0.5));
-  color: #fff;
-  z-index: 1000;
-  font-size: 24px;
-  overflow-y: auto;
-}
+
 .header-mobi .mobi-telephone .telephone-hidden .header-overlay {
   display: flex;
   justify-content: space-between;
@@ -1148,18 +1129,7 @@ a:hover, a:focus {
   color: white;
   margin-right: 20px;
 }
-.header-mobi .mobi-telephone .search-hidden .overlay-search {
-  display: none; /* Ẩn overlay lúc đầu */
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 40, 85, 0.5), rgba(255, 158, 77, 0.7) 50%, rgba(255, 158, 77, 0.5));
-  color: #fff;
-  z-index: 1000;
-  font-size: 24px;
-}
+
 .header-mobi .mobi-telephone .search-hidden .overlay-search.open {
   display: flex;
 }

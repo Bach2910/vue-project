@@ -5,11 +5,11 @@
     <div class="card-body">
       <div class="img-info-bottom">
         <slot name="img"></slot>
-        <a href="{{route('document')}}" type="button" class="link"><slot name="name"></slot></a>
+        <router-link to="/blog/tin-tuc" type="button" class="link"><slot name="name"></slot></router-link>
       </div>
       <div class="tdc-info-botton">
         <h3 class="card-title td-module-title">
-          <a href="{{route('blog_lean')}}"><slot name="title"></slot></a>
+          <router-link to="/blog/lean-la-gi"><slot name="title"></slot></router-link>
         </h3>
         <div class="card-text"><slot name="desc"></slot></div>
       </div>
@@ -1083,19 +1083,6 @@ a:hover, a:focus {
   justify-content: space-between;
   /* Overlay style */
 }
-.header-mobi .mobi-telephone .telephone-hidden .overlay {
-  display: none; /* Ẩn overlay lúc đầu */
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 40, 85, 0.5), rgba(255, 158, 77, 0.7) 50%, rgba(255, 158, 77, 0.5));
-  color: #fff;
-  z-index: 1000;
-  font-size: 24px;
-  overflow-y: auto;
-}
 .header-mobi .mobi-telephone .telephone-hidden .header-overlay {
   display: flex;
   justify-content: space-between;
@@ -1135,18 +1122,6 @@ a:hover, a:focus {
   font-size: 22px;
   color: white;
   margin-right: 20px;
-}
-.header-mobi .mobi-telephone .search-hidden .overlay-search {
-  display: none; /* Ẩn overlay lúc đầu */
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 40, 85, 0.5), rgba(255, 158, 77, 0.7) 50%, rgba(255, 158, 77, 0.5));
-  color: #fff;
-  z-index: 1000;
-  font-size: 24px;
 }
 .header-mobi .mobi-telephone .search-hidden .overlay-search.open {
   display: flex;

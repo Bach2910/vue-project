@@ -1,42 +1,487 @@
 <script setup>
+import { ref, computed } from 'vue';
+const isTocOpen = ref(false);
+const toggleContent = () => {
+  isTocOpen.value = !isTocOpen.value;
+};
+const articles = ref([
+  {
+    link: "Tin tức",
+    url: "{{route('news')}}",
+    summary: "Equity Theory là gì? Cách quản trị doanh nghiệp hiệu quả với học thuyết cân bằng",
+    image_url: "https://www.testcenter.vn/blog/wp-content/uploads/2024/02/equity-theory-la-gi-testcenter-1-218x150.jpg",
+  },
+  {
+    link: "Tài liệu",
+    url: "{{route('news')}}",
+    summary: "Lean là gì? Phương pháp ứng dụng mô hình Lean để tối ưu chi phí cho doanh nghiệp",
+    image_url: "https://www.testcenter.vn/blog/wp-content/uploads/2024/01/lean-la-gi-testcenter-218x150.jpg",
+  },
+  {
+    link: "Tin tức",
+    url: "{{route('news')}}",
+    summary: "Equity Theory là gì? Cách quản trị doanh nghiệp hiệu quả với học thuyết cân bằng",
+    image_url: "https://www.testcenter.vn/blog/wp-content/uploads/2024/02/equity-theory-la-gi-testcenter-1-218x150.jpg",
+  },
+  {
+    link: "Tin tức",
+    url: "{{route('news')}}",
+    summary: "Equity Theory là gì? Cách quản trị doanh nghiệp hiệu quả với học thuyết cân bằng",
+    image_url: "https://www.testcenter.vn/blog/wp-content/uploads/2024/02/equity-theory-la-gi-testcenter-1-218x150.jpg",
+  },
+  {
+    link: "Tin tức",
+    url: "{{route('news')}}",
+    summary: "Equity Theory là gì? Cách quản trị doanh nghiệp hiệu quả với học thuyết cân bằng",
+    image_url: "https://www.testcenter.vn/blog/wp-content/uploads/2024/02/equity-theory-la-gi-testcenter-1-218x150.jpg",
+  },
+  {
+    link: "Tin tức",
+    url: "{{route('news')}}",
+    summary: "Equity Theory là gì? Cách quản trị doanh nghiệp hiệu quả với học thuyết cân bằng",
+    image_url: "https://www.testcenter.vn/blog/wp-content/uploads/2024/02/equity-theory-la-gi-testcenter-1-218x150.jpg",
+  }, {
+    link: "Tin tức",
+    url: "{{route('news')}}",
+    summary: "Equity Theory là gì? Cách quản trị doanh nghiệp hiệu quả với học thuyết cân bằng",
+    image_url: "https://www.testcenter.vn/blog/wp-content/uploads/2024/02/equity-theory-la-gi-testcenter-1-218x150.jpg",
+  },
+  {
+    link: "Tài liệu",
+    url: "{{route('news')}}",
+    summary: "Lean là gì? Phương pháp ứng dụng mô hình Lean để tối ưu chi phí cho doanh nghiệp",
+    image_url: "https://www.testcenter.vn/blog/wp-content/uploads/2024/01/lean-la-gi-testcenter-218x150.jpg",
+  },
+  {
+    link: "Tài liệu",
+    url: "{{route('news')}}",
+    summary: "Lean là gì? Phương pháp ứng dụng mô hình Lean để tối ưu chi phí cho doanh nghiệp",
+    image_url: "https://www.testcenter.vn/blog/wp-content/uploads/2024/01/lean-la-gi-testcenter-218x150.jpg",
+  },
+]);
 
+const articlesPerPage = 3;
+const currentPage = ref(1);
+
+const totalPages = computed(() => Math.ceil(articles.value.length / articlesPerPage));
+
+const currentArticles = computed(() => {
+  const startIndex = (currentPage.value - 1) * articlesPerPage;
+  const endIndex = currentPage.value * articlesPerPage;
+  return articles.value.slice(startIndex, endIndex);
+});
+
+const prevPage = () => {
+  if (currentPage.value > 1) currentPage.value--;
+};
+const nextPage = () => {
+  if (currentPage.value < totalPages.value) currentPage.value++;
+};
 </script>
+
 <template>
-  <div class="row g-0 td-pb-row td-mb-5 tb-row-8  position-relative">
-    <div class="dad">
-      <div class="img-wrapper">
-        <router-link to="/blog/equity-theory-la-gi">
-          <slot name="img"></slot>
-        </router-link>
+  <div class="td-container-wrap">
+    <div class="link">
+      <span><a href="#" >Trang chủ</a> > Tin tức</span>
+    </div>
+    <div class="first-title">
+      <ul class="td-category">
+        <li class="entry-category">
+          <a href="#">Tin tức</a>
+        </li>
+      </ul>
+      <h2>Lean là gì? Phương pháp ứng dụng mô hình Lean để tối ưu chi phí cho doanh nghiệp</h2>
+      <h6>Bởi - </h6>
+      <div class="button-inform">
+        <span type="button" class="facebook"><i class="fa-brands fa-facebook-f"></i></span>
+        <span type="button" class="twitter"><i class="fa-brands fa-twitter"></i></span>
+        <span type="button" class="pinterest"><i class="fa-brands fa-pinterest-p"></i></span>
+        <span type="button" class="whatsapp"><i class="fa-brands fa-whatsapp"></i></span>
+        <span type="button" class="linkedin"><i class="fa-brands fa-linkedin-in"></i></span>
+        <span type="button" class="tumblr"><i class="fa-brands fa-tumblr"></i></span>
       </div>
-      <div class="item-detail">
-        <div class="title-mb2">
-          <h3>
-            <router-link to="/blog/nhan-su"><slot name="title"></slot></router-link>
-          </h3>
+      <p>Nắm được khái niệm <a href="{{route('blog_lean')}}"><b>Lean là gì</b></a> sẽ giúp nhà quản trị tìm ra phương pháp để giảm
+        thiểu chi phí sản xuất nhằm tối ưu lợi nhuận hiệu quả. Chi tiết về khái niệm Lean cũng như những cách
+        ứng dụng mô hình này cho tổ chức,
+        <a href=""><b>Testcenter.vn</b></a> sẽ giúp bạn khai thác sâu trong bài viết thuộc chuyên mục tin tức
+        dưới đây!</p>
+      <div class="toc-wrapper">
+        <div class="name">
+          <h5>Table of Contents</h5>
+          <div class="icon" @click="toggleContent">☰</div>
         </div>
-        <div class="button-link">
-          <router-link to="/blog/nhan-su" target="_blank" type="button"
-                       class="text-white"><slot name="button"></slot></router-link>
+        <div :class="['toc', { open: isTocOpen }]" id="toc">
+          <ul>
+            <li><a href="#section1">1. Tổng quan về Lean</a>
+              <ul>
+                <li><a href="#section1-1">1.1. Nguồn gốc hình thành của mô hình Lean</a></li>
+                <li><a href="#section1-2">1.2. Lean là gì?</a></li>
+                <li><a href="#section1-3">1.3. Sự khác biệt giữa mô hình sản xuất truyền thống với mô
+                  hình Lean là gì?</a></li>
+              </ul>
+            </li>
+            <li><a href="#section2">2. Nguyên tắc cốt lõi của mô hình Lean là gì?</a></li>
+            <li><a href="#section3">3. Lợi ích mà mô hình Lean mang lại cho doanh nghiệp</a></li>
+            <li><a href="#section4">4. Đối tượng áp dụng của mô hình Lean là gì?</a></li>
+            <li><a href="#section5">5. Sử dụng mô hình Lean để nhận diện các loại lãng phí trong sản
+              xuất</a>
+              <ul>
+                <li><a href="#section5-1">5.1 Lỗi sản phẩm (Defects)</a></li>
+                <li><a href="#section5-2">5.2 Sản xuất dư thừa (Over Production)</a></li>
+                <li><a href="#section5-3">5.3 Thời gian chờ đợi (Waiting)</a></li>
+                <li><a href="#section5-4">5.4 Không tận dụng tài năng (Non-utilized Talent)</a></li>
+                <li><a href="#section5-5">5.5 Vận chuyển (Transportation)</a></li>
+                <li><a href="#section5-6">5.6 Chuyển động (Motion)</a></li>
+                <li><a href="#section5-7">5.7 Quy trình dư thừa (Extra Process)</a></li>
+                <li><a href="#section5-8">5.8 Kho hàng (Inventory)</a></li>
+              </ul>
+            </li>
+            <li><a href="#section6">Phương pháp ứng dụng để phát huy tối đa hiệu quả của Lean trong doanh
+              nghiệp</a>
+              <ul>
+                <li><a href="#section6-1">6-1. Thiết lập chiến lược mục tiêu rõ ràng</a></li>
+                <li><a href="#section6-2">6-2. Kiên định với mô hình Lean</a></li>
+                <li><a href="#section6-4">6-4. Đặt tiêu chuẩn rõ ràng ngay từ đầu</a></li>
+                <li><a href="#section6-5">6-5. Tập trung vào nhóm lãnh đạo tuyến đầu</a></li>
+                <li><a href="#section6-6">6-6. Phân bổ hợp lý các nguồn lực</a></li>
+                <li><a href="#section6-7">6-7. Sát sao ngay từ quy trình tuyển dụng</a></li>
+              </ul>
+            </li>
+            <li><a href="#section7">7. Tổng kết</a></li>
+          </ul>
         </div>
-        <div class="description-mb2">
-          <p class="mb-2">
-            <slot name="desc"></slot>
-          </p>
+      </div>
+      <!-- Content Sections -->
+      <section id="section1">
+        <h2>Tổng quan về Lean</h2>
+        <p>Đối với Lean, trước khi đi vào tìm hiểu những phương pháp ứng dụng hiệu quả mô hình này để tối ưu chi
+          phí cho doanh nghiệp, chúng ta sẽ cần nắm được một thông tin cơ bản về nguồn gốc hình thành và khái
+          niệm Lean:
+        </p>
+      </section>
+      <br>
+      <section id="section1-1">
+        <h3>Nguồn gốc hình thành của mô hình Lean</h3>
+        <p>Vào những năm 1980, nhiều công ty sản xuất phương Tây nhận ra rằng họ đang đánh mất thị phần với tốc
+          độ nhanh chóng vào tay các doanh nghiệp Nhật Bản. Từ đây, một cuộc nghiên cứu sự khác biệt giữa
+          Toyota – tập đoàn ô tô hàng đầu Nhật Bản – với những tổ chức đến từ khu vực Mỹ, châu Âu – đã được mở
+          ra.</p>
+        <p>Sau đó, kết quả của quá trình điều tra chỉ ra rằng việc Toyota tập trung loại bỏ tối đa yếu tố gây
+          lãng phí thay vì sản xuất ồ ạt trong khi hoạt động giúp thương hiệu này thu về khoản lợi nhuận khổng
+          lồ. Cũng nhờ sự kiện nói trên, thuật ngữ Lean Manufacturing (tên viết tắt: Lean) hay Toyota
+          Production System – quy trình sản xuất tinh gọn – đã chính thức ra đời.</p>
+      </section>
+      <br>
+      <section id="section1-2">
+        <h3>Lean là gì?</h3>
+        <p>Vậy, Lean là gì? Lean là mô hình quản trị doanh nghiệp theo triết lý tinh gọn có nguồn gốc từ lĩnh
+          vực sản xuất và dần được ứng dụng phổ biến trong nhiều ngành nghề khác nhau. Mô hình ra đời dựa trên
+          ý tưởng về cải thiện năng suất cũng như giảm thiểu lãng phí khi kinh doanh.</p>
+        <img src="https://www.testcenter.vn/blog/wp-content/uploads/2024/01/lean-la-gi-testcenter-1.jpg" alt=""
+             style="width: 100%;height:430px"><br>
+        <i>Lean là mô hình quản trị tinh gọn có nguồn gốc từ lĩnh vực sản xuất</i>
+      </section>
+      <br>
+      <section id="section1-3">
+        <h3>Sự khác biệt giữa mô hình sản xuất truyền thống với mô hình Lean là gì?</h3>
+        <p>So với mô hình sản xuất truyền thống, Lean sở hữu những điểm khác biệt rõ ràng như sau:</p>
+        <table>
+          <tr>
+            <th>Tiêu chí</th>
+            <th>Sản xuất truyền thống</th>
+            <th>Sản xuất tinh gọn</th>
+          </tr>
+          <tr>
+            <td>Triết lý</td>
+            <td>Tập trung vào sản xuất hàng loạt và tối đa hóa tài nguyên có sẵn</td>
+            <td>Tập trung vào tạo giá trị cho khách hàng, loại bỏ yếu tố lãng phí và tối ưu quy trình sản xuất</td>
+          </tr>
+          <tr>
+            <td>Chiến lược</td>
+            <td>Sản xuất được thúc đẩy nhờ dự báo doanh số</td>
+            <td>Sản xuất được thúc đẩy nhờ nhu cầu của khách hàng</td>
+          </tr>
+          <tr>
+            <td>Tầm nhìn và mục tiêu</td>
+            <td>Tập trung vào lợi nhuận ngắn hạn và tăng năng suất</td>
+            <td>Tập trung vào lợi nhuận dài hạn, tạo giá trị cho khách hàng, tăng chất lượng, giảm lãng phí và xây dựng môi trường làm việc tốt</td>
+          </tr>
+          <tr>
+            <td>Quy trình sản xuất</td>
+            <td>Quy trình sản xuất không linh hoạt, các công đoạn bị tách rời</td>
+            <td>Quy trình sản xuất linh hoạt, các công đoạn liên mạch</td>
+          </tr>
+          <tr>
+            <td>Đổi mới và cải tiến</td>
+            <td>Nếu quy trình sản xuất hiện tại ổn định, doanh nghiệp sẽ không thay đổi mà tập trung <a href="" class="high-light">đào tạo nội bộ</a> yếu tố con người để giảm thiểu lỗi sai</td>
+            <td>Doanh nghiệp không ngừng cải tiến quy trình sản xuất và con người</td>
+          </tr>
+        </table>
+      </section>
+      <br>
+      <section id="section2">
+        <h2>Nguyên tắc cốt lõi của mô hình Lean là gì?</h2>
+        <p>Mô hình Lean hoạt động dựa trên 05 nguyên tắc cốt lõi, bao gồm:</p>
+        <ul>
+          <li><b>Nguyên tắc 01:</b> Tập trung vào quy trình sản xuất.</li>
+          <li><b>Nguyên tắc 02:</b> Tối đa hóa giá trị và tối thiểu hóa lãng phí.</li>
+          <li><b>Nguyên tắc 03:</b> Tiêu chuẩn hóa mọi nhiệm vụ công việc.</li>
+          <li><b>Nguyên tắc 04:</b> Tạo dòng chảy sản xuất.</li>
+          <li><b>Nguyên tắc 05:</b> Nhanh chóng giải quyết vấn đề.</li>
+        </ul>
+        <img
+          src="https://www.testcenter.vn/blog/wp-content/uploads/2024/01/lean-la-gi-testcenter-2.jpg"
+          alt="" style="width: 100%;height:430px"><br>
+        <i>Mô hình sản xuất tinh gọn hoạt động dựa trên 05 nguyên tắc cốt lõi</i>
+      </section>
+      <br>
+      <section id="section3">
+        <h2>Lợi ích mà mô hình Lean mang lại cho doanh nghiệp</h2>
+        <p>Khi ứng dụng Lean, mô hình sản xuất tinh gọn này mang tới cho doanh nghiệp hàng loạt lợi ích như:</p>
+        <ul>
+          <li>Tối ưu hóa dòng chảy.</li>
+          <li>Thúc đẩy cải tiến liên tục.</li>
+          <li>Đưa ra quyền hạn và trách nhiệm với từng đội ngũ.</li>
+          <li>Điều phối quy trình làm việc giữa các đội ngũ.</li>
+          <li>Mở rộng quy mô đến danh mục đầu tư.</li>
+          <li>Thúc đẩy sáng kiến chiến lược.</li>
+        </ul>
+      </section>
+      <br>
+      <section id="section4">
+        <h2>Đối tượng áp dụng của mô hình Lean là gì?</h2>
+        <p>Trên thực tế, việc ứng dụng LEAN không chỉ gói gọn trong phạm vi doanh nghiệp và thị trường kinh doanh. Thay vào đó, mọi ngành nghề cung cấp sản phẩm/dịch vụ như ngân hàng, bệnh viện, hành chính, du lịch, chăm sóc sức khỏe v.vv.. đều được xem là đối tượng phù hợp của mô hình này.</p>
+        <img
+          src="https://www.testcenter.vn/blog/wp-content/uploads/2024/01/lean-la-gi-testcenter-3.jpg"
+          alt="" style="width: 100%;height:430px"><br>
+        <i>Mọi ngành nghề có cung cấp sản phẩm hoặc dịch vụ đều có thể áp dụng Lean</i>
+      </section>
+      <br>
+      <section id="section5">
+        <h2>Sử dụng mô hình Lean để nhận diện các loại lãng phí trong sản xuất</h2>
+        <p>Dựa trên sự phổ biến của các loại lãng phí, đồng sáng lập của Lean Enterprise Institute – Jean Cunningham – cùng các nhà nghiên cứu khác đã phát triển và trình bày mô hình tổng hợp D.O.W.N.T.I.M.E với nội dung như sau:</p>
+      </section>
+      <br>
+      <section id="section5-1">
+        <h3>Lỗi sản phẩm (Defects)</h3>
+        <p>Defects là những sản phẩm bị lỗi trong quá trình doanh nghiệp sản xuất. Đây được xem như yếu tố gây lãng phí hàng đầu bởi chúng không hề tạo ra bất cứ giá trị nào cho tổ chức.</p>
+      </section>
+      <br>
+      <section id="section5-2">
+        <h3>Sản xuất dư thừa (Over Production)</h3>
+        <p>Trong một số trường hợp, sản xuất dư thừa chính là nguồn lãng phí lớn nhất do hoạt động này gây nên tình trạng gia tăng tồn kho, lao động, nguyên liệu v.v.. Vấn đề này thường xảy ra với các doanh nghiệp có quy trình phân phối không cân đối hoặc sở hữu lô hàng lớn.</p>
+      </section>
+      <br>
+      <section id="section5-3">
+        <h3>Thời gian chờ đợi (Waiting)</h3>
+        <p>Waiting là khoảng thời gian mà nhân công phải chờ đợi để một sự kiện nào đó xảy ra. Lúc này, họ sẽ không thể tạo bất cứ giá trị hữu ích nào cho doanh nghiệp, khiến quỹ thời gian trôi qua lãng phí.</p>
+        <img
+          src="https://www.testcenter.vn/blog/wp-content/uploads/2024/01/lean-la-gi-testcenter-4.jpg"
+          alt="" style="width: 100%;height:430px"><br>
+        <i>Thời gian chờ đợi là một trong các loại lãng phí tiêu biểu trong sản xuất</i>
+      </section>
+      <br>
+      <section id="section5-4">
+        <h3>Không tận dụng tài năng (Non-utilized Talent)</h3>
+        <p>Non-utilized Talent xảy ra khi doanh nghiệp không nhận thấy và không tận dụng một cách hiệu quả những kỹ năng và khả năng mà nhân viên có thể mang lại.</p>
+      </section>
+      <br>
+      <section id="section5-5">
+        <h3>Vận chuyển (Transportation)</h3>
+        <p>Transportation đề cập tới khoảng thời gian và công sức dùng cho việc di chuyển nguyên vật liệu hoặc hàng hóa trong nội bộ nhà máy hay giữa các địa điểm với nhau nhưng lại không tạo được giá trị gì. Vấn đề này sẽ biểu hiện rõ ràng hơn ở những doanh nghiệp quy mô lớn và hoạt động ở nhiều cơ sở.</p>
+      </section>
+      <br>
+      <section id="section5-6">
+        <h3>Chuyển động (Motion)</h3>
+        <p>Motion là việc nhân viên phải dành nhiều thời gian để di chuyển từ nơi này tới nơi khác. Tuy nhiên, trong quá trình đó, họ không tạo ra giá trị cho sản phẩm/dịch vụ của doanh nghiệp.</p>
+        <img
+          src="https://www.testcenter.vn/blog/wp-content/uploads/2024/01/lean-la-gi-testcenter-5.jpg"
+          alt="" style="width: 100%;height:430px"><br>
+        <i>Việc di chuyển từ nơi này sang nơi khác mà không tạo giá trị gây lãng phí thời gian</i>
+      </section>
+      <br>
+      <section id="section5-7">
+        <h3>Quy trình dư thừa (Extra Process)</h3>
+        <p>Hiện nay, một số quy trình sản xuất có tồn tại các bước không đóng góp bất cứ giá trị nào cho tổ chức. Lúc này, doanh nghiệp cần tiến hành xem xét lại khâu vận hành này để xác định bước dư thừa và tiến tới loại bỏ nhằm tối ưu <a href="#" class="high-light">hiệu suất làm việc</a> cho công ty.</p>
+      </section>
+      <br>
+      <section id="section5-8">
+        <h3>Kho hàng (Inventory)</h3>
+        <p>Mặc dù duy trì lượng hàng tồn kho nhất định là điều cần thiết trong một vài tình huống, giúp đảm bảo có thể cung ứng sản phẩm/dịch vụ đúng thời điểm cho khách hàng, vậy nhưng đây vẫn được xem như một loại lãng phí do làm tăng chi phí lưu trữ, quản lý của doanh nghiệp.</p>
+      </section>
+      <br>
+      <section id="section6">
+        <h2>Phương pháp ứng dụng để phát huy tối đa hiệu quả của Lean trong doanh nghiệp</h2>
+        <p>Tùy vào từng vấn đề muốn giải quyết mà mỗi doanh nghiệp có thể lựa chọn một hay nhiều phương pháp ứng dụng Lean dưới đây:</p>
+      </section>
+      <br>
+      <section id="section6-1">
+        <h3>Thiết lập chiến lược mục tiêu rõ ràng</h3>
+        <p>Để Lean phát huy tối đa hiệu quả, trước hết, doanh nghiệp cần có mục tiêu rõ ràng và truyền đạt cho nhân sự thấy tầm quan trọng của những yếu tố này. Từ đó, họ sẽ hiểu được vai trò của mô hình sản xuất tinh gọn trong việc giúp tổ chức hoàn thành kế hoạch và chủ động thực hiện.</p>
+      </section>
+      <br>
+      <section id="section6-2">
+        <h3>Kiên định với mô hình Lean</h3>
+        <p>Các nhà lãnh đạo cấp cao của doanh nghiệp cần thể hiện rõ sự kiên định với mô hình sản xuất tinh gọn qua một số hành vi như truyền đạt tầm nhìn rõ ràng về việc ứng dụng Lean, thường xuyên đến xưởng sản xuất, tự tìm hiểu nguyên nhân gây vấn đề trước khi khiển trách cấp dưới v.vv..</p>
+        <img
+          src="https://www.testcenter.vn/blog/wp-content/uploads/2024/01/lean-la-gi-testcenter-6.jpg"
+          alt="" style="width: 100%;height:430px"><br>
+        <i>Nhà quản trị cần thiết lập chiến lược mục tiêu rõ ràng để Lean phát huy hiệu quả</i>
+      </section>
+      <br>
+      <section id="section6-3">
+        <h3>Vạch ra chuỗi giá trị từ đầu đến cuối</h3>
+        <p>Với việc vạch ra chuỗi giá trị từ đầu đến cuối (nhập nguyên vật liệu thô → giao thành phẩm), nếu được sử dụng đúng cách, phương pháp này sẽ hướng doanh nghiệp tới một lộ trình cải tiến rõ ràng và đơn giản hơn, giúp hạn chế tối đa tình trạng bị xao nhãng hay “lạc đường” trong quy trình sản xuất.</p>
+      </section>
+      <br>
+      <section id="section6-4">
+        <h3>Đặt tiêu chuẩn rõ ràng ngay từ đầu</h3>
+        <p>Tiêu chuẩn hóa môi trường làm việc cũng như bản thân công việc được xem như nền tảng cốt lõi của mô hình Lean. Theo đó, nhà quản trị có thể lựa chọn quy tắc 5S làm điểm khởi đầu cho phương pháp này. Việc đặt ra những tiêu chuẩn rõ ràng ngay từ lúc này sẽ góp phần ổn định quy trình sản xuất và mang lại chất lượng sản phẩm/dịch vụ nhất quán hơn, từ đó cung cấp cơ sở để thực hiện nhiều cải tiến khác.</p>
+        <img
+          src="https://www.testcenter.vn/blog/wp-content/uploads/2024/01/lean-la-gi-testcenter-7.jpg"
+          alt="" style="width: 100%;height:430px"><br>
+        <i>Tiêu chuẩn hóa môi trường làm việc là nền tảng cốt lõi của mô hình Lean</i>
+      </section>
+      <br>
+      <section id="section6-5">
+        <h3>Tập trung vào nhóm lãnh đạo tuyến đầu</h3>
+        <p><a href="#" class="high-light">Lãnh đạo</a> tuyến đầu là những người có ảnh hưởng lớn nhất về khía cạnh văn hóa trong các mô hình cải tiến như Lean. Không chỉ giữ vai trò giám sát, quản lý, dẫn đầu nhóm v.vv.., họ còn nhận được sự tin tưởng, tín nhiệm và tiếp nhận báo cáo công việc hằng ngày trực tiếp từ nhân viên.</p>
+        <p>Chính vì vậy, nhóm đối tượng này cần được cung cấp những công cụ quản lý, đào tạo kỹ năng lãnh đạo và kiến thức về cải tiến để giúp họ có thể tạo ra nhiều “lực đẩy cải tiến” hơn cho nội bộ doanh nghiệp.</p>
+      </section>
+      <br>
+      <section id="section6-6">
+        <h3>Phân bổ hợp lý các nguồn lực</h3>
+        <p>Một trong những lý do phổ biến khiến các doanh nghiệp ứng dụng không thành công mô hình sản xuất tinh gọn đến từ việc thiếu thốn nguồn lực. Do đó, mặc dù nhân sự tại mọi phòng ban của tổ chức đã phải đảm nhận hàng loạt nhiệm vụ riêng nhưng khi quyết định dùng Lean, nhà quản trị vẫn cần đảm bảo đầy đủ yếu tố này.</p>
+        <p>Một số cách thức phân bổ phổ biến thường được nhiều công ty áp dụng có thể kể đến như thuê ngoài đội ngũ chuyên gia, tư vấn, huấn luyện về Lean hay sử dụng công cụ phần mềm giúp tiết kiệm tối đa thời gian, công sức và chi phí.</p>
+      </section>
+      <section id="section6-7">
+        <h3>Sát sao ngay từ quy trình tuyển dụng</h3>
+        <p>Bên cạnh những phương pháp kể trên, sát sao ngay từ quy trình tuyển dụng cũng chính là một cách hiệu quả để triển khai thành công mô hình sản xuất tinh gọn mà doanh nghiệp có thể tham khảo.</p>
+        <p>Theo nghiên cứu của Hiệp hội Quản lý Nguồn nhân lực, chi phí trung bình để thay thế nhân viên cũ khi họ rời đi mà mỗi tổ chức phải bỏ ra tương đương từ 06 đến 09 tháng lương trả cho nhân viên thông thường. Như vậy, nếu tiến hành kiểm soát chặt chẽ ngay từ bước tuyển dụng ban đầu, nhà quản trị sẽ hạn chế được tối đa <a href="" class="high-light">tỷ lệ nghỉ việc</a> của nhân sự sau này, góp phần tối ưu chi phí cho doanh nghiệp.</p>
+        <img
+          src="https://www.testcenter.vn/blog/wp-content/uploads/2024/01/lean-la-gi-testcenter-8.jpg"
+          alt="" style="width: 100%;height:430px"><br>
+        <i>Sát sao quy trình tuyển dụng giúp doanh nghiệp tiết kiệm tối đa chi phí nhân sự</i>
+        <p>Với mong muốn có thể cung cấp cho mọi công ty tại Việt Nam công cụ test năng lực ứng viên toàn diện để tiết kiệm thời gian và nâng cao chất lượng nhân sự, Testcenter.vn đã ra đời. Được ứng dụng nền tảng công nghệ hiện đại, Testcenter.vn cho phép nhà quản trị dễ dàng tạo bài kiểm tra online không giới hạn số lượng theo quy trình chuẩn quốc tế.</p>
+        <p>Thông qua quá trình tổ chức bài test năng lực, các tổ chức sẽ có thể nhìn nhận một cách chính xác điểm mạnh, điểm yếu cũng như sự phù hợp của ứng viên với doanh nghiệp; từ đó đưa ra lộ trình, phương pháp đào tạo đúng hướng. Không chỉ vậy, hiểu rõ<a href="" class="high-light">ứng viên</a> còn giúp nhà quản trị phân công nhiệm vụ hợp lý, tạo điều kiện để mỗi cá nhân có cơ hội phát huy tối đa khả năng làm việc của mình.</p>
+      </section>
+      <br>
+      <section id="section7">
+        <h2>Tổng kết</h2>
+        <p>Như vậy, bài viết do Testcenter.vn mang tới ngày hôm nay đã giúp bạn trả lời câu hỏi<b>“Lean là gì?”</b> cùng những lợi ích mà mô hình này mang lại cho doanh nghiệp. Nhìn chung, việc ứng dụng hiệu quả Lean trong thực thế được đánh giá ở mức tương đối khó khăn.</p>
+        <p>Chính bởi vậy, nhà quản trị cần phải đưa ra những tiêu chí rõ ràng và hành động nhất quán với sự đoàn kết từ toàn thể nhân viên để giúp Lean phát huy hiệu quả một cách tối đa nhất!</p>
+        <p><b>TestCenter.vn – Nền tảng đánh giá năng lực nhân sự cung cấp giải pháp test online dành cho doanh nghiệp Việt Nam. TestCenter.vn với ngân hàng 300+ đề thi tuyển dụng nhân sự mẫu hỗ trợ quy trình đánh giá năng lực nhân sự. Tự hào đồng hành cùng +500 khách hàng doanh nghiệp hàng đầu như Honda, Sailun, Petrolimex, Ngân hàng TMCP Hàng Hải Việt Nam (MSB),…</b></p>
+        <p><b>Doanh nghiệp sẽ tiết kiệm được 30% chi phí so với cách tuyển dụng truyền thống khi sử dụng Testcenter. Vui lòng <a href="" class="highlight">ĐĂNG KÝ TẠI ĐÂY</a> để nhận tư vấn 1-1 về các tính năng của Nền tảng đánh giá năng lực nhân sự TestCenter</b></p>
+      </section>
+      <br>
+      <div class="end-first">
+        <div class="tag">
+          TAGS
         </div>
-        <div class="watch-more">
-          <router-link to="/blog/equity-theory-la-gi" type="button" class="text-white">Xem
-            thêm</router-link>
+        <button type="button" class="btn btn-outline-secondary">lean là gì
+        </button>
+      </div>
+      <div class="button-inform">
+        <span type="button" class="facebook"><i class="fa-brands fa-facebook-f"></i></span>
+        <span type="button" class="twitter"><i class="fa-brands fa-twitter"></i></span>
+        <span type="button" class="pinterest"><i class="fa-brands fa-pinterest-p"></i></span>
+        <span type="button" class="whatsapp"><i class="fa-brands fa-whatsapp"></i></span>
+        <span type="button" class="linkedin"><i class="fa-brands fa-linkedin-in"></i></span>
+        <span type="button" class="tumblr"><i class="fa-brands fa-tumblr"></i></span>
+      </div>
+      <div class="next-new d-flex justify-content-between gap-6 ">
+        <div class="left-new w-40 text-start">
+          <span class="next-button">Bài trước</span><br>
+          <a href="#">Tuyển Mass là gì? Nguyên tắc vàng để tuyển Mass hiệu quả</a>
         </div>
+        <div class="right-new w-30 text-end">
+          <span class="next-button">Bài tiếp theo</span><br>
+          <a href="#">Lean là gì? Phương pháp ứng dụng mô hình Lean để tối ưu chi phí cho doanh nghiệp</a>
+        </div>
+      </div>
+      <br>
+      <div class="title-titles">
+        <div class="title-titles">
+          <h2 class="title-textTitle">
+            <span>Bài viết liên quan</span>
+            <span class="title-more">Xem thêm</span>
+          </h2>
+        </div>
+      </div>
+      <div class="card-main-footer">
+        <div class="card-body-footer" id="articleContainer">
+          <div v-for="article in currentArticles" :key="article.summary" class="card">
+            <div class="img-wrapper">
+              <img :src="article.image_url" alt="" class="img-fluid" />
+              <a :href="article.url" type="button" class="link">{{ article.link }}</a>
+            </div>
+            <div class="item-detail">
+              <a :href="article.url">{{ article.summary }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="next-button">
+        <a type="button" class="prePage" @click="prevPage" :disabled="currentPage === 1"><i class="fa-solid fa-angle-left"></i></a>
+        <a type="button" class="nextPage" @click="nextPage" :disabled="currentPage === totalPages"><i class="fa-solid fa-angle-right"></i></a>
       </div>
     </div>
   </div>
-
 </template>
 
 <style scoped>
+.td-category{
+  list-style: none;
+  font-family: 'Open Sans', 'Open Sans Regular', sans-serif;
+  font-size: 10px;
+  margin-top: 0;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+.td-category li {
+  display: inline-block;
+  margin: 0 5px 5px 0;
+  line-height: 1;
+}
+.td-category a{
+  color: #fff;
+  background-color: #222222;
+  padding: 3px 6px 4px 6px;
+  white-space: nowrap;
+  display: inline-block;
+}
+ul{
+  padding: 0;
+}
+.td-title{
+  width:200px;
+}
 .td-header .tdc-row {
   padding: 0 !important;
+}
+.prePage{
+  display: inline-block;
+  margin-right: 7px;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #dcdcdc;
+  line-height: 24px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 7px;
+  color: #b7b7b7;
+}
+.nextPage{
+  display: inline-block;
+  margin-right: 7px;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #dcdcdc;
+  line-height: 24px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 7px;
+  color: #b7b7b7;
 }
 .form-logo img {
   padding: 3px 0;
@@ -185,7 +630,7 @@ h6 {
 }
 .button-inform span {
   width: 100px;
-  padding: 5px;
+  padding: 10px 0 5px 0;
   align-items: center;
   text-align: center;
   color: white;
@@ -214,7 +659,7 @@ h6 {
 }
 
 .first-title {
-  margin-top: 10px;
+  margin-top: 20px;
   width: 64%;
 }
 .first-title .button-link .link-a {
@@ -301,8 +746,6 @@ h6 {
 .link {
   display: flex;
   position: relative;
-  top: 20px;
-  left: 10px;
   font-size: 13px;
   color: #c3c3c3;
 }
@@ -395,7 +838,7 @@ h6 {
 .news .tdc-news-row {
   display: flex;
   min-height: 0;
-  gap: 20px;
+
 }
 .news .vc-column {
   display: block;
@@ -674,7 +1117,6 @@ h6 {
 }
 
 .carousel-item img {
-  width: 100%;
   height: 500px;
 }
 
@@ -769,13 +1211,11 @@ h6 {
   margin-right: auto;
   margin-left: auto;
 }
-
 form {
-  display: block;
+  display: grid;
   margin-top: 0em;
   unicode-bidi: isolate;
 }
-
 #prevBtn {
   display: inline-block;
   margin-right: 7px;
@@ -970,7 +1410,6 @@ form {
 .pagination-wrapper {
   margin-top: 100px;
 }
-
 #scrollToTopBtn {
   position: fixed;
   bottom: 20px;
@@ -981,9 +1420,8 @@ form {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  display: none; /* Ẩn nút khi trang mới tải */
+  display: block;
 }
-
 #scrollToTopBtn:hover {
   background-color: #0056b3; /* Màu khi hover */
 }
@@ -994,6 +1432,8 @@ form {
   left: 20px;
   font-size: 37px;
   color: white;
+  text-align: left;
+  line-height: normal;
 }
 .title .button-link {
   padding: 2px;
@@ -1101,6 +1541,19 @@ a:hover, a:focus {
   justify-content: space-between;
   /* Overlay style */
 }
+.header-mobi .mobi-telephone .telephone-hidden .overlay {
+  display: block; /* Ẩn overlay lúc đầu */
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 40, 85, 0.5), rgba(255, 158, 77, 0.7) 50%, rgba(255, 158, 77, 0.5));
+  color: #fff;
+  z-index: 1000;
+  font-size: 24px;
+  overflow-y: auto;
+}
 .header-mobi .mobi-telephone .telephone-hidden .header-overlay {
   display: flex;
   justify-content: space-between;
@@ -1141,6 +1594,18 @@ a:hover, a:focus {
   color: white;
   margin-right: 20px;
 }
+.header-mobi .mobi-telephone .search-hidden .overlay-search {
+  display: block; /* Ẩn overlay lúc đầu */
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 40, 85, 0.5), rgba(255, 158, 77, 0.7) 50%, rgba(255, 158, 77, 0.5));
+  color: #fff;
+  z-index: 1000;
+  font-size: 24px;
+}
 .header-mobi .mobi-telephone .search-hidden .overlay-search.open {
   display: flex;
 }
@@ -1178,6 +1643,7 @@ a:hover, a:focus {
   border-bottom: 2px solid white;
   margin: 20px 0;
 }
+
 @media (max-width: 1024px) {
   .title {
     font-size: 20px;
@@ -1223,6 +1689,7 @@ a:hover, a:focus {
     padding-left: 24px;
     position: relative;
   }
+
   .tdc-row .td-left-blog .td-mb-5 {
     margin-bottom: 6px !important;
   }
@@ -1373,6 +1840,14 @@ a:hover, a:focus {
     padding-left: 0;
     float: none;
     width: 100%;
+  }
+  .first-title{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+  .toc-wrapper{
+    width:400px
   }
   .td-module-thumb img {
     width: 200px !important;

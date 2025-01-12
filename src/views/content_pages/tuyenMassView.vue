@@ -1,42 +1,439 @@
 <script setup>
+import { ref, computed } from 'vue';
+const isTocOpen = ref(false);
+const toggleContent = () => {
+  isTocOpen.value = !isTocOpen.value;
+};
+const articles = ref([
+  {
+    link: "Tin tức",
+    url: "{{route('news')}}",
+    summary: "Equity Theory là gì? Cách quản trị doanh nghiệp hiệu quả với học thuyết cân bằng",
+    image_url: "https://www.testcenter.vn/blog/wp-content/uploads/2024/02/equity-theory-la-gi-testcenter-1-218x150.jpg",
+  },
+  {
+    link: "Tài liệu",
+    url: "{{route('news')}}",
+    summary: "Lean là gì? Phương pháp ứng dụng mô hình Lean để tối ưu chi phí cho doanh nghiệp",
+    image_url: "https://www.testcenter.vn/blog/wp-content/uploads/2024/01/lean-la-gi-testcenter-218x150.jpg",
+  },
+  {
+    link: "Tin tức",
+    url: "{{route('news')}}",
+    summary: "Equity Theory là gì? Cách quản trị doanh nghiệp hiệu quả với học thuyết cân bằng",
+    image_url: "https://www.testcenter.vn/blog/wp-content/uploads/2024/02/equity-theory-la-gi-testcenter-1-218x150.jpg",
+  },
+  {
+    link: "Tin tức",
+    url: "{{route('news')}}",
+    summary: "Equity Theory là gì? Cách quản trị doanh nghiệp hiệu quả với học thuyết cân bằng",
+    image_url: "https://www.testcenter.vn/blog/wp-content/uploads/2024/02/equity-theory-la-gi-testcenter-1-218x150.jpg",
+  },
+  {
+    link: "Tin tức",
+    url: "{{route('news')}}",
+    summary: "Equity Theory là gì? Cách quản trị doanh nghiệp hiệu quả với học thuyết cân bằng",
+    image_url: "https://www.testcenter.vn/blog/wp-content/uploads/2024/02/equity-theory-la-gi-testcenter-1-218x150.jpg",
+  },
+  {
+    link: "Tin tức",
+    url: "{{route('news')}}",
+    summary: "Equity Theory là gì? Cách quản trị doanh nghiệp hiệu quả với học thuyết cân bằng",
+    image_url: "https://www.testcenter.vn/blog/wp-content/uploads/2024/02/equity-theory-la-gi-testcenter-1-218x150.jpg",
+  }, {
+    link: "Tin tức",
+    url: "{{route('news')}}",
+    summary: "Equity Theory là gì? Cách quản trị doanh nghiệp hiệu quả với học thuyết cân bằng",
+    image_url: "https://www.testcenter.vn/blog/wp-content/uploads/2024/02/equity-theory-la-gi-testcenter-1-218x150.jpg",
+  },
+  {
+    link: "Tài liệu",
+    url: "{{route('news')}}",
+    summary: "Lean là gì? Phương pháp ứng dụng mô hình Lean để tối ưu chi phí cho doanh nghiệp",
+    image_url: "https://www.testcenter.vn/blog/wp-content/uploads/2024/01/lean-la-gi-testcenter-218x150.jpg",
+  },
+  {
+    link: "Tài liệu",
+    url: "{{route('news')}}",
+    summary: "Lean là gì? Phương pháp ứng dụng mô hình Lean để tối ưu chi phí cho doanh nghiệp",
+    image_url: "https://www.testcenter.vn/blog/wp-content/uploads/2024/01/lean-la-gi-testcenter-218x150.jpg",
+  },
+]);
 
+const articlesPerPage = 3;
+const currentPage = ref(1);
+
+const totalPages = computed(() => Math.ceil(articles.value.length / articlesPerPage));
+
+const currentArticles = computed(() => {
+  const startIndex = (currentPage.value - 1) * articlesPerPage;
+  const endIndex = currentPage.value * articlesPerPage;
+  return articles.value.slice(startIndex, endIndex);
+});
+
+const prevPage = () => {
+  if (currentPage.value > 1) currentPage.value--;
+};
+const nextPage = () => {
+  if (currentPage.value < totalPages.value) currentPage.value++;
+};
 </script>
+
 <template>
-  <div class="row g-0 td-pb-row td-mb-5 tb-row-8  position-relative">
-    <div class="dad">
-      <div class="img-wrapper">
-        <router-link to="/blog/equity-theory-la-gi">
-          <slot name="img"></slot>
-        </router-link>
+  <div class="td-container-wrap">
+    <div class="link">
+      <span><a href="#" >Trang chủ</a> > Tin tức</span>
+    </div>
+    <div class="first-title">
+      <ul class="td-category">
+        <li class="entry-category">
+          <a href="#">Tin tức</a>
+        </li>
+      </ul>
+      <h1>Dấu hiệu nhận biết ứng viên không trung thực nhà quản trị cần biết</h1>
+      <h6>Bởi - </h6>
+      <div class="button-inform">
+        <span type="button" class="facebook"><i class="fa-brands fa-facebook-f"></i></span>
+        <span type="button" class="twitter"><i class="fa-brands fa-twitter"></i></span>
+        <span type="button" class="pinterest"><i class="fa-brands fa-pinterest-p"></i></span>
+        <span type="button" class="whatsapp"><i class="fa-brands fa-whatsapp"></i></span>
+        <span type="button" class="linkedin"><i class="fa-brands fa-linkedin-in"></i></span>
+        <span type="button" class="tumblr"><i class="fa-brands fa-tumblr"></i></span>
       </div>
-      <div class="item-detail">
-        <div class="title-mb2">
-          <h3>
-            <router-link to="/blog/nhan-su"><slot name="title"></slot></router-link>
-          </h3>
+      <p>Nắm được khái niệm <a href="{{route('blog_lean')}}"><b>Lean là gì</b></a> sẽ giúp nhà quản trị tìm ra phương pháp để giảm
+        thiểu chi phí sản xuất nhằm tối ưu lợi nhuận hiệu quả. Chi tiết về khái niệm Lean cũng như những cách
+        ứng dụng mô hình này cho tổ chức,
+        <a href=""><b>Testcenter.vn</b></a> sẽ giúp bạn khai thác sâu trong bài viết thuộc chuyên mục tin tức
+        dưới đây!</p>
+      <div class="toc-wrapper">
+        <div class="name">
+          <h5>Table of Contents</h5>
+          <div class="icon" @click="toggleContent">☰</div>
         </div>
-        <div class="button-link">
-          <router-link to="/blog/nhan-su" target="_blank" type="button"
-                       class="text-white"><slot name="button"></slot></router-link>
+        <div :class="['toc', { open: isTocOpen }]" id="toc">
+          <ul>
+            <li><a href="#section1">1. Những dấu hiệu nhận biết ứng viên không trung thực</a>
+              <ul>
+                <li><a href="#section1-1">1.1. Ngôn ngữ cơ thể bất thường</a></li>
+                <li><a href="#section1-2">1.2. Trả lời vấn đề một cách mơ hồ</a></li>
+                <li><a href="#section1-3">1.3. Tập trung quá nhiều vào thành tựu nhóm</a></li>
+                <li><a href="#section1-4">1.4. Có xu hướng “phòng thủ” trước những câu hỏi khó</a></li>
+              </ul>
+            </li>
+            <li><a href="#section2">2. Cách xử lý khi nhận thấy dấu hiệu ứng viên không trung thực</a>
+              <ul>
+                <li><a href="#section2-1">2.1. Dành thời gian nghiên cứu trước CV của ứng viên</a></li>
+                <li><a href="#section2-2">2.2. Sử dụng các câu hỏi mang tính chi tiết</a></li>
+                <li><a href="#section2-3">2.3. Quan sát thái độ và ngôn ngữ cơ thể ở ứng viên</a></li>
+                <li><a href="#section2-4">2.4. Tìm hiểu trước về ứng viên trên các nền tảng mạng xã
+                  hội</a></li>
+                <li><a href="#section2-5">2.5. Xác định mục tiêu và kết quả mong đợi rõ ràng cho
+                  nhânLiên hệ với người tham chiếu</a></li>
+                <li><a href="#section2-6">2.6. Dựa vào trực giác và kinh nghiệm thực tế của bản thân</a>
+                </li>
+                <li><a href="#section2-6">2.7. Sử dụng bài đánh giá năng lực ứng viên</a></li>
+              </ul>
+            </li>
+            <li><a href="#section3">3. Tổng kết
+            </a></li>
+          </ul>
         </div>
-        <div class="description-mb2">
-          <p class="mb-2">
-            <slot name="desc"></slot>
-          </p>
+      </div>
+      <!-- Content Sections -->
+      <section id="section1">
+        <h2><strong>Những dấu hiệu nhận biết ứng viên không trung thực</strong></h2>
+        <p>Để nâng cao giá trị của bản thân, tạo lợi thế cũng như thu hút sự chú ý của các nhà tuyển dụng mà
+          hiện nay, không ít ứng viên đã lựa chọn cách không trung thực trong CV và phỏng vấn qua việc “thổi
+          phồng” những gì họ có. Thực trạng này diễn ra ngày càng phổ biến đã khiến nhiều doanh nghiệp bận rộn
+          và gặp khó khăn hơn khi tìm kiếm, lựa chọn nhân tài.
+        </p>
+        <p>Dưới đây chính là một số dấu hiệu nhận biết ứng viên không trung thực khi phỏng vấn:</p>
+      </section>
+      <br>
+      <section id="section1-1">
+        <h3><strong>Ngôn ngữ cơ thể bất thường</strong></h3>
+        <p>Không chỉ ứng viên, đa số chúng ta thường đều vô thức để lộ một vài hành động ngẫu nhiên trong quá
+          trình tương tác, trò chuyện với người đối diện. Khi nói dối, ứng viên sẽ thường có tâm trạng bứt
+          rứt, bồn chồn đi kèm cùng một số động tác như cọ xát hai tay, gãi cổ, nghịch tóc v.vv..</p>
+        <p>Cùng với đó, việc họ liên tục đảo mắt, tránh giao tiếp bằng ánh mắt, giọng nói thay đổi khi trả lời
+          câu hỏi, âm vực cao, nghẹt thở, nói lắp bắp, thường xuyên nuốt nước bọt v.vv.. cũng được xem như
+          những dấu hiệu thường thấy để nhận biết tính đúng – sai trong lời nói của họ.</p>
+        <p>Tuy nhiên, nhà tuyển dụng cần chú ý rằng đây cũng có thể là biểu hiện của sự lo lắng, căng thẳng khi
+          ứng viên tham gia phỏng vấn. Do vậy, bạn cần kết hợp linh hoạt giữa cả dấu hiệu cùng bối cảnh hiện
+          tại để đưa ra nhận định chính xác nhất về ứng viên.</p>
+        <p>>>><span class="bolder">Xem thêm:</span><a href="" class="high-light"> Ứng viên là gì? Những phương
+          pháp đánh giá ứng viên hiệu quả</a></p>
+      </section>
+      <br>
+      <section id="section1-2">
+        <h3><strong>Trả lời vấn đề một cách mơ hồ</strong></h3>
+        <p>Trong quá trình phỏng vấn, nhà tuyển dụng có thể gặp phải tình huống đặt câu hỏi nhưng ứng viên trả
+          lời không đúng trọng tâm hoặc sai vấn đề. Đây không chỉ là dấu hiệu cho thấy ứng viên chưa chuẩn bị
+          kỹ càng mà còn là minh chứng cho việc họ không nói sự thật.</p>
+        <p>Đối với những câu hỏi mang tính chuyên môn cao, ứng viên có năng lực thường đưa ra bằng chứng liên
+          quan tới số liệu, kết quả công việc đạt được thay vì các thông tin mơ hồ.</p>
+        <p>Tất nhiên, chúng ta không thể loại trừ khả năng ứng viên đang rơi vào trạng thái lo lắng khi phỏng
+          vấn. Khi đối diện với thực tế này, nhà tuyển dụng hãy thúc đẩy hoặc tạo cơ hội để ứng viên đi sâu
+          hơn vào chi tiết thông qua các câu hỏi nhằm xác định tâm lý hiện tại của họ (hồi hộp hay nói
+          dối).</p>
+        <br>
+        <img
+          src="https://www.testcenter.vn/blog/wp-content/uploads/2024/03/dau-hieu-nhan-biet-ung-vien-khong-trung-thuc-testcenter-2.jpg"
+          alt="" style="width: 100%;height:430px"><br>
+        <i>Nhà tuyển dụng nên lưu tâm tới những ứng viên trả lời vấn đề quá mức mơ hồ</i>
+      </section>
+      <br>
+      <section id="section1-3">
+        <h3><strong>Tập trung quá nhiều vào thành tựu nhóm</strong></h3>
+        <p>Mặc dù là một yếu tố cần thiết để đưa ra đánh giá, vậy nhưng với những ứng viên tập trung quá nhiều
+          vào thành tích của họ với tư cách là thành viên đội nhóm, nhà tuyển dụng vẫn nên dành nhiều sự chú
+          ý. Ở trường hợp này, khi ứng viên đề cập đến một dự án tập thể, bạn hãy hỏi về vai trò cụ thể của họ
+          là gì và yêu cầu họ nói cho bạn biết những công việc họ đã thực hiện một mình trong nhóm.</p>
+      </section>
+      <br>
+      <section id="section1-4">
+        <h3><strong>Có xu hướng “phòng thủ” trước những câu hỏi khó</strong></h3>
+        <p>Trong một vài trường hợp, ứng viên có thể gây “khó dễ” cho bên tuyển dụng khi bạn đặt những câu hỏi
+          liên quan tới kiến thức, kinh nghiệm chuyên môn của họ. Nếu ứng viên bạn đang phỏng vấn có xu hướng
+          cố tình “lướt” qua những điều bạn đang quan tâm hoặc làm chệch hướng câu hỏi, hãy chú ý tới họ bởi
+          đây có thể là biểu hiện của việc không trung thực.</p>
+        <p>>>><span class="bolder">Xem thêm:</span><a href="" class="high-light"> Chuyên môn là gì? Cách đánh
+          giá chuyên môn trong phỏng vấn – Testcenter</a></p>
+        <img
+          src="https://www.testcenter.vn/blog/wp-content/uploads/2024/03/dau-hieu-nhan-biet-ung-vien-khong-trung-thuc-testcenter-3.jpg"
+          alt="" style="width: 100%;height:430px"><br>
+        <i>Ứng viên nói dối thường có xu hướng bỏ qua những câu hỏi khó từ nhà tuyển dụng</i>
+      </section>
+      <br>
+      <section id="section2">
+        <h2><strong>Cách xử lý khi nhận thấy dấu hiệu ứng viên không trung thực</strong></h2>
+        <p>Sau khi bỏ túi một số dấu hiệu nhận biết ứng viên không trung thực, việc nhà tuyển dụng cần thực hiện
+          ngay tiếp theo là tìm ra giải pháp xử lý tình trạng này. Bạn có thể tham khảo 07 cách loại bỏ các
+          “Pinocchio” và nâng cao hiệu quả tuyển dụng, sàng lọc nhân tài như sau:</p>
+      </section>
+      <br>
+      <section id="section2-1">
+        <h3><strong>Dành thời gian nghiên cứu trước CV của ứng viên</strong></h3>
+        <p>Dành thời gian nghiên cứu trước CV của ứng viên là bước đầu tiên và không thể thiếu mà nhà tuyển dụng
+          cần làm trước khi tiến hành phỏng vấn chính thức. Trên thực tế, bạn không thể xem xét kỹ lưỡng mọi
+          hồ sơ do người ứng tuyển gửi tới. Bởi vậy, việc trang bị sẵn kỹ năng tổng hợp, đọc đúng trọng tâm,
+          ghi chú lại những vấn đề quan trọng v.vv.. sẽ trở nên vô cùng cần thiết trong tình huống này.</p>
+        <p>Nhà tuyển dụng cần tỉnh táo và phân biệt chính xác các nội dung được trình bày trong CV. Đôi khi, CV
+          có nội dung tương tự nhau, không trình bày vấn đề một cách cụ thể mà chỉ nhắc đến khái quát, sử dụng
+          ngôn từ “sáo rỗng” v.vv.. cũng là những “cảnh báo đỏ” mà bạn cần chú ý.</p>
+        <img
+          src="https://www.testcenter.vn/blog/wp-content/uploads/2024/03/dau-hieu-nhan-biet-ung-vien-khong-trung-thuc-testcenter-4.jpg"
+          alt="" style="width: 100%;height:430px"><br>
+        <i>Nhà tuyển dụng nên dành thời gian nghiên cứu CV của ứng viên trước phỏng vấn</i>
+      </section>
+      <br>
+      <section id="section2-2">
+        <h3><strong>Sử dụng các câu hỏi mang tính chi tiết</strong></h3>
+        <p>Đối mặt với ứng viên đang trình bày về những thành tích ấn tượng của họ và điều này khiến nhà tuyển
+          dụng cảm thấy nghi ngờ, bạn hãy tìm kiếm sự thật bằng cách sử dụng các câu hỏi mang tính cụ thể.
+          Chẳng hạn, khi người ứng tuyển cho rằng họ rất thông thạo tiếng Anh, bạn có thể đưa ra đề nghị “Vậy
+          nếu tôi tiếp tục tiến hành cuộc phỏng vấn này bằng tiếng Anh, bạn sẽ thấy ổn chứ?”.</p>
+      </section>
+      <br>
+      <section id="section2-3">
+        <h3><strong>Quan sát thái độ và ngôn ngữ cơ thể ở ứng viên</strong></h3>
+        <p>Như đã đề cập ở phần trên, ngôn ngữ cơ thể ở ứng viên trong buổi phỏng vấn là dấu hiệu rất quan trọng
+          nếu nhà tuyển dụng cần kiểm tra tính chân thực với thông tin mà họ cung cấp.</p>
+        <p>Khi nhận thấy ứng viên có một số biểu hiện không thoải mái như vặn người, sờ tay lên tóc hoặc lên
+          mặt, sửa lại kính hoặc cổ áo, lảng tránh giao tiếp ánh mắt, xoắn ngón tay v.vv.. bạn cần tiếp tục
+          đặt thêm câu hỏi về nội dung đang bàn luận và quan sát thái độ của họ. Thông thường, ứng viên sẽ tỏ
+          ra đặc biệt không thoải mái khi phải nói dối tới lần thứ ba.</p>
+        <img
+          src="https://www.testcenter.vn/blog/wp-content/uploads/2024/03/dau-hieu-nhan-biet-ung-vien-khong-trung-thuc-testcenter-5.jpg"
+          alt="" style="width: 100%;height:430px"><br>
+        <i>Thái độ và ngôn ngữ cơ thể của ứng viên có thể là bằng chứng cho lời nói của họ</i>
+      </section>
+      <br>
+      <section id="section2-4">
+        <h3><strong>Tìm hiểu trước về ứng viên trên các nền tảng mạng xã hội</strong></h3>
+        <p>Sự phát triển của các nền tảng mạng xã hội đã trở thành nguồn tài nguyên hữu ích cho phép nhà tuyển
+          dụng có thể kiểm tra thông tin về ứng viên một cách dễ dàng. Theo đó, bạn có thể tìm kiếm trên tài
+          khoản Zalo, Facebook, Twitter, LinkedIn v.vv.. mà ứng viên đang sử dụng và tiến hành đối chiếu mức
+          độ trùng khớp về dữ liệu tại đây với hồ sơ dự tuyển.</p>
+        <p>Trong quá trình này, nhà tuyển dụng còn có cơ hội phát hiện thêm những điều ứng viên chia sẻ về công
+          việc từng làm. Thông qua đó, bạn cũng sẽ phán đoán được phần nào về bản chất thực sự của họ và so
+          sánh với điều họ đang thể hiện ở thực tế.</p>
+        <img
+          src="https://www.testcenter.vn/blog/wp-content/uploads/2024/03/dau-hieu-nhan-biet-ung-vien-khong-trung-thuc-testcenter-6.jpg"
+          alt="" style="width: 100%;height:430px"><br>
+        <i>Nhà tuyển dụng có thể xác minh thêm thông tin về ứng viên qua mạng xã hội</i>
+      </section>
+      <br>
+      <section id="section2-5">
+        <h3><strong>Liên hệ với người tham chiếu</strong></h3>
+        <p>Đối với những vị trí quan trọng, nhà tuyển dụng hãy kết hợp sử dụng phương pháp người tham chiếu (<a
+          href="#" class="high-light">Reference Check</a>) để kiểm chứng thông tin của ứng viên. Việc
+          không trung thực trong thời gian làm việc, chức danh công việc, trách nhiệm v.vv.. là những vấn đề
+          xảy ra tương đối phổ biến.</p>
+        <p>Thậm chí, ứng viên còn có thể “tạo ra” người tham chiếu giả. Nếu cảm thấy nghi ngờ, nhà tuyển dụng
+          nên kiểm tra bằng cách trích dẫn sai thông tin ứng viên và xem xét phản ứng ở người tham chiếu. Giả
+          sử, ứng viên xác nhận mức lương công ty cũ chi trả cho họ là 08 triệu VNĐ/tháng, bạn cần hỏi người
+          tham khảo rằng “A từng được trả mức lương 07 triệu VNĐ/tháng khi làm việc ở công ty bạn đúng
+          không?”.</p>
+      </section>
+      <br>
+      <section id="section2-6">
+        <h3><strong>Dựa vào trực giác và kinh nghiệm thực tế của bản thân</strong></h3>
+        <p>Với trường hợp đã làm việc thời gian dài trong lĩnh vực tuyển dụng, bạn sẽ có khả năng nhận biết một
+          ứng viên nói dối mà thường không gặp quá nhiều khó khăn. Đôi khi, hãy chú ý và lắng nghe “tiếng
+          lòng” của mình. Tuy nhiên, đây là phương pháp chỉ mang tính chủ quan. Vì vậy, nhà tuyển dụng cũng
+          cần thận trọng và không nên để bản thân bị phụ thuộc quá nhiều vào trực giác.</p>
+        <img
+          src="https://www.testcenter.vn/blog/wp-content/uploads/2024/03/dau-hieu-nhan-biet-ung-vien-khong-trung-thuc-testcenter-7.jpg"
+          alt="" style="width: 100%;height:430px"><br>
+        <i>Dựa vào kinh nghiệm cũng là cách hay để nhận biết ứng viên trung thực hay không</i>
+      </section>
+      <br>
+      <section id="section2-7">
+        <h3><strong>Sử dụng bài đánh giá năng lực ứng viên</strong></h3>
+        <p>Cuối cùng, kiểm tra kỹ năng chuyên môn thông qua bài test năng lực cũng là cách ứng phó với tình
+          trạng ứng viên không trung thực vô cùng hiệu quả mà nhà tuyển dụng nên tham khảo.</p>
+        <p>Hiện nay, với sự ra đời của Testcenter.vn – nền tảng đánh giá năng lực nhân sự hàng đầu Việt Nam, các
+          doanh nghiệp đã có thể thu thập dữ liệu thông tin nhằm mục đích kiểm tra <span class="high-light">IQ, EQ</span>
+          cùng năng lực thực sự của ứng viên vô cùng dễ dàng.</p>
+        <p>Sử dụng Testcenter.vn, nhà tuyển dụng sẽ được hỗ trợ tạo form mẫu đánh giá người ứng tuyển ngay sau
+          phỏng vấn, giúp đưa ra quyết định chính xác và hạn chế tối đa tuyển sai người hoặc nhân viên nghỉ
+          việc chỉ sau một thời gian ngắn đi làm.</p>
+        <p>Không chỉ hỗ trợ doanh nghiệp tiết kiệm lên tới 50% thời gian đánh giá ứng viên, rút ngắn quy trình
+          tuyển dụng, Testcenter.vn còn giảm tới 30% chi phí thuê cơ sở vật chất, trang thiết bị và xây dựng
+          đề thi cho việc đánh giá nhân sự.</p>
+        <p>Thông qua bài test được xây dựng dựa trên tiêu chuẩn quốc tế của Testcenter.vn, nhà tuyển dụng có thể
+          xác định việc liệu ứng viên có đang “phóng đại” khả năng của mình hay không một cách khách quan
+          nhất.</p>
+        <img
+          src="https://www.testcenter.vn/blog/wp-content/uploads/2024/03/dau-hieu-nhan-biet-ung-vien-khong-trung-thuc-testcenter-8.jpg"
+          alt="" style="width: 100%;height:430px"><br>
+        <i>Bài test năng lực là minh chứng phản ánh rõ nét nhất khả năng của ứng viên</i>
+      </section>
+      <br>
+      <section id="section3">
+        <h2><strong>Tổng kết</strong></h2>
+        <p>Như vậy, bài viết do Testcenter.vn mang tới trên đây đã giúp bạn tổng hợp nhanh những <span
+          class="bolder"> dấu hiệu nhận biết ứng viên không trung thực </span>chính xác. Nhìn chung, trung
+          thực luôn được xem là một trong các tiêu chí hàng đầu để đánh giá nhân sự. Do đó, nhà tuyển dụng hãy
+          chú ý rà soát, sàng lọc kỹ càng để đảm bảo có thể tìm ra ứng viên tiềm năng nhất cho tổ chức của
+          mình!</p>
+        <p><b>TestCenter.vn – Nền tảng đánh giá năng lực nhân sự cung cấp giải pháp test online dành cho doanh
+          nghiệp Việt Nam. TestCenter.vn với ngân hàng 300+ đề thi tuyển dụng nhân sự mẫu hỗ trợ quy trình
+          đánh giá năng lực nhân sự. Tự hào đồng hành cùng +500 khách hàng doanh nghiệp hàng đầu như
+          Honda, Sailun, Petrolimex, Ngân hàng TMCP Hàng Hải Việt Nam (MSB),…</b></p>
+        <p><b>Doanh nghiệp sẽ tiết kiệm được 30% chi phí so với cách tuyển dụng truyền thống khi sử dụng
+          Testcenter. <a href="" class="highlight">Vui lòng ĐĂNG KÝ TẠI ĐÂY</a> để nhận tư vấn 1-1 về các
+          tính năng của Nền tảng đánh giá năng lực nhân sự TestCenter</b></p>
+      </section>
+      <div class="end-first">
+        <div class="tag">
+          TAGS
         </div>
-        <div class="watch-more">
-          <router-link to="/blog/equity-theory-la-gi" type="button" class="text-white">Xem
-            thêm</router-link>
+        <button type="button" class="btn btn-outline-secondary">dấu hiệu nhận biết ứng viên không trung thực
+        </button>
+      </div>
+        <div class="button-inform">
+          <span type="button" class="facebook"><i class="fa-brands fa-facebook-f"></i></span>
+          <span type="button" class="twitter"><i class="fa-brands fa-twitter"></i></span>
+          <span type="button" class="pinterest"><i class="fa-brands fa-pinterest-p"></i></span>
+          <span type="button" class="whatsapp"><i class="fa-brands fa-whatsapp"></i></span>
+          <span type="button" class="linkedin"><i class="fa-brands fa-linkedin-in"></i></span>
+          <span type="button" class="tumblr"><i class="fa-brands fa-tumblr"></i></span>
         </div>
+      <div class="next-new d-flex justify-content-between gap-6 ">
+        <div class="left-new w-40 text-start">
+          <span class="next-button">Bài trước</span><br>
+          <a href="#">Tuyển Mass là gì? Nguyên tắc vàng để tuyển Mass hiệu quả</a>
+        </div>
+        <div class="right-new w-30 text-end">
+          <span class="next-button">Bài tiếp theo</span><br>
+          <a href="#">Lean là gì? Phương pháp ứng dụng mô hình Lean để tối ưu chi phí cho doanh nghiệp</a>
+        </div>
+      </div>
+      <br>
+      <div class="title-titles">
+        <div class="title-titles">
+          <h2 class="title-textTitle">
+            <span>Bài viết liên quan</span>
+            <span class="title-more">Xem thêm</span>
+          </h2>
+        </div>
+      </div>
+      <div class="card-main-footer">
+        <div class="card-body-footer" id="articleContainer">
+          <div v-for="article in currentArticles" :key="article.summary" class="card">
+            <div class="img-wrapper">
+              <img :src="article.image_url" alt="" class="img-fluid" />
+              <a :href="article.url" type="button" class="link">{{ article.link }}</a>
+            </div>
+            <div class="item-detail">
+              <a :href="article.url">{{ article.summary }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="next-button">
+        <a type="button" class="prePage" @click="prevPage" :disabled="currentPage === 1"><i class="fa-solid fa-angle-left"></i></a>
+        <a type="button" class="nextPage" @click="nextPage" :disabled="currentPage === totalPages"><i class="fa-solid fa-angle-right"></i></a>
       </div>
     </div>
   </div>
-
 </template>
 
 <style scoped>
+.td-category{
+  list-style: none;
+  font-family: 'Open Sans', 'Open Sans Regular', sans-serif;
+  font-size: 10px;
+  margin-top: 0;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+.td-category li {
+  display: inline-block;
+  margin: 0 5px 5px 0;
+  line-height: 1;
+}
+.td-category a{
+  color: #fff;
+  background-color: #222222;
+  padding: 3px 6px 4px 6px;
+  white-space: nowrap;
+  display: inline-block;
+}
+ul{
+  padding: 0;
+}
+.td-title{
+  width:200px;
+}
 .td-header .tdc-row {
   padding: 0 !important;
+}
+.prePage{
+  display: inline-block;
+  margin-right: 7px;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #dcdcdc;
+  line-height: 24px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 7px;
+  color: #b7b7b7;
+}
+.nextPage{
+  display: inline-block;
+  margin-right: 7px;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #dcdcdc;
+  line-height: 24px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 7px;
+  color: #b7b7b7;
 }
 .form-logo img {
   padding: 3px 0;
@@ -185,7 +582,7 @@ h6 {
 }
 .button-inform span {
   width: 100px;
-  padding: 5px;
+  padding: 10px 0 5px 0;
   align-items: center;
   text-align: center;
   color: white;
@@ -214,7 +611,7 @@ h6 {
 }
 
 .first-title {
-  margin-top: 10px;
+  margin-top: 20px;
   width: 64%;
 }
 .first-title .button-link .link-a {
@@ -301,8 +698,6 @@ h6 {
 .link {
   display: flex;
   position: relative;
-  top: 20px;
-  left: 10px;
   font-size: 13px;
   color: #c3c3c3;
 }
@@ -395,7 +790,7 @@ h6 {
 .news .tdc-news-row {
   display: flex;
   min-height: 0;
-  gap: 20px;
+
 }
 .news .vc-column {
   display: block;
@@ -674,7 +1069,6 @@ h6 {
 }
 
 .carousel-item img {
-  width: 100%;
   height: 500px;
 }
 
@@ -769,13 +1163,11 @@ h6 {
   margin-right: auto;
   margin-left: auto;
 }
-
 form {
-  display: block;
+  display: grid;
   margin-top: 0em;
   unicode-bidi: isolate;
 }
-
 #prevBtn {
   display: inline-block;
   margin-right: 7px;
@@ -970,7 +1362,6 @@ form {
 .pagination-wrapper {
   margin-top: 100px;
 }
-
 #scrollToTopBtn {
   position: fixed;
   bottom: 20px;
@@ -981,9 +1372,8 @@ form {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  display: none; /* Ẩn nút khi trang mới tải */
+  display: block;
 }
-
 #scrollToTopBtn:hover {
   background-color: #0056b3; /* Màu khi hover */
 }
@@ -994,6 +1384,8 @@ form {
   left: 20px;
   font-size: 37px;
   color: white;
+  text-align: left;
+  line-height: normal;
 }
 .title .button-link {
   padding: 2px;
@@ -1101,6 +1493,19 @@ a:hover, a:focus {
   justify-content: space-between;
   /* Overlay style */
 }
+.header-mobi .mobi-telephone .telephone-hidden .overlay {
+  display: block; /* Ẩn overlay lúc đầu */
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 40, 85, 0.5), rgba(255, 158, 77, 0.7) 50%, rgba(255, 158, 77, 0.5));
+  color: #fff;
+  z-index: 1000;
+  font-size: 24px;
+  overflow-y: auto;
+}
 .header-mobi .mobi-telephone .telephone-hidden .header-overlay {
   display: flex;
   justify-content: space-between;
@@ -1141,6 +1546,18 @@ a:hover, a:focus {
   color: white;
   margin-right: 20px;
 }
+.header-mobi .mobi-telephone .search-hidden .overlay-search {
+  display: block; /* Ẩn overlay lúc đầu */
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 40, 85, 0.5), rgba(255, 158, 77, 0.7) 50%, rgba(255, 158, 77, 0.5));
+  color: #fff;
+  z-index: 1000;
+  font-size: 24px;
+}
 .header-mobi .mobi-telephone .search-hidden .overlay-search.open {
   display: flex;
 }
@@ -1178,6 +1595,7 @@ a:hover, a:focus {
   border-bottom: 2px solid white;
   margin: 20px 0;
 }
+
 @media (max-width: 1024px) {
   .title {
     font-size: 20px;
@@ -1223,6 +1641,7 @@ a:hover, a:focus {
     padding-left: 24px;
     position: relative;
   }
+
   .tdc-row .td-left-blog .td-mb-5 {
     margin-bottom: 6px !important;
   }
@@ -1373,6 +1792,14 @@ a:hover, a:focus {
     padding-left: 0;
     float: none;
     width: 100%;
+  }
+  .first-title{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+  .toc-wrapper{
+    width:400px
   }
   .td-module-thumb img {
     width: 200px !important;

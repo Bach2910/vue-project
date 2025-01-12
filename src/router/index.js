@@ -1,6 +1,7 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import HomeLayout from "../layouts/HomeLayout.vue"
 import AccountLayout from "@/layouts/AccountLayout.vue";
+import FooterLayout from "@/layouts/FooterLayout.vue";
 import productView from "@/layouts/productView.vue";
 const routes = [
   {
@@ -9,6 +10,7 @@ const routes = [
     children: [
       {
         path: '/',
+        name:'index',
         component: ()=>import ('../views/HomeView.vue'),
       },
       {
@@ -77,12 +79,45 @@ const routes = [
         path:'/blog',
         component:()=> import('../views/resourcesView.vue'),
       },{
-        path: '/blog/document',
+        path: '/blog/nhan-su',
+        component:()=> import('../views/blogPage/peopleVue.vue')
+      }
+      ,{
+        path: '/blog/tin-tuc',
+        component:()=> import('../views/blogPage/newView.vue')
+      }
+      ,{
+        path: '/blog/tai-lieu',
         component:()=> import('../views/blogPage/documentVue.vue')
       }
-
+      ,{
+        path: '/blog/mau-de-test-online',
+        component:()=> import('../views/blogPage/examView.vue')
+      }
+      ,{
+        path: '/blog/tuyen-mass',
+        component:()=> import('../views/content_pages/tuyenMassView.vue')
+      },
+      {
+        path: '/blog/lean-la-gi',
+        component:()=> import('../views/content_pages/leanView.vue')
+      },
+      {
+        path: '/blog/equity-theory-la-gi',
+        component:()=> import('../views/content_pages/equityView.vue')
+      }
     ]
-  }
+  },
+  {
+    path:'/',
+    component:FooterLayout,
+    children:[
+      {
+        path:'/landing/nen-tang-danh-gia-nhan-su-toan-dien',
+        component:()=> import('../views/footer_pages/evaluateVIew.vue'),
+      }
+      ]
+    }
 ]
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

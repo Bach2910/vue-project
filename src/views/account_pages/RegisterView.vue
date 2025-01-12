@@ -93,7 +93,7 @@ const selectOption = (language, route) => {
           v-model="password"
         />
         <i
-          :class="showPassword ? 'fas fa-eye-slash eye-icon' : 'fas fa-eye eye-icon'"
+          :class="showPassword ? 'fas fa-eye eye-icon' : 'fas fa-eye-slash eye-icon'"
           @click="togglePassword"
           id="togglePassword"
         ></i>
@@ -110,7 +110,7 @@ const selectOption = (language, route) => {
           v-model="confirmPassword"
         />
         <i
-          :class="showConfirmPassword ? 'fas fa-eye-slash eye-icon' : 'fas fa-eye eye-icon'"
+          :class="showConfirmPassword ? 'fas fa-eye eye-icon' : 'fas fa-eye-slash eye-icon'"
           @click="toggleConfirmPassword"
           id="togglePassword"
         ></i>

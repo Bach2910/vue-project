@@ -22,12 +22,12 @@ defineProps({
           <div class="item-detail">
             <div class="title-mb2">
               <h3>
-                <a href="{{route('blog_equity')}}">{{ card.title }}</a>
+                <router-link to="/blog/equity-theory-la-gi">{{ card.title }}</router-link>
               </h3>
             </div>
             <div class="button-link">
-              <a target="_blank" href="{{route('news')}}"
-                 class="text-white ">Tin tức</a>
+              <router-link to="/blog/tin-tuc"
+                 class="text-white ">Tin tức</router-link>
             </div>
             <div class="description-mb2">
               <p>
@@ -775,13 +775,6 @@ h6 {
   margin-right: auto;
   margin-left: auto;
 }
-
-form {
-  display: block;
-  margin-top: 0em;
-  unicode-bidi: isolate;
-}
-
 #prevBtn {
   display: inline-block;
   margin-right: 7px;
@@ -1107,19 +1100,6 @@ a:hover, a:focus {
   justify-content: space-between;
   /* Overlay style */
 }
-.header-mobi .mobi-telephone .telephone-hidden .overlay {
-  display: none; /* Ẩn overlay lúc đầu */
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 40, 85, 0.5), rgba(255, 158, 77, 0.7) 50%, rgba(255, 158, 77, 0.5));
-  color: #fff;
-  z-index: 1000;
-  font-size: 24px;
-  overflow-y: auto;
-}
 .header-mobi .mobi-telephone .telephone-hidden .header-overlay {
   display: flex;
   justify-content: space-between;
@@ -1160,18 +1140,7 @@ a:hover, a:focus {
   color: white;
   margin-right: 20px;
 }
-.header-mobi .mobi-telephone .search-hidden .overlay-search {
-  display: none; /* Ẩn overlay lúc đầu */
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 40, 85, 0.5), rgba(255, 158, 77, 0.7) 50%, rgba(255, 158, 77, 0.5));
-  color: #fff;
-  z-index: 1000;
-  font-size: 24px;
-}
+
 .header-mobi .mobi-telephone .search-hidden .overlay-search.open {
   display: flex;
 }
