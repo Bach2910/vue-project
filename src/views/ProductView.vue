@@ -678,3 +678,11 @@ import ProductBenefit from "@/components/product_components/productBenefit.vue";
 import {RouterLink} from "vue-router";
 const fontColor = 'white'
 </script>
+<style scoped>
+a:visited{
+  color:white
+}
+a:link{
+  color:white
+}
+</style>

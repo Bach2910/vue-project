@@ -7,25 +7,23 @@ import {useRoute} from 'vue-router'
 const groupFooter = ref('')
 const images = ref([])
 
-// Get the current route using Vue Router
 const route = useRoute()
 
-// Watch route.path and update the states dynamically
 watch(
   () => route.path,
   (newPath) => {
     switch (newPath) {
-      case '/train':
+      case '/landing/nen-tang-danh-gia-nhan-su-toan-dien':
         groupFooter.value = 'GROUP232'
         images.value = ['IMAGE116', 'IMAGE117', 'IMAGE118', 'IMAGE119', 'IMAGE120']
         break
-      case '/product':
-        groupFooter.value = 'group-footer-product'
-        images.value = ['product-img1', 'product-img2', 'product-img3', 'product-img4', 'product-img5']
+      case '/landing/dao-tao-phat-trien-nhan-su-hieu-qua':
+        groupFooter.value = 'GROUP232'
+        images.value = ['IMAGE116', 'IMAGE117', 'IMAGE118', 'IMAGE119', 'IMAGE120']
         break
       default:
-        groupFooter.value = 'group-footer-default'
-        images.value = ['default-img1', 'default-img2', 'default-img3', 'default-img4', 'default-img5']
+        groupFooter.value = 'GROUP232'
+        images.value = ['IMAGE116', 'IMAGE117', 'IMAGE118', 'IMAGE119', 'IMAGE120']
     }
   },
   {immediate: true}
@@ -92,14 +90,14 @@ watch(
             </div>
           </div>
         </div>
-        <a href="/register" target="_blank"
+        <router-link to="/register" target="_blank"
            id="BUTTON331" class='ladi-element'>
           <div class='ladi-button'>
             <div class="ladi-button-background"></div>
             <div id="BUTTON_TEXT331" class='ladi-element'><p class='ladi-headline'>Tạo tài khoản
               ngay<br></p></div>
           </div>
-        </a>
+        </router-link>
         <div id="IMAGE355" class='ladi-element'>
           <div class='ladi-image'>
             <div class="ladi-image-background"></div>
@@ -119,14 +117,14 @@ watch(
               dụng và đào tạo nhân sự</p></div>
           </div>
         </div>
-        <a href="/register" target="_blank"
+        <router-link to="/register" target="_blank"
            id="BUTTON123" class='ladi-element'>
           <div class='ladi-button'>
             <div class="ladi-button-background"></div>
             <div id="BUTTON_TEXT123" class='ladi-element'><p class='ladi-headline '>Đăng ký
               ngay</p></div>
           </div>
-        </a>
+        </router-link>
         <div :id="groupFooter" class='ladi-element'>
           <div class="ladi-group">
             <div
@@ -677,10 +675,6 @@ body {
     height: 0px;
   }
 
-  #SECTION1 {
-    height: 652.51px;
-  }
-
   #SECTION12 {
     height: 569.4px;
   }
@@ -1106,7 +1100,7 @@ body {
     height: 60px;
     top: 0px;
     left: 0px;
-    background-image: url("/image/landing/s400x400/5eccf0a3fe0845247513b20a/icon-2-20210922095444.png");
+    background-image: url("@/assets/landing/s400x400/5eccf0a3fe0845247513b20a/icon-2-20210922095444.png");
   }
 
   #IMAGE286 {
@@ -2047,11 +2041,6 @@ body {
   #SECTION_POPUP {
     height: 0px;
   }
-
-  #SECTION1 {
-    height: 555.545px;
-  }
-
   #PEN_TOOL186 {
     width: 419.059px;
     height: 536.909px;
@@ -2953,7 +2942,7 @@ body {
 
   #LINE327 {
     width: 100px;
-    top: 100px;
+    top: 80px;
     left: 0px;
   }
 
@@ -3089,10 +3078,10 @@ body {
   }
 
   #IMAGE196 {
-    width: 255.765px;
-    height: 59px;
-    top: 545.202px;
-    left: 5.4925px;
+    width: 57.2088px;
+    height: 29.2696px;
+    top: 3.73043px;
+    left: 54.1289px;
   }
 
   #IMAGE196 > .ladi-image > .ladi-image-background {
@@ -3100,35 +3089,34 @@ body {
     height: 255.765px;
     top: -99px;
     left: 0px;
-    background-image: url("@/assets/landing/s600x600/5eccf0a3fe0845247513b20a/558b23447b2fa5ee53cc508da516c608-20210920085222.png");
+    background-image: url("@/assets/landing/s400x350/5eccf0a3fe0845247513b20a/558b23447b2fa5ee53cc508da516c608-20210920085222.png");
   }
 
   #IMAGE195 {
-    width: 244.781px;
-    height: 164.82px;
+    width: 51.6522px;
+    height: 31.5652px;
     top: 0px;
-    left: 9.764px;
+    left: 0px;
   }
 
   #IMAGE195 > .ladi-image > .ladi-image-background {
-    width: 278.177px;
-    height: 164.82px;
+    width: 54.1189px;
+    height: 32.0654px;
     top: 0px;
     left: 0px;
-    background-image: url("https://w.ladicdn.com/s600x500/5eccf0a3fe0845247513b20a/honda-logo-20210920084936.jpg");
+    background-image: url("https://w.ladicdn.com/s400x350/5eccf0a3fe0845247513b20a/honda-logo-20210920084936.jpg");
   }
-
   #IMAGE194 {
-    width: 265.11px;
-    height: 85px;
-    top: 647.202px;
-    left: 0px;
+    width: 46.9151px;
+    height: 18.1509px;
+    top: 9.82912px;
+    left: 177.158px;
   }
 
   #IMAGE194 > .ladi-image > .ladi-image-background {
-    width: 265.11px;
-    height: 265.11px;
-    top: -97px;
+    width: 47.2818px;
+    height: 47.0984px;
+    top: -14.484px;
     left: 0px;
     background-image: url("@/assets/landing/s600x600/5eccf0a3fe0845247513b20a/download-2-20210920085106.png");
   }
@@ -3243,7 +3231,7 @@ body {
     height: 273.153px;
     top: 0px;
     left: 0px;
-    background-image: url("@/assets/landing/s700x600/5eccf0a3fe0845247513b20a/lap-trang-20210924051936.png");
+    background-image: url("@/assets/landing/s750x650/5eccf0a3fe0845247513b20a/lap-trang-20210924051936.png");
   }
 
   #IMAGE333 {

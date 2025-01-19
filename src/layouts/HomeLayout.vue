@@ -127,10 +127,10 @@ const toggleNavbar = () => {
           <div class="col-lg-4 col-md-4 col-sm-12">
             <h2 class="text-white font-weight-bold font-size-16">GIẢI PHÁP CHO DOANH NGHIỆP</h2>
             <p><a href="#" class="text-sm text-light link-item">Tạo tài khoản miễn phí</a></p>
-            <p><a href="#" class="text-sm text-light link-item">Công cụ tạo bài test online</a></p>
-            <p><a href="/examTest" class="text-sm text-light link-item">Ngân hàng đề thi mẫu đa dạng</a></p>
+            <p><a class="text-sm text-light link-item">Công cụ tạo bài test online</a></p>
+            <p><router-link to="/landing/thu-vien-300-de-test-online-cho-nhan-su" class="text-sm text-light link-item">Ngân hàng đề thi mẫu đa dạng</router-link></p>
             <p><router-link to="/landing/nen-tang-danh-gia-nhan-su-toan-dien" class="text-sm text-light link-item">Đánh giá năng lực nhân sự</router-link></p>
-            <p><a href="/trainEmployee" class="text-sm text-light link-item">Đào tạo nhân sự hiệu quả</a></p>
+            <p><router-link to="/landing/dao-tao-phat-trien-nhan-su-hieu-qua" class="text-sm text-light link-item">Đào tạo nhân sự hiệu quả</router-link></p>
             <p><a href="#" class="text-sm text-light link-item">Giảm tỉ lệ tuyển dụng sai người</a></p>
           </div>
           <div class="col-lg-3 col-md-4 col-sm-12">
