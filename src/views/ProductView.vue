@@ -293,19 +293,19 @@
       <a class="btn btn-primary btn-register">Đăng ký miễn phí</a>
     </div>
   </div>
-  <div class="product-section product-section-price mt-4 mb-md-4 pb-4 pt-2" id="price">
+  <div class="product-section product-section-price mt-4 mb-md-4 pb-4 pt-2" id="price" >
     <div class="container">
       <p class="product-section-title mt-4">
         Pricing
       </p>
-      <h3 class="font-weight-bold text-center mb-4 mobile-hidden pc-show">
+      <h3 class="font-weight-bold text-center mb-4 mobile-hidden pc-show" >
         Bảng giá dịch vụ TestCenter.vn
       </h3>
       <h4 class="font-weight-500 text-center mobile-show pc-hidden">
         Bảng giá dịch vụ TestCenter.vn
       </h4>
-      <div class="row">
-        <div class="col-md-3 col-12 product-section-price-box product-section-price-box-primary"
+      <div class="row" >
+        <div class="col-md-3 col-12 product-section-price-box product-section-price-box-primary "
              style="height:1066.03px;">
           <ProductPriceBox>
             <template #img>
@@ -676,6 +676,29 @@ import ImgPriceBox from '@/components/img/imgPriceBox.vue'
 import PofPriceBox from '@/components/smallOne/PofPriceBox.vue'
 import ProductBenefit from "@/components/product_components/productBenefit.vue";
 import {RouterLink} from "vue-router";
+import { onMounted, watchEffect } from 'vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+const scrollToHash = () => {
+  const hash = route.hash; // Lấy hash từ URL (ví dụ: #price)
+  if (hash) {
+    const element = document.querySelector(hash);
+    if (element) {
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementPosition + 570,
+        behavior: 'smooth'
+      });
+    }
+  }
+};
+onMounted(() => {
+  scrollToHash();
+});
+watchEffect(() => {
+  scrollToHash();
+});
 const fontColor = 'white'
 </script>
 <style scoped>

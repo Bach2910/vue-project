@@ -789,14 +789,15 @@ body {
   #HEADLINE115 > .ladi-headline {
     font-family: "SF-Pro-Text-Bold.otf";
     color: rgb(0, 0, 0);
-    font-size: 24px;
+    font-size: 28px;
+    font-weight: bold;
     text-align: center;
     line-height: 1.6;
   }
 
   #PARAGRAPH121 {
     width: 960px;
-    top: 45.2227px;
+    top: 48.2227px;
     left: 0px;
   }
 
@@ -963,20 +964,6 @@ body {
     font-weight: bold;
     text-align: left;
     line-height: 1.6;
-  }
-
-  #SECTION1 {
-    height: 518.082px;
-  }
-
-  #SECTION1 > .ladi-section-background {
-    background-size: cover;
-    background-attachment: scroll;
-    background-origin: content-box;
-    background-image: url("@/assets/landing/s1440x518/5eccf0a3fe0845247513b20a/sl-120219-25650-11-20210922082336.png");
-    background-position: center top;
-    background-repeat: repeat;
-    opacity: 0.3;
   }
 
   #IMAGE272 {

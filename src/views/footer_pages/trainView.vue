@@ -3027,10 +3027,10 @@ body {
   }
   #LIST_PARAGRAPH7 ul li:before {
     content: "";
-    background-image: url("data:image/svg+xml;utf8, %3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20%20viewBox%3D%220%200%2024%2024%22%20class%3D%22%22%20fill%3D%22rgba(255%2C%20255%2C%20255%2C%201)%22%3E%20%3Cpath%20d%3D%22M21%2C7L9%2C19L3.5%2C13.5L4.91%2C12.09L9%2C16.17L19.59%2C5.59L21%2C7Z%22%3E%3C%2Fpath%3E%20%3C%2Fsvg%3E");
+    background-image: url("data:image/svg+xml;utf8, %3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20%20viewBox%3D%220%200%2024%2024%22%20class%3D%22%22%20fill%3D%22rgba(255%2C%20255%2C%20255%2C%201)%22%3E%20%3Cpath%20d%3D%22M10%2C17L5%2C12L6.41%2C10.58L10%2C14.17L17.59%2C6.58L19%2C8M12%2C2A10%2C10%200%200%2C0%202%2C12A10%2C10%200%200%2C0%2012%2C22A10%2C10%200%200%2C0%2022%2C12A10%2C10%200%200%2C0%2012%2C2Z%22%3E%3C%2Fpath%3E%20%3C%2Fsvg%3E");
     width: 17px;
     height: 17px;
-    top: 8px;
+    top: 7px;
   }
   #BUTTON8 {
     width: 200px;
@@ -4664,7 +4664,7 @@ body {
   #BUTTON88 {
     width: 200px;
     height: 45px;
-    top: 492.971px;
+    top:507.971px;
     left: 459px;
   }
   #BUTTON88 > .ladi-button > .ladi-button-background {

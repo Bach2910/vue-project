@@ -36,14 +36,6 @@ watch(
   {immediate: true}
 )
 const router = useRouter();
-const scrollToPrice = () => {
-  router.push('/product').then(() => {
-    const element = document.getElementById('price');
-    if (element) {
-      element.scrollIntoView({ behavior: 'auto' });
-    }
-  });
-};
 const scrollToTop = () => {
   router.push('/product').then(() => {
     const element = document.getElementById('top');
@@ -85,8 +77,7 @@ const toggleNavbar = () => {
               <li class="nav-item">
                 <RouterLink
                   class="nav-link header-item"
-                  :to="{ path: '/product'}"
-                  @click="scrollToPrice"
+                  :to="{ path: '/product', hash: '#price' }" target="_blank"
                 >
                   Bảng giá
                 </RouterLink>
@@ -126,18 +117,18 @@ const toggleNavbar = () => {
           </div>
           <div class="col-lg-4 col-md-4 col-sm-12">
             <h2 class="text-white font-weight-bold font-size-16">GIẢI PHÁP CHO DOANH NGHIỆP</h2>
-            <p><a href="#" class="text-sm text-light link-item">Tạo tài khoản miễn phí</a></p>
-            <p><a class="text-sm text-light link-item">Công cụ tạo bài test online</a></p>
-            <p><router-link to="/landing/thu-vien-300-de-test-online-cho-nhan-su" class="text-sm text-light link-item">Ngân hàng đề thi mẫu đa dạng</router-link></p>
-            <p><router-link to="/landing/nen-tang-danh-gia-nhan-su-toan-dien" class="text-sm text-light link-item">Đánh giá năng lực nhân sự</router-link></p>
-            <p><router-link to="/landing/dao-tao-phat-trien-nhan-su-hieu-qua" class="text-sm text-light link-item">Đào tạo nhân sự hiệu quả</router-link></p>
-            <p><a href="#" class="text-sm text-light link-item">Giảm tỉ lệ tuyển dụng sai người</a></p>
+            <p><router-link :to="{name:'freeRegister'}" target="_blank" class="text-sm text-light link-item">Tạo tài khoản miễn phí</router-link></p>
+            <p><router-link :to="{name:'testOnline'}" target="_blank" class="text-sm text-light link-item">Công cụ tạo bài test online</router-link></p>
+            <p><router-link :to="{name:'examTestView'}" target="_blank" class="text-sm text-light link-item">Ngân hàng đề thi mẫu đa dạng</router-link></p>
+            <p><router-link :to="{name:'evaluateVIew'}" target="_blank" class="text-sm text-light link-item">Đánh giá năng lực nhân sự</router-link></p>
+            <p><router-link :to="{name:'trainView'}" target="_blank" class="text-sm text-light link-item">Đào tạo nhân sự hiệu quả</router-link></p>
+            <p><router-link :to="{name:'wrongView'}" target="_blank" class="text-sm text-light link-item">Giảm tỉ lệ tuyển dụng sai người</router-link></p>
           </div>
           <div class="col-lg-3 col-md-4 col-sm-12">
             <h2 class="text-white font-weight-bold font-size-16">VỀ TESTCENTER</h2>
             <p><a href="#" class="text-sm text-light link-item">Giới thiệu</a></p>
-            <p><router-link :to="{name:'terms_use'}"  class="text-sm text-light link-item">Điều khoản sử dụng</router-link></p>
-            <p><router-link :to="{name:'policy_warning'}"  class="text-sm text-light link-item">Chính sách bảo mật</router-link></p>
+            <p><router-link :to="{name:'terms_use'}" target="_blank"  class="text-sm text-light link-item">Điều khoản sử dụng</router-link></p>
+            <p><router-link :to="{name:'policy_warning'}" target="_blank" class="text-sm text-light link-item">Chính sách bảo mật</router-link></p>
             <div class="list-social-network">
               <a href="#"><img alt="facebook" class="social-network-icon" src="@/assets/facebook.png"/></a>
               <a href="#"><img alt="twitter" class="social-network-icon" src="@/assets/twitter.png"/></a>

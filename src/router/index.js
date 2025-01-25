@@ -3,6 +3,7 @@ import HomeLayout from "../layouts/HomeLayout.vue"
 import AccountLayout from "@/layouts/AccountLayout.vue";
 import FooterLayout from "@/layouts/FooterLayout.vue";
 import productView from "@/layouts/productView.vue";
+import FooterHeaderPageView from "@/layouts/footerHeaderPageView.vue";
 const routes = [
   {
     path: '/',
@@ -127,27 +128,51 @@ const routes = [
       {
         path:'/landing/nen-tang-danh-gia-nhan-su-toan-dien',
         name:'evaluateVIew',
-        meta: {title: 'nền tảng đánh giá nhân sự toàn diện' },
+        meta: {title: 'Nền tảng đánh giá nhân sự toàn diện' },
         component:()=> import('../views/footer_pages/evaluateVIew.vue'),
       },
       {
         path:'/landing/dao-tao-phat-trien-nhan-su-hieu-qua',
         name:'trainView',
-        meta: {title: 'đào tạo phát triển nhân sự hiệu quả' },
+        meta: {title: 'Đào tạo phát triển nhân sự hiệu quả' },
         component:()=> import('../views/footer_pages/trainView.vue'),
       },
       {
         path:'/landing/thu-vien-300-de-test-online-cho-nhan-su',
         name:'examTestView',
-        meta: {title: 'thư viện 300 đề test online cho nhân sự' },
+        meta: {title: 'Thư viện 300 đề test online cho nhân sự' },
         component:()=> import('../views/footer_pages/examTestView.vue'),
       },
-      ]
-    }
+      {
+        path:'/landing/giam-ty-le-tuyen-dung-sai',
+        name:'wrongView',
+        meta: {title: 'Tuyển dụng sai' },
+        component:()=> import('../views/footer_pages/wrongRecruitmentView.vue'),
+      },
+    ]
+  },
+  {
+    path:'/',
+    component:FooterHeaderPageView,
+    children: [
+      {
+        path: '/landing/dang-ky-mien-phi',
+        name:'freeRegister',
+        meta: {title: 'TK miễn phí - Testcenter' },
+        component:()=> import('../views/footer_pages/freeRegisterView.vue'),
+      },
+      {
+        path: '/landing/test-online',
+        name:'testOnline',
+        meta: {title: 'Test online - Testcenter' },
+        component:()=> import('../views/footer_pages/testOnlineView.vue'),
+      }
+    ]
+  }
 ]
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes
+  routes,
 })
 router.afterEach((to) => {
   const defaultTitle = 'Testcenter.vn - Nền tảng đánh giá nhân sự hàng đầu Việt Nam';

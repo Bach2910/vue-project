@@ -3049,13 +3049,13 @@ body {
   #HEADLINE4 > .ladi-headline {
     font-family: "SF-Pro-Text-Bold.otf";
     color: rgb(255, 255, 255);
-    font-size: 30px;
+    font-size: 34px;
     font-weight: bold;
     line-height: 1.6;
   }
   #LIST_PARAGRAPH7 {
     width: 457px;
-    top: 167.755px;
+    top: 184.755px;
     left: -20px;
   }
   #LIST_PARAGRAPH7 > .ladi-list-paragraph {
@@ -3078,7 +3078,7 @@ body {
   #BUTTON8 {
     width: 200px;
     height: 45px;
-    top: 580px;
+    top: 500px;
     left: 0px;
   }
   #BUTTON8 > .ladi-button > .ladi-button-background {
@@ -3152,7 +3152,7 @@ body {
   #LIST_PARAGRAPH7 > .ladi-list-paragraph1 {
     font-family: "SF-Pro-Text-Regular.otf";
     color: rgb(255, 255, 255);
-    font-size: 14px;
+    font-size: 17px;
     line-height: 1.6;
   }
   #LIST_PARAGRAPH7 > .ladi-list-paragraph2 {
