@@ -10,14 +10,14 @@ This template should help get you started developing with Vue 3 in Vite.
 
 See [Vite Configuration Reference](https://vite.dev/config/).
 
-This project of mine is about slicing the interfaces of the testcenter website
+This project of mine is about slicing the interfaces of the testcenter website using vue.js
 
 ## Project Setup for Vue 3
 
 ```sh
 npm install -g @vue/cli
 ```
-### create the project
+### Create your project
 ```sh
 vue create my-project
 ```
@@ -35,7 +35,7 @@ In this project I used router vue to run
 npm install vue-router@4
 ```
 
-### create your project
+### Create your project
 ```sh
 npm create myproject
 ```
