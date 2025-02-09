@@ -998,10 +998,13 @@ form {
 .title .button-link {
   padding: 2px;
   margin-bottom: 20px;
-  font-size: 15px;
+  font-size: 12px;
   background-color: red;
   text-align: center;
   border-radius: 5px;
+  width: 50px;
+  font-weight: inherit;
+
 }
 .title a {
   color: inherit; /* Giữ nguyên màu chữ của phần tử cha */
@@ -1011,43 +1014,6 @@ form {
   text-decoration: none; /* Đảm bảo không có gạch chân khi hover hoặc focus */
   color: ivory;
 }
-
-.carousel-control-prev,
-.carousel-control-next {
-  width: 5%; /* Giảm độ rộng của nút để không che nội dung */
-  background: none; /* Loại bỏ nền để không ảnh hưởng tới ảnh */
-  pointer-events: all; /* Cho phép tương tác với nội dung phía dưới */
-}
-
-.carousel-control-prev {
-  left: 0; /* Đưa nút Previous sát góc trái của carousel */
-}
-
-.carousel-control-next {
-  right: 0; /* Đưa nút Next sát góc phải của carousel */
-}
-
-.carousel-controls {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  pointer-events: none; /* Cho phép tương tác với nội dung phía dưới */
-}
-
-.resources-main {
-  padding-top: 20px;
-  margin-bottom: 60px;
-  overflow: hidden;
-}
-.resources-main .tdc-news-row {
-  display: flex;
-}
-
 a {
   color: inherit; /* Giữ nguyên màu chữ của phần tử cha */
   text-decoration: none; /* Loại bỏ gạch chân */

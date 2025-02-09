@@ -1,10 +1,10 @@
 <template>
-    <img :src="imageSrc"
+    <img  :src="imageSrc"
     alt="Image 1"
-    class="d-block mx-auto w-100 img-fluid animation">
+    class="d-block mx-auto w-100 img-fluid">
 </template>
 <script setup>
-import { defineProps } from 'vue';
+import {defineProps} from 'vue';
 defineProps({
   imageSrc: {
     type: String,

@@ -32,32 +32,3 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { onMounted, ref } from "vue";
-import $ from "jquery";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel";
-
-const owlCarousel = ref(null);
-
-onMounted(() => {
-  $(owlCarousel.value).owlCarousel({
-    loop: true,
-    nav: false,
-    autoplay: true,
-    autoplayTimeout: 5000,
-    autoplayHoverPause: true,
-    responsive: {
-      0: {
-        items: 1,
-      },
-      600: {
-        items: 3,
-      },
-      1000: {
-        items: 5,
-      },
-    },
-  });
-});
-</script>

@@ -35,10 +35,13 @@
 .title .button-link {
   padding: 2px;
   margin-bottom: 20px;
-  font-size: 15px;
+  font-size: 12px;
   background-color: red;
   text-align: center;
   border-radius: 5px;
+  width: 50px;
+  font-weight: inherit;
+
 }
 .title a {
   color: inherit; /* Giữ nguyên màu chữ của phần tử cha */

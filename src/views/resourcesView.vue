@@ -59,6 +59,7 @@ const visibleCount = ref(4);
 const loadMore = () => {
   visibleCount.value += 2; // Mỗi lần bấm "Xem thêm" tăng thêm 2 mục
 };
+
 </script>
 <template>
   <div class="tdc-row td-pb-span2">
@@ -113,7 +114,7 @@ const loadMore = () => {
           </template>
         </carouselItem>
       </div>
-      <!-- Carousel controls -->
+
       <div class="carousel-controls">
         <button class="carousel-control-prev" type="button" data-bs-target="#exampleCarousel"
                 data-bs-slide="prev">
@@ -266,7 +267,7 @@ const loadMore = () => {
             <a type="button" v-if="visibleCount < newsCards.length"
                id="viewMoreBtnNews"
                @click="loadMore">
-              Xem thêm
+              Xem thêm <i class="fa-solid fa-caret-down"></i>
             </a>
           </div>
         </div>
@@ -285,7 +286,7 @@ const loadMore = () => {
             <a type="button" v-if="visibleCountData < newData.length"
                id="viewMoreBtnExam"
                @click="loadMoreData">
-              Xem thêm
+              Xem thêm <i class="fa-solid fa-caret-down"></i>
             </a>
           </div>
         </div>
@@ -302,7 +303,7 @@ const loadMore = () => {
             <a type="button" v-if="visibleCount1 < newsHiddenCards.length"
                id="viewMoreBtnNews"
                @click="loadMore1">
-              Xem thêm
+              Xem thêm <i class="fa-solid fa-caret-down"></i>
             </a>
           </div>
         </div>
@@ -381,6 +382,9 @@ const loadMore = () => {
   </div>
 </template>
 <style scoped>
+.fa-solid{
+  display:inline;
+}
 .td-header .tdc-row {
   padding: 0 !important;
 }
@@ -669,7 +673,7 @@ h6 {
   padding: 8px 10px;
   border: 1px solid #c9c9c9;
   vertical-align: middle;
-  margin: 20px 0 0 290px;
+  margin: 20px 0 30px 290px;
 }
 .load-more #viewMoreBtn, .load-more #viewMoreBtnNews {
   cursor: pointer;
@@ -1043,16 +1047,14 @@ h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 15%;
+  width: 20%;
   padding: 0;
   color: #fff;
   text-align: center;
   background: none;
   border: 0;
-  opacity: 0.5;
   transition: opacity 0.15s ease;
 }
-
 .carousel-caption button {
   margin-bottom: 20px;
   padding: 10px;
@@ -1318,7 +1320,7 @@ form {
   bottom: 20px;
   right: 0;
   padding: 10px 20px;
-  background-color: #007bff; /* Màu nút */
+  background-color:  #295fcc; /* Màu nút */
   color: white;
   border: none;
   border-radius: 5px;
@@ -1341,33 +1343,38 @@ form {
 .title .button-link {
   padding: 2px;
   margin-bottom: 20px;
-  font-size: 15px;
+  font-size: 12px;
   background-color: red;
   text-align: center;
   border-radius: 5px;
+  width: 50px;
+  font-weight: inherit;
+
 }
 .title a {
-  color: inherit; /* Giữ nguyên màu chữ của phần tử cha */
-  text-decoration: none; /* Loại bỏ gạch chân */
+  color: inherit;
+  text-decoration: none;
+
 }
 .title a:hover, .title a:focus {
-  text-decoration: none; /* Đảm bảo không có gạch chân khi hover hoặc focus */
+  text-decoration: none;
   color: ivory;
 }
 
 .carousel-control-prev,
 .carousel-control-next {
-  width: 5%; /* Giảm độ rộng của nút để không che nội dung */
-  background: none; /* Loại bỏ nền để không ảnh hưởng tới ảnh */
-  pointer-events: all; /* Cho phép tương tác với nội dung phía dưới */
+  width: 5%;
+  background: none;
+  pointer-events: all;
+  opacity: 0;
 }
 
 .carousel-control-prev {
-  left: 0; /* Đưa nút Previous sát góc trái của carousel */
+  left: 0;
 }
 
 .carousel-control-next {
-  right: 0; /* Đưa nút Next sát góc phải của carousel */
+  right: 0;
 }
 
 .carousel-controls {
@@ -1379,7 +1386,7 @@ form {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  pointer-events: none; /* Cho phép tương tác với nội dung phía dưới */
+  pointer-events: none;
 }
 
 .resources-main {
@@ -1428,7 +1435,6 @@ a:hover, a:focus {
   height: auto;
   padding: 0 100px 0 100px;
 }
-
 .header-mobi {
   width: 100%;
   z-index: 999;
@@ -2080,5 +2086,16 @@ a:hover, a:focus {
   display: table;
   width: 100%;
 }
+.hidden-img {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 </style>
 

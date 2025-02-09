@@ -146,6 +146,7 @@ onUnmounted(() => {
                     <div v-show="isSearchBoxVisible" class="search-box">
                       <input v-model="searchQuery" class="search-input" placeholder="Tìm kiếm">
                       <button type="submit" class="search-button">Tìm Kiếm</button>
+                      <div class="something"></div>
                     </div>
                   </form>
                 </li>
@@ -1011,8 +1012,8 @@ h6 {
 }
 
 .logo img {
-  width: 231px;
-  height: 193px;
+  width: 235px;
+  aspect-ratio: auto 235 / 234;
   margin-top: 35px;
   margin-bottom: 0;
   margin-left: 30px;
@@ -1101,26 +1102,48 @@ form {
 .p-5 {
   padding: 0 50px 0 50px;
 }
-
+.search-input{
+  font-size: 12px;
+  line-height: 21px;
+  color: #444;
+  border: 1px solid #e1e1e1;
+  height: 34px;
+  width: 69%;
+  padding: 3px 9px;
+}
 .search-box {
   z-index: 9999;
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  background: white;
   width: 300px;
   transform: translateY(20px);
   position: absolute;
   top: 27px;
-  right:20px;
+  right:16px;
+  transition: all 0.4s ease;
 }
-
+.search-box::after{
+  position: absolute;
+  top: -3px;
+  display: block;
+  content: '';
+  right: 6px;
+  left: -1px;
+  margin: 0 auto;
+  width: 101%;
+  height: 3px;
+  background: #2b4aa0;
+}
 .search-box .search-button {
   border: none;
-  background-color: #007bff;
+  background-color: #2b4aa0;
+  padding: 6px 15px 6.5px;
   color: white;
   cursor: pointer;
   width: auto;
-  font-size: 17px;
+  font-size: 13px;
+  margin-left: 2px;
 }
 
 .search-icon {
@@ -1282,22 +1305,30 @@ form {
 .pagination-wrapper {
   margin-top: 100px;
 }
-
 #scrollToTopBtn {
+  cursor: pointer;
   position: fixed;
-  bottom: 20px;
-  right: 0;
+  bottom: 4px;
+  right: 5px;
+  width: 40px;
+  height: 40px;
   padding: 10px 20px;
-  background-color: #007bff; /* Màu nút */
+  background-color:  #2b4aa0; /* Màu nút */
   color: white;
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  display: block; /* Ẩn nút khi trang mới tải */
+  display: block;
 }
-
+.fa-arrow-up{
+  position: relative;
+  color: #fff;
+  font-size: 20px;
+  display: block;
+  text-align: center;
+  left:-7px;
+  top: 2px;
+}
 #scrollToTopBtn:hover {
-  background-color: #0056b3; /* Màu khi hover */
+  background-color: #0056b3;
 }
 
 .title {

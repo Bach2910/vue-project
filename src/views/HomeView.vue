@@ -295,7 +295,8 @@
             <button type="button" class="btn btn-primary font-weight-normal btn-register">
               Đăng ký miễn phí
             </button>
-          </router-link>>
+          </router-link>
+          >
         </div>
         <div class="row justify-content-center mt-3 font-weight-normal"
              style="font-size: 15px; line-height: 20px; font-weight: 500">
@@ -430,7 +431,12 @@
   </div>
 </template>
 <script setup>
-import {onMounted, ref} from 'vue';
+import {onMounted, ref, nextTick} from 'vue';
+import $ from "jquery";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
+import "owl.carousel";
+
 import GroupFeature from "@/components/index_components/GroupFeature.vue";
 import GroupFeatures from "@/components/index_components/GroupFeatures.vue";
 import ToolIT from "@/components/index_components/ToolIT.vue";
@@ -440,35 +446,37 @@ import ImageItem from "@/components/img/ImageItem.vue";
 import ImgPriceBox from "@/components/img/imgPriceBox.vue";
 import ImageOwl from "@/components/img/imageOwl.vue";
 import {RouterLink} from "vue-router";
-import $ from "jquery";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel";
-const owlCarousel = ref(null);
-owlCarousel.value = undefined;
+
 onMounted(() => {
-  $(owlCarousel.value).owlCarousel({
-    loop: true,
-    nav: false,
-    autoplay: true,
-    autoplayTimeout: 5000,
-    autoplayHoverPause: true,
-    responsive: {
-      0: {
-        items: 1
-      },
-      600: {
-        items: 3
-      },
-      1000: {
-        items: 5
-      }
+  console.log("jQuery version:", $.fn.jquery);
+});
+
+const owlCarousel = ref(null);
+onMounted(() => {
+  nextTick(() => {
+    if (owlCarousel.value) {
+      setTimeout(() => {
+        $(owlCarousel.value).owlCarousel({
+          loop: true,
+          nav: false,
+          autoplay: true,
+          autoplayTimeout: 5000,
+          autoplayHoverPause: true,
+          responsive: {
+            0: {items: 1},
+            600: {items: 3},
+            1000: {items: 5}
+          }
+        });
+      }, 500);
     }
   });
 });
+
 const nextSlide = () => {
-  $(owlCarousel.value).trigger('next.owl.carousel');
+  $(owlCarousel.value).trigger("next.owl.carousel");
 };
 const prevSlide = () => {
-  $(owlCarousel.value).trigger('prev.owl.carousel');
+  $(owlCarousel.value).trigger("prev.owl.carousel");
 };
 </script>
