@@ -296,7 +296,6 @@
               Đăng ký miễn phí
             </button>
           </router-link>
-          >
         </div>
         <div class="row justify-content-center mt-3 font-weight-normal"
              style="font-size: 15px; line-height: 20px; font-weight: 500">
@@ -315,61 +314,41 @@
           Bài viết <span style="color: #2B4AA0">mới nhất</span>
         </h4>
         <div class="slider-panel-latest-new position-relative mt-3">
-          <div id="prev-slider" class="cursor-pointer position-absolute arrow-slide arrow-slide-left"
-               @click="prevSlide">
-            <svg style="color: #2C4A9F" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                 class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-                    d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
-            </svg>
-          </div>
-          <div id="next-slider" class="cursor-pointer position-absolute arrow-slide arrow-slide-right"
-               @click="nextSlide">
-            <svg style="color: #2C4A9F" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                 class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-                    d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
-            </svg>
-          </div>
-          <div class="owl-carousel owl-theme owl-loaded owl-carousel-latest-news hidden-md" ref="owlCarousel">
-            <div class="owl-stage-outer">
-              <div class="owl-stage">
-                <OwlItems>
-                  <template #img>
-                    <ImageOwl :imageAlt='""' :imageSrc='"src/assets/resources/paying-1438142_1920.jpeg"'></ImageOwl>
-                  </template>
-                  <template #title>Chia sẻ phần mềm tạo bài test nhân viên QC chuyên nghiệp nhất</template>
-                  <template #description>Bộ phận QC nói chung và nhân viên QC đóng vai trò khá quan trọng, giúp thúc đẩy
-                    sự phát triển của doanh nghiệp, thông qua việc đảm bảo về chất lượng sản phẩm. Vậy, nhân viên QC là
-                    gì? Và đâu là phần mềm giúp thực hiện các bài test nhân viên QC hiệu quả. Mời bạn cùng Testcenter
-                    khám phá trong bài viết dưới đây nhé.
-                  </template>
-                </OwlItems>
-                <OwlItems>
-                  <template #img>
-                    <ImageOwl :imageAlt='""' :imageSrc='"src/assets/resources/paying-1438142_1920.jpeg"'></ImageOwl>
-                  </template>
-                  <template #title>Chia sẻ phần mềm tạo bài test nhân viên QC chuyên nghiệp nhất</template>
-                  <template #description>Bộ phận QC nói chung và nhân viên QC đóng vai trò khá quan trọng, giúp thúc đẩy
-                    sự phát triển của doanh nghiệp, thông qua việc đảm bảo về chất lượng sản phẩm. Vậy, nhân viên QC là
-                    gì? Và đâu là phần mềm giúp thực hiện các bài test nhân viên QC hiệu quả. Mời bạn cùng Testcenter
-                    khám phá trong bài viết dưới đây nhé.
-                  </template>
-                </OwlItems>
-                <OwlItems>
-                  <template #img>
-                    <ImageOwl :imageAlt='""' :imageSrc='"src/assets/resources/paying-1438142_1920.jpeg"'></ImageOwl>
-                  </template>
-                  <template #title>Chia sẻ phần mềm tạo bài test nhân viên QC chuyên nghiệp nhất</template>
-                  <template #description>Bộ phận QC nói chung và nhân viên QC đóng vai trò khá quan trọng, giúp thúc đẩy
-                    sự phát triển của doanh nghiệp, thông qua việc đảm bảo về chất lượng sản phẩm. Vậy, nhân viên QC là
-                    gì? Và đâu là phần mềm giúp thực hiện các bài test nhân viên QC hiệu quả. Mời bạn cùng Testcenter
-                    khám phá trong bài viết dưới đây nhé.
-                  </template>
-                </OwlItems>
+          <swiper
+            :modules="[Navigation]"
+            :slides-per-view="3"
+            :space-between="15"
+            navigation
+            loop
+            class="swiper-container"
+          >
+            <swiper-slide v-for="post in posts" :key="post.id">
+              <div class="card card-item">
+                <a :href="post.link" target="_blank">
+                  <img class="card-img-top" :src="post.image" :alt="post.title" />
+                </a>
+                <div class="card-body">
+                  <div class="title-post">
+                    <h3 class="card-title">
+                      <a :href="post.link" target="_blank">
+                        {{ post.title }}
+                      </a>
+                    </h3>
+                  </div>
+                  <div class="short-post">
+                    {{ post.short_content }}
+                  </div>
+                  <div class="more text-center mt-3">
+                    <div class="button-more">
+                      <router-link :to="{path:'blog'}" target="_blank" class="btn btn-primary border-0 font-weight-normal" style="color: white">
+                        Đọc thêm
+                      </router-link>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </swiper-slide>
+          </swiper>
         </div>
       </section>
     </div>
@@ -379,104 +358,129 @@
           Bài viết <span style="color: #2B4AA0">mới nhất</span>
         </h4>
         <div class="slider-panel-latest-new position-relative mt-3">
-          <OwlItemHidden>
-            <template #img>
-              <ImageOwl :imageAlt='""' :imageSrc='"src/assets/resources/paying-1438142_1920.jpeg"'></ImageOwl>
-            </template>
-            <template #title>Chia sẻ phần mềm tạo bài test nhân viên QC chuyên nghiệp nhất</template>
-            <template #description>Bộ phận QC nói chung và nhân viên QC đóng vai trò khá quan trọng, giúp thúc đẩy sự
-              phát triển của doanh nghiệp, thông qua việc đảm bảo về chất lượng sản phẩm. Vậy, nhân viên QC là gì? Và
-              đâu là phần mềm giúp thực hiện các bài test nhân viên QC hiệu quả. Mời bạn cùng Testcenter khám phá trong
-              bài viết dưới đây nhé.
-            </template>
-          </OwlItemHidden>
-          <OwlItemHidden>
-            <template #img>
-              <ImageOwl :imageAlt='""'
-                        :imageSrc='"src/assets/card/iq-va-eq-cai-nao-quan-trong-hon-testcenter.jpg"'></ImageOwl>
-            </template>
-            <template #title>IQ và EQ cái
-              nào quan trọng hơn? Chọn yếu tố gì trong tuyển dụng
-            </template>
-            <template #description>IQ và EQ đã trở thành hai khái niệm quan trọng trong lĩnh vực tuyển
-              dụng nhân sự. Tuy vậy, rất nhiều nhà tuyển dụng vẫn phân vân không
-              biết IQ và EQ cái nào quan trọng hơn trong quá trình đánh giá ứng
-              viên. Nếu bạn cũng đang tìm hiểu vấn đề IQ và [&hellip;]
-            </template>
-          </OwlItemHidden>
-          <OwlItemHidden>
-            <template #img>
-              <ImageOwl :imageAlt='""'
-                        :imageSrc='"src/assets/resources/batchbusinesswoman-571153_1920.jpeg"'></ImageOwl>
-            </template>
-            <template #title>Chia sẻ phần mềm tạo bài test nhân viên QC chuyên nghiệp nhất</template>
-            <template #description>Khi tuyển dụng, không ít nhà quản lý cho ứng viên làm các bài test chuyên môn và test
-              tính cách để đánh giá năng lực của nhân viên, nhằm chọn ra nhân viên phù hợp với vị trí đang tuyển dụng.
-              Vị trí nhân viên thu mua cũng không phải là ngoại lệ.
-            </template>
-          </OwlItemHidden>
-          <OwlItemHidden>
-            <template #img>
-              <ImageOwl :imageAlt='""' :imageSrc='"src/assets/resources/batchsale-3701777_1920.jpeg"'></ImageOwl>
-            </template>
-            <template #title>Giới thiệu phần mềm thông minh tạo bài test nhân viên thủ kho￼</template>
-            <template #description>Bạn đang chuẩn bị phỏng vấn ứng viên và cảm thấy bối bối, không biết bài test nhân
-              viên thủ kho như thế nào. Nhưng đừng quá lo lắng, trong bài viết dưới đây, Testcenter sẽ chia sẻ với bạn
-              những thông tin hữu ích để có thể thực hiện phỏng vấn vị trí nhân viên kho một cách tốt nhất.
-            </template>
-          </OwlItemHidden>
-        </div>
+          <div class="owl-carousel owl-theme owl-loaded owl-carousel-latest-news hidden-md">
+            <div class="owl-stage-outer">
+                <OwlItemHidden>
+                  <template #img>
+                    <ImageOwl :imageAlt='""' :imageSrc='"src/assets/resources/paying-1438142_1920.jpeg"'></ImageOwl>
+                  </template>
+                  <template #title>Chia sẻ phần mềm tạo bài test nhân viên QC chuyên nghiệp nhất</template>
+                  <template #description>Bộ phận QC nói chung và nhân viên QC đóng vai trò khá quan trọng, giúp thúc đẩy
+                    sự
+                    phát triển của doanh nghiệp, thông qua việc đảm bảo về chất lượng sản phẩm. Vậy, nhân viên QC là gì?
+                    Và
+                    đâu là phần mềm giúp thực hiện các bài test nhân viên QC hiệu quả. Mời bạn cùng Testcenter khám phá
+                    trong
+                    bài viết dưới đây nhé.
+                  </template>
+                </OwlItemHidden>
+                <OwlItemHidden>
+                  <template #img>
+                    <ImageOwl :imageAlt='""'
+                              :imageSrc='"src/assets/card/iq-va-eq-cai-nao-quan-trong-hon-testcenter.jpg"'></ImageOwl>
+                  </template>
+                  <template #title>IQ và EQ cái
+                    nào quan trọng hơn? Chọn yếu tố gì trong tuyển dụng
+                  </template>
+                  <template #description>IQ và EQ đã trở thành hai khái niệm quan trọng trong lĩnh vực tuyển
+                    dụng nhân sự. Tuy vậy, rất nhiều nhà tuyển dụng vẫn phân vân không
+                    biết IQ và EQ cái nào quan trọng hơn trong quá trình đánh giá ứng
+                    viên. Nếu bạn cũng đang tìm hiểu vấn đề IQ và [&hellip;]
+                  </template>
+                </OwlItemHidden>
+                <OwlItemHidden>
+                  <template #img>
+                    <ImageOwl :imageAlt='""'
+                              :imageSrc='"src/assets/resources/batchbusinesswoman-571153_1920.jpeg"'></ImageOwl>
+                  </template>
+                  <template #title>Chia sẻ phần mềm tạo bài test nhân viên QC chuyên nghiệp nhất</template>
+                  <template #description>Khi tuyển dụng, không ít nhà quản lý cho ứng viên làm các bài test chuyên môn
+                    và
+                    test
+                    tính cách để đánh giá năng lực của nhân viên, nhằm chọn ra nhân viên phù hợp với vị trí đang tuyển
+                    dụng.
+                    Vị trí nhân viên thu mua cũng không phải là ngoại lệ.
+                  </template>
+                </OwlItemHidden>
+                <OwlItemHidden>
+                  <template #img>
+                    <ImageOwl :imageAlt='""' :imageSrc='"src/assets/resources/batchsale-3701777_1920.jpeg"'></ImageOwl>
+                  </template>
+                  <template #title>Giới thiệu phần mềm thông minh tạo bài test nhân viên thủ kho￼</template>
+                  <template #description>Bạn đang chuẩn bị phỏng vấn ứng viên và cảm thấy bối bối, không biết bài test
+                    nhân
+                    viên thủ kho như thế nào. Nhưng đừng quá lo lắng, trong bài viết dưới đây, Testcenter sẽ chia sẻ với
+                    bạn
+                    những thông tin hữu ích để có thể thực hiện phỏng vấn vị trí nhân viên kho một cách tốt nhất.
+                  </template>
+                </OwlItemHidden>
+              </div>
+            </div>
+          </div>
       </section>
     </div>
   </div>
 </template>
 <script setup>
-import {onMounted, ref, nextTick} from 'vue';
-import $ from "jquery";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
-import "owl.carousel";
-
 import GroupFeature from "@/components/index_components/GroupFeature.vue";
 import GroupFeatures from "@/components/index_components/GroupFeatures.vue";
 import ToolIT from "@/components/index_components/ToolIT.vue";
-import OwlItems from "@/components/index_components/OwlItems.vue";
 import OwlItemHidden from "@/components/index_components/OwlItemHidden.vue";
 import ImageItem from "@/components/img/ImageItem.vue";
 import ImgPriceBox from "@/components/img/imgPriceBox.vue";
 import ImageOwl from "@/components/img/imageOwl.vue";
 import {RouterLink} from "vue-router";
-
-onMounted(() => {
-  console.log("jQuery version:", $.fn.jquery);
-});
-
-const owlCarousel = ref(null);
-onMounted(() => {
-  nextTick(() => {
-    if (owlCarousel.value) {
-      setTimeout(() => {
-        $(owlCarousel.value).owlCarousel({
-          loop: true,
-          nav: false,
-          autoplay: true,
-          autoplayTimeout: 5000,
-          autoplayHoverPause: true,
-          responsive: {
-            0: {items: 1},
-            600: {items: 3},
-            1000: {items: 5}
-          }
-        });
-      }, 500);
-    }
-  });
-});
-
-const nextSlide = () => {
-  $(owlCarousel.value).trigger("next.owl.carousel");
-};
-const prevSlide = () => {
-  $(owlCarousel.value).trigger("prev.owl.carousel");
-};
+import { ref} from "vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Navigation } from "swiper/modules";
+const posts = ref([
+  {
+    id: 1,
+    title: "Chia sẻ phần mềm tạo bài test nhân viên QC chuyên nghiệp nhất",
+    short_content:
+      "Bộ phận QC nói chung và nhân viên QC đóng vai trò khá quan trọng, giúp thúc đẩy sự phát triển của doanh nghiệp, thông qua việc đảm bảo về chất lượng sản phẩm. Vậy, nhân viên QC là gì? Và đâu là phần mềm giúp thực hiện các bài test nhân viên QC hiệu quả. Mời bạn cùng Testcenter khám phá trong bài viết dưới đây nhé.",
+    image: "src/assets/resources/paying-1438142_1920.jpeg",
+    link: "/blog/lean-la-gi",
+  },
+  {
+    id: 2,
+    title: "IQ và EQ cái nào quan trọng hơn? Chọn yếu tố gì trong tuyển dụng",
+    short_content:
+      "IQ và EQ đã trở thành hai khái niệm quan trọng trong lĩnh vực tuyển dụng nhân sự. Tuy vậy, rất nhiều nhà tuyển dụng vẫn phân vân không biết IQ và EQ cái nào quan trọng hơn trong quá trình đánh giá ứng viên. Nếu bạn cũng đang tìm hiểu vấn đề IQ và [&hellip;]",
+    image:
+      "src/assets/card/iq-va-eq-cai-nao-quan-trong-hon-testcenter.jpg",
+    link: "/blog/equity-theory-la-gi",
+  },
+  {
+    id: 3,
+    title: "Giới thiệu phần mềm thông minh tạo bài test nhân viên thu mua",
+    short_content:
+      "Khi tuyển dụng, không ít nhà quản lý cho ứng viên làm các bài test chuyên môn\n" +
+      "                    và\n" +
+      "                    test\n" +
+      "                    tính cách để đánh giá năng lực của nhân viên, nhằm chọn ra nhân viên phù hợp với vị trí đang tuyển\n" +
+      "                    dụng.\n" +
+      "                    Vị trí nhân viên thu mua cũng không phải là ngoại lệ.",
+    image:
+      "src/assets/resources/batchbusinesswoman-571153_1920.jpeg",
+    link: "/blog/equity-theory-la-gi",
+  },
+  {
+    id: 4,
+    title: "Giới thiệu phần mềm thông minh tạo bài test nhân viên thủ kho￼",
+    short_content:
+      "Bạn đang chuẩn bị phỏng vấn ứng viên và cảm thấy bối bối, không biết bài test\n" +
+      "                    nhân\n" +
+      "                    viên thủ kho như thế nào. Nhưng đừng quá lo lắng, trong bài viết dưới đây, Testcenter sẽ chia sẻ với\n" +
+      "                    bạn\n" +
+      "                    những thông tin hữu ích để có thể thực hiện phỏng vấn vị trí nhân viên kho một cách tốt nhất.",
+    image: "src/assets/resources/batchsale-3701777_1920.jpeg",
+    link: "/blog/tuyen-mass",
+  },
+]);
 </script>
+<style scoped>
+
+</style>

@@ -1,14 +1,13 @@
 <template>
-  <div class="owl-carousel owl-theme" ref="owlCarousel">
     <div class="owl-item mt-3">
       <div class="card card-item">
-        <a target="_blank" href="/public">
+        <router-link target="_blank" :to="{path:'/blog'}">
           <slot name="img"></slot>
-        </a>
+        </router-link>
         <div class="card-body">
           <div class="title-post">
             <h3 class="card-title">
-              <a target="_blank" href="/public"><slot name="title"></slot></a>
+              <router-link :to="{path:'/blog'}" target="_blank" ><slot name="title"></slot></router-link>
             </h3>
           </div>
           <div class="short-post">
@@ -16,19 +15,17 @@
           </div>
           <div class="more text-center mt-3">
             <div class="button-more">
-              <a
+              <router-link :to="{path:'/blog'}"
                 target="_blank"
                 style="color: #fff"
-                href="/public"
                 class="btn btn-primary border-0 font-weight-normal"
               >
                 Đọc thêm
-              </a>
+              </router-link>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 </template>
 

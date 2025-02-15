@@ -22,7 +22,6 @@ const openOverlay = () => {
   isOverlayVisible.value = true;
   document.body.classList.add('no-scroll');
 };
-
 const closeOverlay = () => {
   isOverlayVisible.value = false;
   document.body.classList.remove('no-scroll');

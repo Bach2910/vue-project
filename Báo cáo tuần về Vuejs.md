@@ -82,7 +82,8 @@ Cũng như cái tên gần như là 1 vòng đời với nó ta có thể thực
          console.log(this.message);
       }
 
-+beforeMount(): nó sẽ được sử dụng ngay trước khi Vue instance được mount vào DOM , sau khi render hàm được gọi lần đầu
+- Thao tác với DOM sau khi component render 
++ beforeMount(): nó sẽ được sử dụng ngay trước khi Vue instance được mount vào DOM , sau khi render hàm được gọi lần đầu
 tiên được dùng trong khi DOM chưa được tạo và bạn không thể truy cập vào DOM elements
 
       beforeMount() {
@@ -95,7 +96,7 @@ tiên được dùng trong khi DOM chưa được tạo và bạn không thể t
       mounted() {
         console.log('mounted');
       }
-
+- Theo dõi sự thay đổi của DOM
 + beforeUpdate(): dùng trước khi có sự thay đổi với data hoặc props
 
       beforeUpdate() {
@@ -107,7 +108,7 @@ tiên được dùng trong khi DOM chưa được tạo và bạn không thể t
       updated() {
         console.log('updated');
       }
-
+- Cleanup khi component bị xóa
 + beforeUnmount(): ngay trước khi Vue instance bị hủy bỏ (unmounted). Đây là thời điểm trước khi Vue bắt đầu làm sạch
   các resources.
 
@@ -122,9 +123,31 @@ tiên được dùng trong khi DOM chưa được tạo và bạn không thể t
       unmounted() {
         console.log('unmounted');
       }
++ onErrorCaptured(): Xử lý lỗi trong component con
++ onActivated(): Khi component được hiển thị lại từ <KeepAlive> dùng khi muốn tiếp tục các tác vụ tạm dừng, như bộ đếm thời gian, gọi API...
++ onDeactivated(): Khi component bị ẩn bởi <KeepAlive> có tác dụng tạm dừng hoặc lưu trạng thái component để không mất dữ liệu
+
+Ví dụ:
+      
+      <router-view v-slot="{ Component }">
+        <KeepAlive>
+          <component :is="Component" />
+        </KeepAlive>
+      </router-view>
+
+Do Vue Router 4 không còn hỗ trợ sử dụng trực tiếp <router-view /> bên trong <KeepAlive> lên ta phải sử dụng v-slot.
+- v-slot="{ Component }": Lấy component hiện tại từ Vue Router.
+- :is="Component": Render component động.
+- Bọc <component /> trong <KeepAlive> giúp lưu trạng thái component.
+
++ onServerPrefetch(): Tải dữ liệu trước khi render trên server, giúp tải dữ liệu trước khi Vue gửi xuống client.
+
+      onServerPrefetch(async () => {
+        const response = await fetch('https://jsonplaceholder.typicode.com/posts')
+        data.value = await response.json()
+      })
 
 ### **WATCHER(!!!!)**
-
 Watchers là một tính năng trong Vue.js cho phép bạn theo dõi sự thay đổi của dữ liệu (data) và thực hiện các hành động (
 ví dụ như gọi API, tính toán lại giá trị, hoặc thay đổi DOM) khi dữ liệu thay đổi.
 

@@ -13,7 +13,7 @@ onMounted(() => {
   window.addEventListener("scroll", handleScroll);
   initializeOwlCarousel();
 });
-// Hook unmounted
+
 onUnmounted(() => {
   window.removeEventListener("scroll", handleScroll);
 });
@@ -69,10 +69,10 @@ const toggleNavbar = () => {
           <div class="form-inline">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <RouterLink @click="console.log('Click me')" class="nav-link header-item" :to="{ path: '/'}">Trang chủ</RouterLink>
+                <RouterLink class="nav-link header-item" :to="{ path: '/'}">Trang chủ</RouterLink>
               </li>
               <li class="nav-item">
-                <RouterLink class="nav-link header-item" :to="{ name: 'Product'}" @click="scrollToTop">Tính năng</RouterLink>
+                <RouterLink class="nav-link header-item" :to="{ name: 'Product'}" @click="scrollToTop" target="_blank">Tính năng</RouterLink>
               </li>
               <li class="nav-item">
                 <RouterLink

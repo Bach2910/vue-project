@@ -105,7 +105,7 @@ const togglePassword = () => {
           <span>Login with TopCV</span>
         </div>
         <div class="register-link">
-          Do you have a account ? <router-link :to="{name:'register'}">Register</router-link>
+          Do you have a account? <router-link :to="{name:'register'}">Register</router-link>
         </div>
       </div>
     </div>

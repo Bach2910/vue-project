@@ -1,6 +1,5 @@
 <script setup>
 import {RouterLink, RouterView, useRouter} from "vue-router";
-
 const router = useRouter();
 const scrollToPrice = () => {
   router.push('/product').then(() => {

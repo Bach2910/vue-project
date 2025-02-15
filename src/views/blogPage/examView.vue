@@ -66,10 +66,6 @@
                   <li class="page-item" :class="{ active: currentPage === 2 }">
                     <button class="page-link" @click="changePage(2)">2</button>
                   </li>
-                  <li class="page-item" :class="{ active: currentPage === 3 }">
-                    <button class="page-link" @click="changePage(3)">3</button>
-                  </li>
-                  <!-- Thêm các trang nếu cần -->
                   <li class="page-item" :class="{ disabled: currentPage === totalPages }">
                     <button class="page-link" @click="changePage(currentPage + 1)"
                             :disabled="currentPage === totalPages"> >
